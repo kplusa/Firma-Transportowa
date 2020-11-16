@@ -12,3 +12,8 @@ Projekt wykonywany w ramach zajęć z Podstaw Inżynierii Programowania
 8.  Jako spedytor możliwość obliczenia zapłaty dla kierowcy oraz kosztów transportu(opłata za przesyłkę).
 9.  Jako kierowca możliwość kontroli przeznaczonych przesyłek oraz szczegółowych informacji dotyczących przesyłek.
 10. Jako kierowca możliwośc zmiany stanu przydzielonej przesyłki.
+
+### Technologie:
+Backend: Java<br/>
+Frontend: JavaFX<br/>
+DB: OracleDB/MSSQL
