@@ -4,7 +4,7 @@ Projekt wykonywany w ramach zajęć z Podstaw Inżynierii Programowania
 ## Wstępne funkcjonalności: 
 1.  Możliwość założenia konta oraz zalogowania jako spedytor, kierowca, klient.
 2.  Jako klient dodawanie przesyłek do dostarczenia oraz obserwacja stanu przesyłki(przeznaczona do dostarczenia, odebrana od klienta, w trakcie transportu, dostarczona).
-3.  Jako klient potwierdzenie akceptacji zasad transportu przesyłki.
+3.  Jako klient zaakceptowanie zasad transportu przesyłki.
 4.  Jako klient możliwość utworzenia zleceń stałych.
 5.  Jako klient wyświetlenie cennika w zależności od wielkości paczki.
 6.  Jako spedytor możliwość edycji listy oddziałów (punktów przerzutowych przesyłek).
