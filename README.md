@@ -17,3 +17,7 @@ Projekt wykonywany w ramach zajęć z Podstaw Inżynierii Programowania
 Backend: Java<br/>
 Frontend: JavaFX<br/>
 DB: OracleDB/MSSQL
+### Diagram ERD:
+![126006122_779027159342308_6403984787286538727_n](https://user-images.githubusercontent.com/48603149/99404835-5fd32c80-28ec-11eb-930c-6862434fb439.jpg)
+### Diagram klas:
+![125944168_2828374320819848_5316676274729308801_n](https://user-images.githubusercontent.com/48603149/99404860-66fa3a80-28ec-11eb-85ea-b4abee38d610.jpg)
