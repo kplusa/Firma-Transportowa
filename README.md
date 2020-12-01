@@ -18,6 +18,8 @@ Backend: Java<br/>
 Frontend: JavaFX<br/>
 DB: OracleDB/MSSQL
 ### Diagram ERD:
-![Schemat_bazy_danych](https://user-images.githubusercontent.com/48603149/100730837-ded76300-33ca-11eb-999f-155fafecb14c.png)
+![Schemat_bazy_danych](https://user-images.githubusercontent.com/48603149/100749495-03403900-33e5-11eb-88d2-995fc39623ce.jpg)
 ### Diagram klas:
-![ClassDiagram](https://user-images.githubusercontent.com/48603149/100729899-a5eabe80-33c9-11eb-8a03-abaef4162224.PNG)
+![ClassDiagram](https://user-images.githubusercontent.com/48603149/100749380-e277e380-33e4-11eb-9529-e77e3840c400.PNG)
+### Diagram przypadków użycia:
+![Diagram_przypadków_użycia](https://user-images.githubusercontent.com/48603149/100749346-d724b800-33e4-11eb-9873-65f4eebc5098.jpg)
