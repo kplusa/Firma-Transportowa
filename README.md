@@ -22,6 +22,6 @@ DB: OracleDB/MSSQL
 ### Diagram klas:
 ![ClassDiagram](https://user-images.githubusercontent.com/48603149/100749380-e277e380-33e4-11eb-9529-e77e3840c400.PNG)
 ### Diagram przypadków użycia:
-![Diagram_przypadków_użycia](https://user-images.githubusercontent.com/48603149/100749346-d724b800-33e4-11eb-9873-65f4eebc5098.jpg)
+![Diagram_przypadków_użycia](https://user-images.githubusercontent.com/48603149/100759532-004b4580-33f1-11eb-838c-5ce47d2cf8df.jpg)
 ### Diagram aktywności:
 ![Diagram_aktywności_1](https://user-images.githubusercontent.com/48603149/100757663-f0326680-33ee-11eb-9a80-70da7bbcd7c5.jpg)
