@@ -16,6 +16,11 @@ public class Kurier extends Użytkownik {
      */
     public Kurier() {
     }
+    public static Stage stage =null;
+    @Override
+    public void start(Stage stage) throws Exception {
+
+    }
 
     /**
      * 

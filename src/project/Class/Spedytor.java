@@ -16,6 +16,11 @@ public class Spedytor extends Użytkownik {
      */
     public Spedytor() {
     }
+    public static Stage stage =null;
+    @Override
+    public void start(Stage stage) throws Exception {
+
+    }
 
 
 

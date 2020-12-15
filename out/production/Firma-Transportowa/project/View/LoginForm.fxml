@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="500.0" styleClass="background" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
    <children>
-      <AnchorPane layoutX="50.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" styleClass="body" stylesheets="@../../../../../../java/eMClient/src/project/Resources/styles/LoginWindowView.css">
+      <AnchorPane layoutX="50.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
             <HBox alignment="CENTER" layoutX="80.0" layoutY="171.0" spacing="20.0">
                <children>
@@ -49,7 +49,7 @@
                </font></JFXButton>
             <Label layoutX="174.0" layoutY="217.0" prefHeight="17.0" prefWidth="52.0" />
          </children></AnchorPane>
-      <Pane layoutX="100.0" layoutY="60.0" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: #00B2FF;" styleClass="body" stylesheets="@../../../../../../java/eMClient/src/project/Resources/styles/LoginWindowView.css">
+      <Pane layoutX="100.0" layoutY="60.0" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: #00B2FF;" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
             <HBox alignment="CENTER" layoutX="99.0" layoutY="23.0" spacing="10.0">
                <children>

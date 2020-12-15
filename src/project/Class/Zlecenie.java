@@ -9,12 +9,17 @@ import javafx.stage.StageStyle;
 /**
  * 
  */
-public class Zlecenie {
+public class Zlecenie extends Application {
 
     /**
      * Default constructor
      */
     public Zlecenie() {
+    }
+    public static Stage stage =null;
+    @Override
+    public void start(Stage stage) throws Exception {
+
     }
 
     /**

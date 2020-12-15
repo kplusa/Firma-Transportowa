@@ -16,6 +16,11 @@ public class Klient extends Użytkownik {
      */
     public Klient() {
     }
+    public static Stage stage =null;
+    @Override
+    public void start(Stage stage) throws Exception {
+
+    }
 
     /**
      * 
