@@ -17,12 +17,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginForm implements Initializable {
-double x=0, y=0;
-static final int HBoxXMin=432;
-static final int HBoxXMax=492;
-static final int HBoxYMin=14;
-static final int HBoxYMax=44;
+public class RegisterForm implements Initializable {
+    double x=0, y=0;
+    static final int HBoxXMin=432;
+    static final int HBoxXMax=492;
+    static final int HBoxYMin=14;
+    static final int HBoxYMax=44;
 
 
     @FXML
@@ -30,12 +30,12 @@ static final int HBoxYMax=44;
 
     @FXML
     void closeAction(MouseEvent event) {
-    System.exit(0);
+        System.exit(0);
     }
 
     @FXML
     void minAction(MouseEvent event) {
-     Main.stage.setIconified(true);
+        Main.stage.setIconified(true);
     }
 
     @FXML
@@ -51,23 +51,10 @@ static final int HBoxYMax=44;
             }
         });
     }
-    @FXML
-    void login(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-        Parent root = loader.load();
-        //MainForm mainForm = loader.getController();
-        //Main.stage.initStyle(StageStyle.DECORATED);
 
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.initStyle(StageStyle.DECORATED);
-        window.setScene(scene);
-        window.show();
-    }
     @FXML
-    void goRegister(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/RegisterForm.fxml"));
+    void goLogin(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
         Parent root = loader.load();
         //LoginForm loginForm = loader.getController();
         //loginForm.store_username(login);
@@ -76,8 +63,21 @@ static final int HBoxYMax=44;
         window.setScene(scene);
         window.show();
     }
+    @FXML
+    void login(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+        Parent root = loader.load();
+        //LoginForm loginForm = loader.getController();
+        //loginForm.store_username(login);
+        Scene scene = new Scene(root);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.initStyle(StageStyle.DECORATED);
+        window.setScene(scene);
+        window.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-MakeDraggable();
+
+        MakeDraggable();
     }
 }
