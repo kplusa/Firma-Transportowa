@@ -43,7 +43,7 @@
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="260.0" onAction="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="260.0" onMouseClicked="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei Light" size="18.0" />
                </font></JFXButton>

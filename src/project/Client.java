@@ -7,7 +7,16 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class Client extends Application {
+    private Socket s;
+    private InetAddress ip;
+    private DataInputStream dis;
+    private DataOutputStream dos;
 public static Stage stage =null;
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -16,6 +25,12 @@ public static Stage stage =null;
         primaryStage.initStyle(StageStyle.UNDECORATED);
         this.stage=primaryStage;
         primaryStage.show();
+        ip = InetAddress.getByName("localhost");
+        s = new Socket(ip, 5057);
+        dis = new DataInputStream(s.getInputStream());
+        dos = new DataOutputStream(s.getOutputStream());
+        dos.writeUTF("blabla");
+
 }
 
 

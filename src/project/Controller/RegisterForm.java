@@ -11,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Main;
+import project.Client;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +35,7 @@ public class RegisterForm implements Initializable {
 
     @FXML
     void minAction(MouseEvent event) {
-        Main.stage.setIconified(true);
+        Client.stage.setIconified(true);
     }
 
     @FXML
@@ -46,8 +46,8 @@ public class RegisterForm implements Initializable {
         });
         APMain.setOnMouseDragged(event -> {
             if(!(x>=HBoxXMin&&x<=HBoxXMax)||!(y>=HBoxYMin&&y<=HBoxYMax)) {
-                Main.stage.setX(event.getScreenX() - x);
-                Main.stage.setY(event.getScreenY() - y);
+                Client.stage.setX(event.getScreenX() - x);
+                Client.stage.setY(event.getScreenY() - y);
             }
         });
     }

@@ -11,18 +11,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Main;
+import project.Client;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginForm implements Initializable {
-double x=0, y=0;
-static final int HBoxXMin=432;
-static final int HBoxXMax=492;
-static final int HBoxYMin=14;
-static final int HBoxYMax=44;
+    double x=0, y=0;
+    static final int HBoxXMin=432;
+    static final int HBoxXMax=492;
+    static final int HBoxYMin=14;
+    static final int HBoxYMax=44;
 
 
     @FXML
@@ -35,7 +35,7 @@ static final int HBoxYMax=44;
 
     @FXML
     void minAction(MouseEvent event) {
-     Main.stage.setIconified(true);
+     Client.stage.setIconified(true);
     }
 
     @FXML
@@ -46,18 +46,17 @@ static final int HBoxYMax=44;
         });
         APMain.setOnMouseDragged(event -> {
             if(!(x>=HBoxXMin&&x<=HBoxXMax)||!(y>=HBoxYMin&&y<=HBoxYMax)) {
-                Main.stage.setX(event.getScreenX() - x);
-                Main.stage.setY(event.getScreenY() - y);
+                Client.stage.setX(event.getScreenX() - x);
+                Client.stage.setY(event.getScreenY() - y);
             }
         });
     }
     @FXML
-    void login(ActionEvent event) throws IOException {
+    void login(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
         //MainForm mainForm = loader.getController();
         //Main.stage.initStyle(StageStyle.DECORATED);
-
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
