@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -9,17 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
-   <children>
-      <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
-=======
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
 <AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.PackForm">
    <children>
       <AnchorPane onMouseClicked="#goMenu" prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
@@ -58,11 +46,9 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-<<<<<<< HEAD
-      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
-=======
+
       <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
->>>>>>> 5c444607eb69f7395720b1b67bd73b738e45b7b4
+
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
@@ -72,11 +58,9 @@
             <Font name="Microsoft YaHei Light" size="14.0" />
          </font>
       </JFXTextField>
-<<<<<<< HEAD
-      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" onAction="#login" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
-=======
+
       <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
->>>>>>> 5c444607eb69f7395720b1b67bd73b738e45b7b4
+
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
