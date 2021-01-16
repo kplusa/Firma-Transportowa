@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+   <children>
+      <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
+         <children>
+            <AnchorPane layoutX="36.0" layoutY="29.0" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="55.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_delivery_50px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="51.0" layoutY="21.0" text="App" textFill="WHITE" />
+                  <Label layoutX="42.0" layoutY="1.0" prefHeight="27.0" prefWidth="81.0" text="Delivery" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="302.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label layoutX="16.0" layoutY="1.0" prefHeight="34.0" prefWidth="180.0" text="ActualOrders" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
+      <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
+      <TableView fx:id="QClosed" layoutX="29.0" layoutY="137.0" prefHeight="363.0" prefWidth="730.0" stylesheets="@../../../../../../java/Java_project/src/project/styles/tableview.css">
+         <columns>
+            <TableColumn fx:id="Pytanie" prefWidth="241.0" text="OrderNumber" />
+            <TableColumn fx:id="OdpA" minWidth="5.0" prefWidth="211.0" text="Status" />
+            <TableColumn fx:id="OdpB" prefWidth="277.0" text="Courier" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

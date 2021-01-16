@@ -43,11 +43,12 @@
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="251.0" onAction="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="260.0" onAction="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei Light" size="18.0" />
                </font></JFXButton>
-            <Label layoutX="174.0" layoutY="217.0" prefHeight="17.0" prefWidth="52.0" />
+            <Label layoutX="138.0" layoutY="224.0" prefHeight="17.0" prefWidth="124.0" />
+            <Label layoutX="138.0" layoutY="310.0" onMouseClicked="#goRegister" styleClass="goLoginRegister" stylesheets="@../Resources/styles/LoginWindowView.css" text="I don't have an account" textFill="#575757" />
          </children></AnchorPane>
       <Pane layoutX="100.0" layoutY="60.0" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: #00B2FF;" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
