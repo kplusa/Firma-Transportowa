@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.CourierForm">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -22,7 +22,7 @@
                      </image>
                   </ImageView>
                   <Label layoutX="51.0" layoutY="21.0" text="App" textFill="WHITE" />
-                  <Label layoutX="42.0" layoutY="1.0" prefHeight="27.0" prefWidth="81.0" text="Delivery" textFill="WHITE">
+                  <Label layoutX="42.0" layoutY="1.0" onMouseClicked="#goMenu" prefHeight="27.0" prefWidth="81.0" text="Delivery" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -47,7 +47,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
@@ -56,7 +56,7 @@
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
       <JFXComboBox focusColor="#00b2ff" layoutX="58.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Status" unFocusColor="#575757" />
       <JFXComboBox focusColor="#00b2ff" layoutX="269.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Order" unFocusColor="#575757" />
-      <TableView fx:id="QClosed" layoutX="58.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0" >
+      <TableView fx:id="QClosed" layoutX="58.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0">
          <columns>
             <TableColumn prefWidth="30.0" text="Id" />
             <TableColumn prefWidth="204.0" text="From" />

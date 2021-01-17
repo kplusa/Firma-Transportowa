@@ -62,7 +62,7 @@ class ClientHandler extends Thread implements Initializable {
                     type=rs.getString(3);
                     if (mail.equals(email) && pass.equals(password)) {
                         status = "Poprawne dane-"+type;
-                        text.appendText("\nZalogowano"+mail);
+                        text.appendText("\nZalogowano:"+mail);
                         break;
                     }
                 }

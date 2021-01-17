@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.AddbranchForm">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -47,7 +47,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onMousePressed="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
@@ -58,7 +58,7 @@
         </columns>
       </TableView>
       <JFXTextArea layoutX="447.0" layoutY="265.0" prefHeight="34.0" prefWidth="158.0" />
-      <JFXButton buttonType="RAISED" layoutX="620.0" layoutY="281.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="620.0" layoutY="281.0" onMousePressed="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>

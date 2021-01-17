@@ -80,7 +80,7 @@
                   </JFXTextField>
                </children>
             </HBox>
-            <Label fx:id="status" layoutX="440.0" layoutY="373.0" prefHeight="17.0" prefWidth="200.0" />
+            <Label fx:id="status" layoutX="440.0" layoutY="373.0" prefHeight="17.0" prefWidth="240.0" textFill="RED" />
             <HBox layoutX="120.0" layoutY="160.0">
                <children>
                   <JFXPasswordField fx:id="pass2" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Confirm password" unFocusColor="#575757">

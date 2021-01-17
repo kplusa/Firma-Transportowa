@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.ClientMenuForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.CourierMenuForm">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -57,7 +57,7 @@
          </rowConstraints>
          <children>
             <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="115.0" prefWidth="139.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Current Orders" textFill="#575757" />
-            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gocurrentorders" prefHeight="115.0" prefWidth="149.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Order" textFill="#575757">
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMousePressed="#gocurrentorders" prefHeight="115.0" prefWidth="149.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Order" textFill="#575757">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -10,34 +10,29 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CurentOrderForm implements Initializable {
-
-
-
+public class CourierMenuForm implements Initializable {
     @FXML
     private AnchorPane APMain;
-
-
-
-
     @FXML
-    void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+    void goLogin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
+        //window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
     }
     @FXML
-    void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+    void gocurrentorders(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierForm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();

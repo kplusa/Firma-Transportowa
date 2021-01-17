@@ -15,19 +15,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CurentOrderForm implements Initializable {
-
-
-
+public class CourierForm implements Initializable {
     @FXML
     private AnchorPane APMain;
-
-
-
-
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
