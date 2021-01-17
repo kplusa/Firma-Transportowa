@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="500.0" styleClass="background" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="500.0" styleClass="background" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
    <children>
       <AnchorPane layoutX="50.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -22,7 +17,7 @@
                         <Image url="@../Resources/icons/icons8_key_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXPasswordField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
+                  <JFXPasswordField fx:id="pas" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
@@ -36,7 +31,7 @@
                         <Image url="@../Resources/icons/icons8_secured_letter_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
+                  <JFXTextField fx:id="mail" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
@@ -47,7 +42,7 @@
                <font>
                   <Font name="Microsoft YaHei Light" size="18.0" />
                </font></JFXButton>
-            <Label layoutX="138.0" layoutY="224.0" prefHeight="17.0" prefWidth="124.0" />
+            <Label fx:id="status" layoutX="91.0" layoutY="224.0" prefHeight="18.0" prefWidth="240.0" textFill="RED" />
             <Label layoutX="138.0" layoutY="310.0" onMouseClicked="#goRegister" styleClass="goLoginRegister" stylesheets="@../Resources/styles/LoginWindowView.css" text="I don't have an account" textFill="#575757" />
          </children></AnchorPane>
       <Pane layoutX="100.0" layoutY="60.0" prefHeight="80.0" prefWidth="300.0" style="-fx-background-color: #00B2FF;" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">

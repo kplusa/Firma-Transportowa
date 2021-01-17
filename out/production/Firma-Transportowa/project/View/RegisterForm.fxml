@@ -23,7 +23,7 @@
                         <Image url="@../Resources/icons/icons8_key_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXPasswordField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
+                  <JFXPasswordField fx:id="pass" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
@@ -37,14 +37,14 @@
                         <Image url="@../Resources/icons/icons8_secured_letter_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
+                  <JFXTextField fx:id="mail" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton buttonType="RAISED" layoutX="320.0" layoutY="360.0" onAction="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Register" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="320.0" layoutY="360.0" onAction="#register" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Register" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei Light" size="18.0" />
                </font></JFXButton>
@@ -58,7 +58,7 @@
                         <Image url="@../Resources/icons/icons8_user_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="First Name" unFocusColor="#575757">
+                  <JFXTextField fx:id="firstname" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="First Name" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
@@ -73,17 +73,17 @@
                         <Image url="@../Resources/icons/icons8_phone_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Phone number" unFocusColor="#575757">
+                  <JFXTextField fx:id="phone" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Phone number" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <Label layoutX="440.0" layoutY="373.0" prefHeight="17.0" prefWidth="200.0" />
+            <Label fx:id="status" layoutX="440.0" layoutY="373.0" prefHeight="17.0" prefWidth="200.0" />
             <HBox layoutX="120.0" layoutY="160.0">
                <children>
-                  <JFXPasswordField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Confirm password" unFocusColor="#575757">
+                  <JFXPasswordField fx:id="pass2" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Confirm password" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
@@ -97,15 +97,15 @@
                         <Image url="@../Resources/icons/icons8_type_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXComboBox focusColor="#00b2ff" prefHeight="25.0" prefWidth="223.0" promptText="Client type" unFocusColor="#575757" />
+                  <JFXComboBox fx:id="type" focusColor="#00b2ff" prefHeight="25.0" prefWidth="223.0" promptText="Client type" unFocusColor="#575757" />
                </children>
             </HBox>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="210.0" prefHeight="25.0" prefWidth="200.0" promptText="Street" unFocusColor="#575757">
+            <JFXTextField fx:id="street" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="210.0" prefHeight="25.0" prefWidth="200.0" promptText="Street" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="260.0" prefHeight="25.0" prefWidth="200.0" promptText="House / Flat number" unFocusColor="#575757">
+            <JFXTextField fx:id="number" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="260.0" prefHeight="25.0" prefWidth="200.0" promptText="House / Flat number" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
@@ -117,19 +117,19 @@
                         <Image url="@../Resources/icons/icons8_home_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="City" unFocusColor="#575757">
+                  <JFXTextField fx:id="city" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="City" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="310.0" prefHeight="25.0" prefWidth="200.0" promptText="Postal code" unFocusColor="#575757">
+            <JFXTextField fx:id="code" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="310.0" prefHeight="25.0" prefWidth="200.0" promptText="Postal code" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" promptText="Last Name" unFocusColor="#575757">
+            <JFXTextField fx:id="lastname" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="440.0" layoutY="110.0" prefHeight="25.0" prefWidth="200.0" promptText="Last Name" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>

@@ -56,7 +56,7 @@
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
       <JFXComboBox focusColor="#00b2ff" layoutX="58.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Status" unFocusColor="#575757" />
       <JFXComboBox focusColor="#00b2ff" layoutX="269.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Order" unFocusColor="#575757" />
-      <TableView fx:id="QClosed" layoutX="58.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0" stylesheets="@../../../../../../java/Java_project/src/project/styles/tableview.css">
+      <TableView fx:id="QClosed" layoutX="58.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0" >
          <columns>
             <TableColumn prefWidth="30.0" text="Id" />
             <TableColumn prefWidth="204.0" text="From" />

@@ -76,21 +76,14 @@ public class ServerForm implements Initializable {
                 try {
                     socket=serverSocket.accept();
                     text.appendText("\nOtrzymano połączenie");
-                    Thread acceptedThread=new Thread(new ClientHandler(socket));
+                    Thread acceptedThread=new Thread(new ClientHandler(socket,text));
                     acceptedThread.setDaemon(true);
                     acceptedThread.start();
-                    Thread.sleep(100);
-                    text.appendText("\n"+string);
-                } catch (IOException | InterruptedException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
 
     }
-public void store(String s)
-{
-    string=s;
-}
-
 }

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -43,15 +47,11 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
-         <font>
-            <Font name="Microsoft YaHei Light" size="18.0" />
-         </font>
-      </JFXButton>
-      <GridPane hgap="10.0" layoutX="225.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="115.0" prefWidth="382.0" vgap="10.0">
+      <GridPane hgap="10.0" layoutX="150.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="115.0" prefWidth="500.0" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="125.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="125.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="125.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="125.0" />
          </columnConstraints>
          <rowConstraints>
@@ -67,21 +67,30 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add Order" textFill="#575757" GridPane.columnIndex="1">
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add branch" textFill="#575757" GridPane.columnIndex="1">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Resources/icons/icons8_new_100px.png" />
+                        <Image url="@../Resources/icons/icons8_department_100px.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="207.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Currents Orders" textFill="#575757" GridPane.columnIndex="2">
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="207.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Asign Order" textFill="#575757" GridPane.columnIndex="2">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/icons/icons8_order_history_100px.png" />
                      </image></ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goLogin" prefHeight="131.0" prefWidth="165.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Log Out" textFill="#575757" GridPane.columnIndex="3">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_login_100px.png" />
+                     </image>
+                  </ImageView>
                </graphic>
             </Button>
          </children>

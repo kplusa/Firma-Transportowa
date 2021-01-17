@@ -1,5 +1,7 @@
 package project.Controller;
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,13 +9,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Client;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,11 +30,20 @@ public class LoginForm implements Initializable {
     static final int HBoxXMax=492;
     static final int HBoxYMin=14;
     static final int HBoxYMax=44;
-
+    private String st;
+    private Socket s;
+    private InetAddress ip;
+    private DataInputStream dis;
+    private DataOutputStream dos;
 
     @FXML
     private AnchorPane APMain;
-
+    @FXML
+    JFXTextField mail;
+    @FXML
+    JFXPasswordField pas;
+    @FXML
+    Label status;
     @FXML
     void closeAction(MouseEvent event) {
     System.exit(0);
@@ -53,16 +69,41 @@ public class LoginForm implements Initializable {
     }
     @FXML
     void login(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-        Parent root = loader.load();
-        //MainForm mainForm = loader.getController();
-        //Main.stage.initStyle(StageStyle.DECORATED);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.initStyle(StageStyle.DECORATED);
-        window.setScene(scene);
-        window.show();
+                ip = InetAddress.getByName("localhost");
+                s = new Socket(ip, 5057);
+                dis = new DataInputStream(s.getInputStream());
+                dos = new DataOutputStream(s.getOutputStream());
+                dos.writeInt(1);
+                dos.writeUTF(mail.getText());
+                dos.writeUTF(pas.getText());
+                st = dis.readUTF();
+                System.out.println(st);
+                status.setText(st);
+                FXMLLoader loader =null;
+                if (st.equals("Poprawne dane-Klient"))
+                {
+                    loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+                }
+                else if(st.equals("Poprawne dane-Kurier"))
+                {
+                    loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
+                }
+                else if(st.equals("Poprawne dane-Spedytor"))
+                {
+                    loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
+                }
+                if(st.equals("Poprawne dane-Klient")||st.equals("Poprawne dane-Kurier")||st.equals("Poprawne dane-Spedytor")){
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                ((Node) event.getSource()).getScene().getWindow().hide();
+                Stage window = new Stage();
+                window.initStyle(StageStyle.DECORATED);
+                window.setScene(scene);
+                window.show();
+                }
+                dis.close();
+                dos.close();
+                s.close();
     }
     @FXML
     void goRegister(MouseEvent event) throws IOException {

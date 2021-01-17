@@ -61,7 +61,7 @@ public class ClientMenuForm implements Initializable {
     }
     @FXML
     void gocurrentorders(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ActualOrdersForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CurrentOrdersForm.fxml"));
         Parent root = loader.load();
         //MainForm mainForm = loader.getController();
         //Main.stage.initStyle(StageStyle.DECORATED);
