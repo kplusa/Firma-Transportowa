@@ -9,11 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Cennik;
+import project.Class.DataUtil;
 import project.Class.Zlecenie;
 
 import java.io.DataInputStream;
@@ -24,7 +26,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CurentOrderForm implements Initializable {
+public class CurentOrderForm extends DataUtil implements Initializable {
     private String st;
     private Socket s;
     private InetAddress ip;
@@ -32,6 +34,12 @@ public class CurentOrderForm implements Initializable {
     private DataOutputStream dos;
     private int counter,id;
     private String stat,kurier;
+    @FXML
+    public Label name;
+
+
+    @FXML
+    public Label clientType;
     @FXML
     private AnchorPane APMain;
     @FXML
@@ -46,6 +54,9 @@ public class CurentOrderForm implements Initializable {
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
+        ClientMenuForm clientMenuForm= loader.getController();
+        clientMenuForm.setName(getName(), clientMenuForm.name);
+        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -56,6 +67,9 @@ public class CurentOrderForm implements Initializable {
     void goMenu(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
+        ClientMenuForm clientMenuForm= loader.getController();
+        clientMenuForm.setName(getName(), clientMenuForm.name);
+        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -66,7 +80,7 @@ public class CurentOrderForm implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    @FXML
+    /*@FXML
     public ObservableList<Zlecenie> fill_table() throws IOException {
         ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
         try {
@@ -97,5 +111,5 @@ public class CurentOrderForm implements Initializable {
             e.printStackTrace();
         }
         return ZlecenieList;
-    }
+    }*/
 }

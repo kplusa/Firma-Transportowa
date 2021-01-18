@@ -10,7 +10,7 @@
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
-            <AnchorPane layoutX="36.0" layoutY="29.0" onMouseClicked="#goMenu" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
+            <AnchorPane layoutX="36.0" layoutY="29.0" onMousePressed="#goMenu" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="55.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
