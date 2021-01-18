@@ -18,15 +18,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 class ClientHandler extends Thread implements Initializable {
-    JFXTextArea text;
-    Socket socket=null;
-    DataInputStream dataInputStream=null;
-    DataOutputStream dataOutputStream=null;
-    private Statement stmt;
-    private ResultSet rs;
-    private String mail,email,pass,password,status,type,pass2,tmpstring,uni,sql;
-    private int tmpint,option,counter;
-    private List<String> StringList=new ArrayList<String>();
+        JFXTextArea text;
+        Socket socket=null;
+        DataInputStream dataInputStream=null;
+        DataOutputStream dataOutputStream=null;
+        private Statement stmt;
+        private ResultSet rs;
+        private String mail,email,pass,password,status,type,pass2,tmpstring,uni,sql;
+        private int tmpint,option,counter;
+        private List<String> StringList=new ArrayList<String>();
     ClientHandler(Socket s,JFXTextArea t){
             socket=s;
             text=t;
@@ -39,7 +39,7 @@ class ClientHandler extends Thread implements Initializable {
         try {
             Connection conn = null;
             try {
-                String url = "jdbc:sqlserver://DESKTOP-U746ETR\\SQLEXPRESS:1433";
+                String url = "jdbc:sqlserver://DESKTOP-TRG3U04\\SQLEXPRESS:1433";
                 String username= "PIPpro";
                 String password= "12345";
                 conn = DriverManager.getConnection(url, username, password);
@@ -134,12 +134,12 @@ class ClientHandler extends Thread implements Initializable {
                         if (status == "Zarejestrowano") {
                             if(unistreet!="equals"&&uninumber != "equals"&&unicity != "equals"&&unicode != "equals")
                             {
-                                String sql="insert FirmaTransportowa.dbo.Uzytkownik values('" + firstname + "','" + lastname + "','" + mail + "','" + pass + "','" + phone + "','" + type + "','"+tmpint+"')";
+                                sql="insert FirmaTransportowa.dbo.Uzytkownik values('" + firstname + "','" + lastname + "','" + mail + "','" + pass + "','" + phone + "','" + type + "','"+tmpint+"')";
                                 stmt.execute(sql);
                             }
                             else
                             {
-                                String sql="insert FirmaTransportowa.dbo.Uzytkownik values('" + firstname + "','" + lastname + "','" + mail + "','" + pass + "','" + phone + "','" + type + "',(select max(id) from FirmaTransportowa.dbo.Adres))";
+                                sql="insert FirmaTransportowa.dbo.Uzytkownik values('" + firstname + "','" + lastname + "','" + mail + "','" + pass + "','" + phone + "','" + type + "',(select max(id) from FirmaTransportowa.dbo.Adres))";
                                 stmt.execute(sql);
                             }
                             text.appendText("\nPomyslnie zarejestrowano uzytkownika:"+mail);
@@ -154,20 +154,20 @@ class ClientHandler extends Thread implements Initializable {
                     StringList.clear();
                     counter=0;
                     try{
-                        sql="Select * from FirmaTransportowa.dbo.Cennik";
-                        rs=stmt.executeQuery(sql);
-                        while (rs.next())
-                        {
-                            counter++;
-                            tmpstring=rs.getString(2);
-                            StringList.add(tmpstring);
-                            tmpstring=rs.getString(3);
-                            StringList.add(tmpstring);
-                            tmpstring=rs.getString(4);
-                            StringList.add(tmpstring);
-                            tmpstring=rs.getString(6);
-                            StringList.add(tmpstring);
-                        }
+                    sql="Select * from FirmaTransportowa.dbo.Cennik";
+                    rs=stmt.executeQuery(sql);
+                    while (rs.next())
+                    {
+                        counter++;
+                        tmpstring=rs.getString(2);
+                        StringList.add(tmpstring);
+                        tmpstring=rs.getString(3);
+                        StringList.add(tmpstring);
+                        tmpstring=rs.getString(4);
+                        StringList.add(tmpstring);
+                        tmpstring=rs.getString(6);
+                        StringList.add(tmpstring);
+                    }
                         dataOutputStream.writeInt(counter);
                         for(String send:StringList){
                             dataOutputStream.writeUTF(send);
@@ -177,7 +177,7 @@ class ClientHandler extends Thread implements Initializable {
                     }
                     catch (IOException | SQLException e)
                     {
-                        e.printStackTrace();
+                    e.printStackTrace();
                     }
                 }
                 else if(option==4)
@@ -201,6 +201,34 @@ class ClientHandler extends Thread implements Initializable {
                             dataOutputStream.writeUTF(send);
                         }
                         text.appendText("\n Wyslano doplate");
+                        conn.close();
+                    }
+                    catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option==5)//TODO
+                {
+                    stmt = conn.createStatement();
+                    StringList.clear();
+                    counter=0;
+                    try{
+                        sql="Select * from FirmaTransportowa.dbo.Doplata";
+                        rs=stmt.executeQuery(sql);
+                        while (rs.next())
+                        {
+                            counter++;
+                            tmpstring=rs.getString(2);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(3);
+                            StringList.add(tmpstring);
+                        }
+                        dataOutputStream.writeInt(counter);
+                        for(String send:StringList){
+                            dataOutputStream.writeUTF(send);
+                        }
+                        text.appendText("\n Wyslano aktualne zlecenia");
                         conn.close();
                     }
                     catch (IOException | SQLException e)

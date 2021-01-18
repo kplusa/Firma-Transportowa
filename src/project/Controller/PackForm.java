@@ -7,28 +7,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import project.Class.DataUtil;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PackForm extends DataUtil implements  Initializable {
+public class PackForm implements Initializable {
 
 
 
     @FXML
     private AnchorPane APMain;
-    @FXML
-    public Label name;
-
-
-    @FXML
-    public Label clientType;
 
 
 
@@ -37,12 +29,13 @@ public class PackForm extends DataUtil implements  Initializable {
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientOrder.fxml"));
         Parent root = loader.load();
-         AddOrderform addOrderform= loader.getController();
-        addOrderform.setName(getName(), addOrderform.name);
-        addOrderform.setClientType(getClientType(), addOrderform.clientType);
+        //MainForm mainForm = loader.getController();
+        //Main.stage.initStyle(StageStyle.DECORATED);
+
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
+       // window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
     }
@@ -50,12 +43,13 @@ public class PackForm extends DataUtil implements  Initializable {
     void goMenu(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
-        clientMenuForm.setName(getName(), clientMenuForm.name);
-        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
+        //MainForm mainForm = loader.getController();
+        //Main.stage.initStyle(StageStyle.DECORATED);
+
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
+        //window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
     }

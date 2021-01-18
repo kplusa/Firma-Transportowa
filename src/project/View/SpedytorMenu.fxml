@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+   <children>
+      <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
+         <children>
+            <AnchorPane layoutX="36.0" layoutY="29.0" prefHeight="43.0" prefWidth="111.0" styleClass="Logo">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="55.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_delivery_50px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="51.0" layoutY="21.0" text="App" textFill="WHITE" />
+                  <Label layoutX="42.0" layoutY="1.0" prefHeight="27.0" prefWidth="81.0" text="Delivery" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label layoutX="50.0" prefHeight="34.0" prefWidth="73.0" text="Menu" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </JFXButton>
+      <GridPane hgap="10.0" layoutX="225.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="115.0" prefWidth="382.0" vgap="10.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="125.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="125.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="125.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="50.0" prefHeight="125.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Prices" textFill="#575757">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_cash_120px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="125.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add Order" textFill="#575757" GridPane.columnIndex="1">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_new_100px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="162.0" prefWidth="207.0" styleClass="menuButton" stylesheets="@../Resources/styles/LoginWindowView.css" text="Currents Orders" textFill="#575757" GridPane.columnIndex="2">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../java/Java_project/src/project/images/icons8_questions_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -13,9 +13,9 @@ insert into Oplata(termin,kwota,status,sposob) values('20201221','20','Oplacone'
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('A','10','80x60x40','20200101','10');
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('B','15','80x80x40','20200101','15');
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('C','20','80x80x60','20200101','20');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,uzytkownikId) values('20200110','a','a','1');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,uzytkownikId) values('20200111','b','b','2');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,uzytkownikId) values('20200112','c','c','3');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId) values('20200110','a','a','Dostarczone','1');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId) values('20200111','b','b','Odebrane','2');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId) values('20200112','c','c','Odebrane','3');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('5','1','1','1');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('7','2','2','3');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('8','3','3','2');

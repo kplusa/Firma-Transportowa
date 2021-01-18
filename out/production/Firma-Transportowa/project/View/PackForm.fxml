@@ -11,6 +11,7 @@
 <AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.PackForm">
    <children>
       <AnchorPane onMouseClicked="#goMenu" prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
+>>>>>>> 5c444607eb69f7395720b1b67bd73b738e45b7b4
          <children>
             <AnchorPane layoutX="36.0" layoutY="29.0" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
@@ -27,12 +28,13 @@
                   </Label>
                </children>
             </AnchorPane>
-             <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
-                 <children>
-                     <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                     <Label fx:id="clientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                 </children>
-             </AnchorPane>
+            <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+               </children>
+            </AnchorPane>
             <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
                   <Label layoutX="53.0" layoutY="1.0" prefHeight="34.0" prefWidth="65.0" text="Pack" textFill="WHITE">

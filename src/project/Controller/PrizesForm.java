@@ -9,14 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Cennik;
-import project.Class.DataUtil;
 import project.Class.Doplata;
 
 import java.io.DataInputStream;
@@ -27,16 +25,9 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PrizesForm extends DataUtil implements Initializable {
+public class PrizesForm implements Initializable {
     @FXML
     private AnchorPane APMain;
-    @FXML
-    public Label name;
-
-
-    @FXML
-    public Label clientType;
-
     private String st;
     private Socket s;
     private InetAddress ip;
@@ -65,9 +56,6 @@ public class PrizesForm extends DataUtil implements Initializable {
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
-        clientMenuForm.setName(getName(), clientMenuForm.name);
-        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -78,9 +66,6 @@ public class PrizesForm extends DataUtil implements Initializable {
     void goMenu(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
-        clientMenuForm.setName(getName(), clientMenuForm.name);
-        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -134,6 +119,7 @@ public class PrizesForm extends DataUtil implements Initializable {
         }
         return Cennik_list;
     }
+    @FXML
     public ObservableList<Doplata> fill_table_second() throws IOException {
         ObservableList<Doplata> DoplataList = FXCollections.observableArrayList();
         try {

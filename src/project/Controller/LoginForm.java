@@ -6,15 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Class.DataUtil;
 import project.Client;
 
 import java.io.DataInputStream;
@@ -25,10 +26,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-public class LoginForm extends DataUtil implements  Initializable {
+public class LoginForm implements Initializable {
     double x=0, y=0;
-    private String clientType="";
     static final int HBoxXMin=432;
     static final int HBoxXMax=492;
     static final int HBoxYMin=14;
@@ -38,7 +37,8 @@ public class LoginForm extends DataUtil implements  Initializable {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-
+    private static double[]  offset_XY;
+    private static final Rectangle2D SCREEN_BOUNDS= Screen.getPrimary().getVisualBounds();
     @FXML
     private AnchorPane APMain;
     @FXML
@@ -47,10 +47,6 @@ public class LoginForm extends DataUtil implements  Initializable {
     JFXPasswordField pas;
     @FXML
     Label status;
-
-
-
-
     @FXML
     void closeAction(MouseEvent event) {
     System.exit(0);
@@ -62,7 +58,7 @@ public class LoginForm extends DataUtil implements  Initializable {
     }
 
     @FXML
-    void MakeDraggable(){
+    public void MakeDraggable(){
         APMain.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
@@ -72,6 +68,21 @@ public class LoginForm extends DataUtil implements  Initializable {
                 Client.stage.setX(event.getScreenX() - x);
                 Client.stage.setY(event.getScreenY() - y);
             }
+        });
+    }
+    protected static void allowDrag(Parent root, Stage stage) {
+        root.setOnMousePressed((MouseEvent p) -> {
+            offset_XY= new double[]{p.getSceneX(), p.getSceneY()};
+        });
+
+        root.setOnMouseDragged((MouseEvent d) -> {
+            if (d.getScreenY()<(SCREEN_BOUNDS.getMaxY()-20))
+                stage.setY(d.getScreenY() - offset_XY[1]);
+            stage.setX(d.getScreenX() - offset_XY[0]);
+        });
+
+        root.setOnMouseReleased((MouseEvent r)-> {
+            if (stage.getY()<0.0) stage.setY(0.0);
         });
     }
     @FXML
@@ -86,43 +97,21 @@ public class LoginForm extends DataUtil implements  Initializable {
                 st = dis.readUTF();
                 System.out.println(st);
                 status.setText(st);
-                FXMLLoader loader=null;
-                Parent root = null;
+                FXMLLoader loader =null;
                 if (st.equals("Poprawne dane-Klient"))
                 {
-
                     loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-                    root = loader.load();
-                    clientType="Client";
-                    ClientMenuForm clientMenuForm= loader.getController();
-                    clientMenuForm.setName(mail.getText(), clientMenuForm.name);
-                    clientMenuForm.setClientType(clientType, clientMenuForm.clientType);
-
-
                 }
                 else if(st.equals("Poprawne dane-Kurier"))
                 {
                     loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-                    root = loader.load();
-                    clientType="Courier";
-                    CourierMenuForm courierMenuForm= loader.getController();
-                    courierMenuForm.setName(mail.getText(), courierMenuForm.name);
-                    courierMenuForm.setClientType(clientType, courierMenuForm.clientType);
-
                 }
                 else if(st.equals("Poprawne dane-Spedytor"))
                 {
                     loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-                    root = loader.load();
-                    clientType="Forwarder";
-                    ForwarderMenuForm forwarderMenuForm= loader.getController();
-                    forwarderMenuForm.setName(mail.getText(), forwarderMenuForm.name);
-                    forwarderMenuForm.setClientType(clientType, forwarderMenuForm.clientType);
                 }
                 if(st.equals("Poprawne dane-Klient")||st.equals("Poprawne dane-Kurier")||st.equals("Poprawne dane-Spedytor")){
-
-
-
+                Parent root = loader.load();
                 Scene scene = new Scene(root);
                 ((Node) event.getSource()).getScene().getWindow().hide();
                 Stage window = new Stage();
@@ -145,7 +134,6 @@ public class LoginForm extends DataUtil implements  Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 MakeDraggable();
     }
 }

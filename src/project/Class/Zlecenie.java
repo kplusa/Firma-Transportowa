@@ -21,59 +21,45 @@ public class Zlecenie extends Application {
     public void start(Stage stage) throws Exception {
 
     }
-
-    /**
-     * 
-     */
     public int ID;
-
-    /**
-     * 
-     */
     public String DataNadania;
-
-    /**
-     * 
-     */
     public String AdresPoczatkowy;
-
-    /**
-     * 
-     */
+    public String status;
     public String AdresKoncowy;
+    public String Kurier;
 
-
-
-
-
-
-
-
-
-    /**
-     * @param ID
-     */
+    public String getKurier() {
+        return Kurier;
+    }
+    public void setKurier(String kurier) {
+        Kurier = kurier;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public int getID() {
+        return ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    public Zlecenie(int id, String Status, String kurier) {
+        ID=id;
+        status=Status;
+        Kurier=kurier;
+    }
     public void WyswietlZlecenie(int ID) {
         // TODO implement here
     }
-
-    /**
-     * 
-     */
     public void DodajZlecenie() {
         // TODO implement here
     }
-
-    /**
-     * @param ID
-     */
     public void UsunZlecenie(int ID) {
         // TODO implement here
     }
-
-    /**
-     * @param ID
-     */
     public void ZmienZlecenie(int ID) {
         // TODO implement here
     }

@@ -48,6 +48,7 @@ create table Uzytkownik
   dataNadania date not null,
   adresPoczatkowy varchar(255) not null,
   adresKoncowy varchar(255),
+  status varchar(40),
   uzytkownikId int,
   Foreign key (uzytkownikId) references Uzytkownik (id)
   
