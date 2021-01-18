@@ -30,9 +30,8 @@
             </AnchorPane>
             <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
-                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="clientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
@@ -53,18 +52,18 @@
       </JFXButton>
       <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
-      <TableView fx:id="QClosed" layoutX="29.0" layoutY="137.0" prefHeight="98.0" prefWidth="730.0">
+      <TableView fx:id="PriceList" layoutX="29.0" layoutY="137.0" prefHeight="98.0" prefWidth="730.0">
          <columns>
-            <TableColumn fx:id="Pytanie" prefWidth="70.0" text="Dimension" />
-            <TableColumn fx:id="OdpA" prefWidth="81.0" text="Amount" />
-            <TableColumn fx:id="OdpB" prefWidth="515.0" text="Description" />
-            <TableColumn fx:id="OdpD" minWidth="0.0" prefWidth="63.0" text="Limit" />
+            <TableColumn fx:id="Dimension" prefWidth="70.0" text="Dimension" />
+            <TableColumn fx:id="Amount" prefWidth="81.0" text="Amount" />
+            <TableColumn fx:id="Description" prefWidth="515.0" text="Description" />
+            <TableColumn fx:id="Lm" minWidth="0.0" prefWidth="63.0" text="Limit" />
          </columns>
       </TableView>
-      <TableView fx:id="QClosed1" layoutX="280.0" layoutY="260.0" prefHeight="222.0" prefWidth="240.0">
+      <TableView fx:id="AditionalPriceList" layoutX="280.0" layoutY="260.0" prefHeight="222.0" prefWidth="240.0">
          <columns>
-            <TableColumn fx:id="Pytanie1" prefWidth="160.0" text="TypeOfAditionalPrice" />
-            <TableColumn fx:id="OdpD1" prefWidth="79.0" text="Amount" />
+            <TableColumn fx:id="Type" prefWidth="160.0" text="TypeOfAditionalPrice" />
+            <TableColumn fx:id="AditionalAmount" prefWidth="79.0" text="Amount" />
          </columns>
       </TableView>
       <ImageView fitHeight="153.0" fitWidth="163.0" layoutX="594.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
