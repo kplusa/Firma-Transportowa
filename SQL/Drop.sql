@@ -9,4 +9,4 @@ Drop Table Oplata
 Drop Table Oddzial
 Drop Table Uzytkownik
 Drop Table Adres
-
+Drop Table WyplataKurier

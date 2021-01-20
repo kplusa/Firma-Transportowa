@@ -27,7 +27,7 @@ insert into Doplata(typDoplaty,kwota,dataZmiany) values('Przekroczenie wagi','10
 insert into Doplata(typDoplaty,kwota,dataZmiany) values('Przesylka ekspresowa','5','20200101');
 insert into PaczkaDoplata(paczkaId,doplataId) values('1','3');
 insert into PaczkaDoplata(paczkaId,doplataId) values('2','2');
-insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','Kamil','Mróz','');
+insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','Kamil','Mróz','3');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('1','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('2','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','1','1');
