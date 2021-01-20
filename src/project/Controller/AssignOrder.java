@@ -18,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.apache.log4j.BasicConfigurator;
 import project.Class.*;
 import project.Utils.DataUtil;
 import project.Utils.OpenStreetMapUtils;
@@ -158,7 +157,6 @@ public class AssignOrder extends DataUtil implements Initializable  {
         double latB=0;
         double lonA=0;
         double lonB=0;
-        BasicConfigurator.configure();
         Map<String, Double> coords;
         coords = OpenStreetMapUtils.getInstance().getCoordinates(A);
         latA+= coords.get("lat");
