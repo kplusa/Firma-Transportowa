@@ -284,76 +284,76 @@ public class ForwarderPriceListForm extends DataUtil implements Initializable {
     }
 
 
-@FXML
+    @FXML
     private void update(ActionEvent event) throws IOException {
-    try {
         try {
-            ip = InetAddress.getByName("localhost");
-            s = new Socket(ip, 5057);
-            dis = new DataInputStream(s.getInputStream());
-            dos = new DataOutputStream(s.getOutputStream());
-        } catch (Exception e) {
+            try {
+                ip = InetAddress.getByName("localhost");
+                s = new Socket(ip, 5057);
+                dis = new DataInputStream(s.getInputStream());
+                dos = new DataOutputStream(s.getOutputStream());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (PriceListAP.isVisible()) {
+                if (PriceList.getSelectionModel().getSelectedItem() != null) {
+                    Cennik cennik = PriceList.getSelectionModel().getSelectedItem();
+                    if (dimensionTF.getText().equals(cennik.getGabaryt()) && descriptionTA.getText().equals(cennik.getOpis())
+                            &&amountTF.getText().equals(String.valueOf(cennik.getKwota())) && limitTF.getText().equals(String.valueOf(cennik.getLimit()))){
+                        tmpstring = "The same data";}
+                    else {
+                        dos.writeInt(23);
+                        dos.writeUTF(dimensionTF.getText());
+                        dos.writeFloat(Float.valueOf(amountTF.getText()));
+                        dos.writeUTF(descriptionTA.getText());
+                        dos.writeUTF(limitTF.getText());
+                        tmpstring = dis.readUTF();
+                    }
+                }
+            }
+            else if (AditionalAP.isVisible()) {
+                if (AditionalPriceList.getSelectionModel().getSelectedItem() != null) {
+                    Doplata doplata = AditionalPriceList.getSelectionModel().getSelectedItem();
+                    if (TypeOfAditionalPrice.getText().equals(doplata.getTypDoplaty()) && AmountAditionalPrice.getText().equals(String.valueOf(doplata.getKwotaD())))
+                        tmpstring = "The same data";
+                    else{
+                        dos.writeInt(24);
+                        dos.writeUTF(TypeOfAditionalPrice.getText());
+                        dos.writeFloat(Float.valueOf(AmountAditionalPrice.getText()));
+                        tmpstring = dis.readUTF();
+                    }
+
+                }
+            }
+
+            status.setText(tmpstring);
+            if (tmpstring.equals("Edited") && PriceListAP.isVisible()) {
+                dimensionTF.setText("");
+                amountTF.setText("");
+                descriptionTA.setText("");
+                limitTF.setText("");
+                Thread.sleep(300);
+                fill_table();
+
+
+            } else if (tmpstring.equals("Edited") && AditionalAP.isVisible()) {
+                TypeOfAditionalPrice.setText("");
+                AmountAditionalPrice.setText("");
+                Thread.sleep(300);
+                fill_table_second();
+            }
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(even ->
+                    status.setText("")
+            );
+            pause.play();
+
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        }
-        if (PriceListAP.isVisible()) {
-            if (PriceList.getSelectionModel().getSelectedItem() != null) {
-                Cennik cennik = PriceList.getSelectionModel().getSelectedItem();
-                if (dimensionTF.getText().equals(cennik.getGabaryt()) && descriptionTA.getText().equals(cennik.getOpis())
-                &&amountTF.getText().equals(String.valueOf(cennik.getKwota())) && limitTF.getText().equals(String.valueOf(cennik.getLimit()))){
-                    tmpstring = "The same data";}
-                else {
-                    dos.writeInt(23);
-                    dos.writeUTF(dimensionTF.getText());
-                    dos.writeFloat(Float.valueOf(amountTF.getText()));
-                    dos.writeUTF(descriptionTA.getText());
-                    dos.writeUTF(limitTF.getText());
-                    tmpstring = dis.readUTF();
-                }
-            }
-        }
-                 else if (AditionalAP.isVisible()) {
-            if (AditionalPriceList.getSelectionModel().getSelectedItem() != null) {
-                Doplata doplata = AditionalPriceList.getSelectionModel().getSelectedItem();
-                if (TypeOfAditionalPrice.getText().equals(doplata.getTypDoplaty()) && AmountAditionalPrice.getText().equals(String.valueOf(doplata.getKwotaD())))
-                    tmpstring = "The same data";
-                     else{
-                    dos.writeInt(24);
-                    dos.writeUTF(TypeOfAditionalPrice.getText());
-                    dos.writeFloat(Float.valueOf(AmountAditionalPrice.getText()));
-                tmpstring = dis.readUTF();
-                }
-
-                }
-            }
-
-        status.setText(tmpstring);
-        if (tmpstring.equals("Edited") && PriceListAP.isVisible()) {
-            dimensionTF.setText("");
-            amountTF.setText("");
-            descriptionTA.setText("");
-            limitTF.setText("");
-            Thread.sleep(300);
-            fill_table();
-
-
-        } else if (tmpstring.equals("Edited") && AditionalAP.isVisible()) {
-            TypeOfAditionalPrice.setText("");
-            AmountAditionalPrice.setText("");
-            Thread.sleep(300);
-            fill_table_second();
-        }
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        pause.setOnFinished(even ->
-                status.setText("")
-        );
-        pause.play();
-
-        dis.close();
-        dos.close();
-        s.close();
-    } catch (IOException | InterruptedException e) {
-        e.printStackTrace();
-    } }
+        } }
 
     @FXML
     private void delete(ActionEvent event) throws IOException {

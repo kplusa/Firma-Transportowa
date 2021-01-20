@@ -260,10 +260,5 @@ public class AssignOrder extends DataUtil implements Initializable  {
             e.printStackTrace();
         }
         fillFields();
-
-
-
-
-
     }
 }

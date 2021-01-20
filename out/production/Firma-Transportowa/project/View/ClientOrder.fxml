@@ -54,16 +54,16 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="QClosed" layoutX="269.0" layoutY="138.0" prefHeight="325.0" prefWidth="500.0">
+      <TableView fx:id="Orders" layoutX="269.0" layoutY="138.0" prefHeight="325.0" prefWidth="500.0">
          <columns>
-            <TableColumn fx:id="Id1" prefWidth="30.0" text="Id" />
-            <TableColumn fx:id="Pytanie" prefWidth="160.0" text="From" />
-            <TableColumn fx:id="OdpA" prefWidth="160.0" text="To" />
-            <TableColumn fx:id="OdpB" prefWidth="100.0" text="PostingDate" />
-            <TableColumn fx:id="OdpD" prefWidth="50.0" text="Amount" />
+            <TableColumn fx:id="IdColumn" prefWidth="30.0" text="Id" />
+            <TableColumn fx:id="FromColumn" prefWidth="160.0" text="From" />
+            <TableColumn fx:id="ToColumn" prefWidth="160.0" text="To" />
+            <TableColumn fx:id="PostingDateColumn" prefWidth="100.0" text="PostingDate" />
+            <TableColumn fx:id="AmountColumn" prefWidth="50.0" text="Amount" />
          </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="380.0" layoutY="475.0" prefHeight="30.0" prefWidth="81.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="380.0" layoutY="475.0" onMousePressed="#add" prefHeight="30.0" prefWidth="81.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="14.0" />
          </font>
@@ -75,7 +75,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="475.0" prefHeight="30.0" prefWidth="81.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="480.0" layoutY="475.0" onMousePressed="#edit" prefHeight="30.0" prefWidth="81.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="14.0" />
          </font>
@@ -87,7 +87,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="580.0" layoutY="475.0" prefHeight="30.0" prefWidth="89.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
+      <JFXButton fx:id="Delete" buttonType="RAISED" layoutX="580.0" layoutY="475.0" onMousePressed="#delete" prefHeight="30.0" prefWidth="89.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="14.0" />
          </font>
@@ -106,7 +106,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
+            <JFXTextField fx:id="IdLabel" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
@@ -122,7 +122,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
+            <JFXTextField fx:id="DateLabel" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
@@ -136,7 +136,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextArea focusColor="#00b2ff" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
+            <JFXTextArea fx:id="FromLabel" focusColor="#00b2ff" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
@@ -150,7 +150,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextArea focusColor="#00b2ff" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
+            <JFXTextArea fx:id="ToLabel" focusColor="#00b2ff" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
@@ -163,6 +163,6 @@
          </font>
       </JFXButton>
       <JFXRadioButton layoutX="56.0" layoutY="292.0" text="Default from" textFill="#575757" />
-      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="200.0" />
+      <Label fx:id="state" layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

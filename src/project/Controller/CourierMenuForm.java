@@ -47,6 +47,8 @@ public class CourierMenuForm extends DataUtil implements Initializable {
         CourierForm courierForm= loader.getController();
         courierForm.setName(getName(), courierForm.name);
         courierForm.setClientType(getClientType(), courierForm.clientType);
+        courierForm.fill_table();
+        courierForm.initializeOrder();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();

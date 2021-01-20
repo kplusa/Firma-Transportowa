@@ -8,11 +8,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Kurier extends Użytkownik {
-
     public int id;
-    public String location;
     public TypKuriera TypKuriera;
-
+    public String location;
     public Kurier(int id, String location) {
         this.id = id;
         this.location = location;
@@ -52,27 +50,13 @@ public class Kurier extends Użytkownik {
     }
 
 
-
-
-
-
-    /**
-     * @param ID
-     */
     public void ZmienTyp(int ID) {
         // TODO implement here
     }
-
-    /**
-     * 
-     */
     public void DodajKuriera() {
         // TODO implement here
     }
 
-    /**
-     * @param ID
-     */
     public void UsunKuriera(int ID) {
         // TODO implement here
     }

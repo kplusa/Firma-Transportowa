@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Utils.DataUtil;
+import project.Client;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,11 +23,8 @@ public class ClientMenuForm extends DataUtil implements Initializable {
     private AnchorPane APMain;
     @FXML
     public Label name;
-
-
     @FXML
     public Label clientType;
-
     @FXML
     void goLogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
@@ -59,6 +57,7 @@ public class ClientMenuForm extends DataUtil implements Initializable {
         AddOrderform addOrderform= loader.getController();
         addOrderform.setName(getName(), addOrderform.name);
         addOrderform.setClientType(getClientType(), addOrderform.clientType);
+        addOrderform.fill_table();
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
         window.setScene(scene);
@@ -67,10 +66,12 @@ public class ClientMenuForm extends DataUtil implements Initializable {
     @FXML
     void gocurrentorders(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CurrentOrdersForm.fxml"));
-        Parent root = loader.load();Scene scene = new Scene(root);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
         CurentOrderForm curentOrderForm= loader.getController();
         curentOrderForm.setName(getName(), curentOrderForm.name);
         curentOrderForm.setClientType(getClientType(), curentOrderForm.clientType);
+        curentOrderForm.fill_table();
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
         window.setScene(scene);

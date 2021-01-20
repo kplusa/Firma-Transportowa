@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -31,11 +32,9 @@ public class CurentOrderForm extends DataUtil implements Initializable {
     private DataInputStream dis;
     private DataOutputStream dos;
     private int counter,id;
-    private String stat,kurier;
+    private String stat,kurier,tmpstring;
     @FXML
     public Label name;
-
-
     @FXML
     public Label clientType;
     @FXML
@@ -43,11 +42,12 @@ public class CurentOrderForm extends DataUtil implements Initializable {
     @FXML
     TableView<Zlecenie> CurrentOrder;
     @FXML
-    private javafx.scene.control.TableColumn<Cennik, Integer> OrderNumber;
+    private javafx.scene.control.TableColumn<Zlecenie, Integer> OrderNumber;
     @FXML
-    private javafx.scene.control.TableColumn<Cennik, String> Status;
+    private javafx.scene.control.TableColumn<Zlecenie, String> Status;
     @FXML
-    private javafx.scene.control.TableColumn<Cennik, String> Courier;
+    private javafx.scene.control.TableColumn<Zlecenie, String> Courier;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
@@ -76,9 +76,11 @@ public class CurentOrderForm extends DataUtil implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        OrderNumber.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        Status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        Courier.setCellValueFactory(new PropertyValueFactory<>("Kurier"));
     }
-    /*@FXML
+    @FXML
     public ObservableList<Zlecenie> fill_table() throws IOException {
         ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
         try {
@@ -91,15 +93,15 @@ public class CurentOrderForm extends DataUtil implements Initializable {
                 e.printStackTrace();
             }
             dos.writeInt(5);
+            dos.writeUTF(name.getText());
             counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {//TODO
-                Gabaryt = dis.readUTF();
+            for (int i = 1; i <= counter; i++) {
                 tmpstring = dis.readUTF();
-                Kwota = Float.valueOf(tmpstring);
-                Opis = dis.readUTF();
-                tmpstring = dis.readUTF();
-                Limit = Integer.valueOf(tmpstring);
-                ZlecenieList.add(new Zlecenie(id, stat, kurier));
+                id = Integer.valueOf(tmpstring);
+                stat = dis.readUTF();
+                kurier = dis.readUTF();
+                if(!stat.equals("Dostarczone")){
+                ZlecenieList.add(new Zlecenie(id, stat, kurier));}
             }
             CurrentOrder.setItems(ZlecenieList);
             dis.close();
@@ -109,5 +111,5 @@ public class CurentOrderForm extends DataUtil implements Initializable {
             e.printStackTrace();
         }
         return ZlecenieList;
-    }*/
+    }
 }

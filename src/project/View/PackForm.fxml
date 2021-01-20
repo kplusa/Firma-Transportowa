@@ -8,7 +8,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.PackForm">
+
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.PackForm">
    <children>
       <AnchorPane onMouseClicked="#goMenu" prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
@@ -51,33 +52,40 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="139.0" layoutY="140.0" prefHeight="30.0" prefWidth="180.0" promptText="Weight" unFocusColor="#575757">
+      <JFXTextField fx:id="WeightLabel" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="139.0" layoutY="140.0" prefHeight="30.0" prefWidth="180.0" promptText="Weight" unFocusColor="#575757">
          <font>
             <Font name="Microsoft YaHei Light" size="14.0" />
          </font>
       </JFXTextField>
 
-      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" onMousePressed="#addpacktobase" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
 
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
       <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
-      <JFXComboBox focusColor="#00b2ff" layoutX="139.0" layoutY="218.0" prefHeight="25.0" prefWidth="180.0" promptText="Dimension" unFocusColor="#575757" />
-      <Label layoutX="139.0" layoutY="349.0" prefHeight="17.0" prefWidth="200.0" />
+      <JFXComboBox fx:id="DimensionCombo" focusColor="#00b2ff" layoutX="139.0" layoutY="218.0" onAction="#DimensionToLabel" prefHeight="25.0" prefWidth="180.0" promptText="Dimension" unFocusColor="#575757" />
+      <Label fx:id="DimensionLabel" layoutX="329.0" layoutY="232.0" prefHeight="20.0" prefWidth="142.0" />
       <Label layoutX="319.0" layoutY="541.0" text="Summary" textFill="#575757">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="384.0" layoutY="541.0" prefHeight="17.0" prefWidth="81.0" />
-      <JFXComboBox focusColor="#00b2ff" layoutX="139.0" layoutY="294.0" prefHeight="25.0" prefWidth="180.0" promptText="Additional price" unFocusColor="#575757" />
-      <Label layoutX="139.0" layoutY="357.0" prefHeight="161.0" prefWidth="180.0" />
+      <Label fx:id="SummaryLabel" layoutX="384.0" layoutY="541.0" prefHeight="17.0" prefWidth="81.0" />
+      <JFXComboBox fx:id="PriceCombo" focusColor="#00b2ff" layoutX="139.0" layoutY="294.0" onAction="#PriceToLabel" prefHeight="25.0" prefWidth="180.0" promptText="Additional price" unFocusColor="#575757" />
+      <Label fx:id="PriceLabel" layoutX="329.0" layoutY="310.0" prefHeight="20.0" prefWidth="142.0" />
       <ImageView fitHeight="205.0" fitWidth="210.0" layoutX="496.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Resources/icons/icons8_box_120px.png" />
          </image>
       </ImageView>
+      <Label fx:id="listOfPrizes" layoutX="139.0" layoutY="368.0" prefHeight="138.0" prefWidth="180.0" />
+      <JFXButton fx:id="ResetButton" buttonType="RAISED" layoutX="14.0" layoutY="287.0" onAction="#resetb" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Reset" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="state" layoutX="513.0" layoutY="359.0" prefHeight="18.0" prefWidth="170.0" />
    </children>
 </AnchorPane>
