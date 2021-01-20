@@ -7,7 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class Client extends Application {
 public static Stage stage =null;
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -16,6 +21,7 @@ public static Stage stage =null;
         primaryStage.initStyle(StageStyle.UNDECORATED);
         this.stage=primaryStage;
         primaryStage.show();
+
 }
 
 

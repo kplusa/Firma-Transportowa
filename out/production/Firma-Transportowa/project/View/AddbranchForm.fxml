@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.AddbranchForm">
+   <children>
+      <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
+         <children>
+            <AnchorPane layoutX="36.0" layoutY="29.0" prefHeight="43.0" prefWidth="111.0">
+               <children>
+                  <ImageView fitHeight="42.0" fitWidth="55.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_delivery_50px.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="51.0" layoutY="21.0" text="App" textFill="WHITE" />
+                  <Label layoutX="42.0" layoutY="1.0" prefHeight="27.0" prefWidth="81.0" text="Delivery" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
+               <children>
+                  <Label layoutX="50.0" prefHeight="34.0" prefWidth="90.0" text="Branch" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onMousePressed="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </JFXButton>
+      <TableView layoutX="107.0" layoutY="200.0" prefHeight="261.0" prefWidth="225.0">
+        <columns>
+          <TableColumn prefWidth="200.0" text="City" />
+        </columns>
+      </TableView>
+      <JFXTextArea layoutX="447.0" layoutY="265.0" prefHeight="34.0" prefWidth="158.0" />
+      <JFXButton buttonType="RAISED" layoutX="620.0" layoutY="281.0" onMousePressed="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="Microsoft YaHei Light" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

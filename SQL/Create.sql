@@ -48,6 +48,7 @@ create table Uzytkownik
   dataNadania date not null,
   adresPoczatkowy varchar(255) not null,
   adresKoncowy varchar(255),
+  status varchar(40),
   uzytkownikId int,
   Foreign key (uzytkownikId) references Uzytkownik (id)
   
@@ -68,9 +69,9 @@ create table Uzytkownik
   create table Doplata
   (
   id int primary KEY IDENTITY (1,1),
-  typDoplaty varchar(20)  not null,
+  typDoplaty varchar(35)  not null,
   kwota float  not null,
-
+  dataZmiany date not null,
   )
   create table PaczkaDoplata
   (

@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.AddOrderform">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" styleClass="NormalFormsHeader" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
-            <AnchorPane layoutX="36.0" layoutY="29.0" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
+            <AnchorPane layoutX="36.0" layoutY="29.0" onMouseClicked="#goMenu" prefHeight="43.0" prefWidth="111.0" styleClass="Logo" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
                   <ImageView fitHeight="42.0" fitWidth="55.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,9 +34,8 @@
             </AnchorPane>
             <AnchorPane layoutX="600.0" layoutY="15.0" prefHeight="70.0" prefWidth="180.0" styleClass="LoggedAs" stylesheets="@../Resources/styles/LoginWindowView.css">
                <children>
-                  <Label fx:id="Name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                  <Label fx:id="ClientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
-                  <Label fx:id="Id" layoutX="5.0" layoutY="45.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="clientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">
@@ -50,12 +49,12 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#login" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="670.0" layoutY="530.0" onAction="#back" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Back" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="QClosed" layoutX="269.0" layoutY="138.0" prefHeight="325.0" prefWidth="500.0" stylesheets="@../../../../../../java/Java_project/src/project/styles/tableview.css">
+      <TableView fx:id="QClosed" layoutX="269.0" layoutY="138.0" prefHeight="325.0" prefWidth="500.0">
          <columns>
             <TableColumn fx:id="Id1" prefWidth="30.0" text="Id" />
             <TableColumn fx:id="Pytanie" prefWidth="160.0" text="From" />
@@ -158,7 +157,7 @@
             </JFXTextArea>
          </children>
       </HBox>
-      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" onAction="#login" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="532.0" layoutY="530.0" onAction="#addpack" prefHeight="38.0" prefWidth="114.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Add pack" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
