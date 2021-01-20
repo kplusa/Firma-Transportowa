@@ -25,7 +25,7 @@ class ClientHandler extends Thread implements Initializable {
         private Statement stmt;
         private ResultSet rs;
         private String mail,email,pass,password,status,type,pass2,tmpstring,uni,sql;
-        private int tmpint,option,counter;
+        private int tmpint,option,counter=0;
         private List<String> StringList=new ArrayList<String>();
     ClientHandler(Socket s,JFXTextArea t){
             socket=s;
@@ -236,6 +236,258 @@ class ClientHandler extends Thread implements Initializable {
                         e.printStackTrace();
                     }
                 }
+                else if(option ==21)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String dimension=dataInputStream.readUTF();
+                    float amount=dataInputStream.readFloat();
+                    String description=dataInputStream.readUTF();
+                    String limit=dataInputStream.readUTF();
+                    try{
+                        rs = stmt.executeQuery("select * from FirmaTransportowa.dbo.Cennik where FirmaTransportowa.dbo.Cennik.gabaryt='"+dimension+"' " +
+                                "or FirmaTransportowa.dbo.Cennik.limit='"+limit+"' ");
+                        while (rs.next()) {
+                            counter++;
+                        }
+                        if(counter>0) {
+                            text.appendText("\n Takie same dane");
+                            status="Data error";
+                        }
+
+                        else {
+
+                        sql="insert into FirmaTransportowa.dbo.Cennik values ('"+dimension+"','"+amount+"','"+description+"',GETDATE(),'"+limit+"')";
+                        stmt.execute(sql);
+                        status="Added";
+                        text.appendText("\n Dodano do bazy");
+                        }
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option ==22)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String type=dataInputStream.readUTF();
+                    float amount=dataInputStream.readFloat();
+                    try{
+                        rs = stmt.executeQuery("select * from FirmaTransportowa.dbo.Doplata where FirmaTransportowa.dbo.Doplata.typDoplaty='"+type+"' ");
+                        while (rs.next()) {
+                            counter++;
+                        }
+                        if(counter>0) {
+                            text.appendText("\n Takie same dane");
+                            status="Data error";
+                        }
+
+                        else {
+
+                            sql="insert into FirmaTransportowa.dbo.Doplata values ('"+type+"','"+amount+"',GETDATE())";
+                            stmt.execute(sql);
+                            status="Added";
+                            text.appendText("\n Dodano do bazy");
+                        }
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option ==23)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String dimension=dataInputStream.readUTF();
+                    float amount=dataInputStream.readFloat();
+                    String description=dataInputStream.readUTF();
+                    String limit=dataInputStream.readUTF();
+                    try{
+                            sql="update FirmaTransportowa.dbo.Cennik set FirmaTransportowa.dbo.Cennik.gabaryt='"+dimension+"',FirmaTransportowa.dbo.Cennik.kwota='"+amount+"'," +
+                                    "FirmaTransportowa.dbo.Cennik.opis='"+description+"',FirmaTransportowa.dbo.Cennik.dataZmiany=GETDATE(),FirmaTransportowa.dbo.Cennik.limit='"+limit+"'" +
+                                    "where FirmaTransportowa.dbo.Cennik.gabaryt='"+dimension+"'";
+                            stmt.execute(sql);
+                            status="Edited";
+                            text.appendText("\n Dodano do bazy");
+
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option ==24)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String type=dataInputStream.readUTF();
+                    float amount=dataInputStream.readFloat();
+                    try{
+                        sql="update FirmaTransportowa.dbo.Doplata set FirmaTransportowa.dbo.Doplata.typDoplaty='"+type+"',FirmaTransportowa.dbo.Doplata.kwota='"+amount+"'," +
+                                "FirmaTransportowa.dbo.Doplata.dataZmiany=GETDATE()  where FirmaTransportowa.dbo.Doplata.typDoplaty='"+type+"'";
+                        stmt.execute(sql);
+                        status="Edited";
+                        text.appendText("\n Dodano do bazy");
+
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option ==25)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String dimension=dataInputStream.readUTF();
+                    try{
+                        sql = "delete  from FirmaTransportowa.dbo.Cennik where FirmaTransportowa.dbo.Cennik.gabaryt='"+dimension+"'";
+                        stmt.execute(sql);
+                        text.appendText("\n Usunieto");
+                        status="Deleted";
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option ==26)
+                {
+                    status="";
+                    stmt = conn.createStatement();
+                    String type=dataInputStream.readUTF();
+                    float amount=dataInputStream.readFloat();
+                    try{
+                        sql = "delete  from FirmaTransportowa.dbo.Doplata where FirmaTransportowa.dbo.Doplata.typDoplaty='"+type+"'" +
+                                "and FirmaTransportowa.dbo.Doplata.kwota= '"+amount+"'";
+                        stmt.execute(sql);
+                        text.appendText("\n Usunieto");
+                        status="Deleted";
+                        dataOutputStream.writeUTF(status);
+                        conn.close();
+                    }
+
+                    catch ( SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option==27)
+                {
+                    stmt = conn.createStatement();
+                    StringList.clear();
+                    counter=0;
+                    try{
+                        sql="select FirmaTransportowa.dbo.Zlecenie.id, (select FirmaTransportowa.dbo.Oddzial.miejscowosc  \n" +
+                                "from FirmaTransportowa.dbo.Oddzial \n" +
+                                "where  FirmaTransportowa.dbo.Oddzial.id =FirmaTransportowa.dbo.Zlecenie.oddzialPoczatkowyId),\n" +
+                                "(select FirmaTransportowa.dbo.Oddzial.miejscowosc  \n" +
+                                "from FirmaTransportowa.dbo.Oddzial \n" +
+                                "where  FirmaTransportowa.dbo.Oddzial.id =FirmaTransportowa.dbo.Zlecenie.oddzialKoncowyId)\n" +
+                                "from FirmaTransportowa.dbo.Zlecenie \n" +
+                                "where not FirmaTransportowa.dbo.Zlecenie.id in( select FirmaTransportowa.dbo.ZlecenieKurier.zlecenieId\n" +
+                                "from FirmaTransportowa.dbo.ZlecenieKurier \n" +
+                                "where FirmaTransportowa.dbo.ZlecenieKurier.zlecenieId = FirmaTransportowa.dbo.Zlecenie.id)";
+                        rs=stmt.executeQuery(sql);
+                        while (rs.next())
+                        {
+                            counter++;
+                            tmpstring=rs.getString(1);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(2);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(3);
+                            StringList.add(tmpstring);
+                        }
+                        dataOutputStream.writeInt(counter);
+                        for(String send:StringList){
+                            dataOutputStream.writeUTF(send);
+                        }
+                        text.appendText("\n Wyslano Zlecenie");
+                        conn.close();
+                    }
+                    catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option==28)
+                {
+                    stmt = conn.createStatement();
+                    StringList.clear();
+                    counter=0;
+                    try{
+                        sql="with cte as (\n" +
+                                "  select K.id Col1, Z.adresKoncowy Col2, ZK.id Col3\n" +
+                                "    , row_number() over (partition by K.id order by ZK.id desc) RowNum\n" +
+                                "  from FirmaTransportowa.dbo.Kurier K \n" +
+                                "  join FirmaTransportowa.dbo.ZlecenieKurier ZK on K.id = ZK.kurierId\n" +
+                                "  join FirmaTransportowa.dbo.Zlecenie Z on Z.id = ZK.zlecenieId\n" +
+                                "  where K.id = ZK.kurierId \n" +
+                                ")\n" +
+                                "select Col1, Col2, Col3\n" +
+                                "from cte\n" +
+                                "where RowNum = 1\n" +
+                                "order by Col1 desc;";
+                        rs=stmt.executeQuery(sql);
+                        while (rs.next())
+                        {
+                            counter++;
+                            tmpstring=rs.getString(1);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(2);
+                            StringList.add(tmpstring);
+                        }
+                        dataOutputStream.writeInt(counter);
+                        for(String send:StringList){
+                            dataOutputStream.writeUTF(send);
+                        }
+                        text.appendText("\n Wyslano Kurierow");
+                        conn.close();
+                    }
+                    catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option==29)
+                {
+                    stmt = conn.createStatement();
+
+                    counter=0;
+                    try{
+                        String IdCourier=dataInputStream.readUTF();
+                        String IdOrder=dataInputStream.readUTF();
+                        sql="insert into FirmaTransportowa.dbo.ZlecenieKurier values ('"+IdOrder+"','"+IdCourier+"','1')";
+                        stmt.execute(sql);
+                        dataOutputStream.writeUTF("Added");
+                        text.appendText("\n Dodano Zlecenie do kuriera");
+                        conn.close();
+                    }
+                    catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
             }catch (IOException | SQLException e) {
                 e.printStackTrace();
             }

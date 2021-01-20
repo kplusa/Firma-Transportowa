@@ -50,7 +50,11 @@ create table Uzytkownik
   adresKoncowy varchar(255),
   status varchar(40),
   uzytkownikId int,
-  Foreign key (uzytkownikId) references Uzytkownik (id)
+  oddzialPoczatkowyId int,
+  oddzialKoncowyId int,
+  Foreign key (uzytkownikId) references Uzytkownik (id),
+  Foreign key (oddzialPoczatkowyId) references Oddzial (id),
+  Foreign key (oddzialKoncowyId) references Oddzial (id)
   
   
   )

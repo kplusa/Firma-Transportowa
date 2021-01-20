@@ -6,14 +6,43 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-/**
- * 
- */
+
 public class Kurier extends Użytkownik {
 
-    /**
-     * Default constructor
-     */
+    public int id;
+    public String location;
+    public TypKuriera TypKuriera;
+
+    public Kurier(int id, String location) {
+        this.id = id;
+        this.location = location;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public project.Class.TypKuriera getTypKuriera() {
+        return TypKuriera;
+    }
+
+    public void setTypKuriera(project.Class.TypKuriera typKuriera) {
+        TypKuriera = typKuriera;
+    }
+
+
     public Kurier() {
     }
     public static Stage stage =null;
@@ -22,15 +51,7 @@ public class Kurier extends Użytkownik {
 
     }
 
-    /**
-     * 
-     */
-    public int ID;
 
-    /**
-     * 
-     */
-    public TypKuriera TypKuriera;
 
 
 
