@@ -47,20 +47,20 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
+      <Label fx:id="status" layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="150.0" textFill="RED" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
-      <TableView fx:id="QClosed" layoutX="29.0" layoutY="137.0" prefHeight="98.0" prefWidth="730.0">
+      <TableView fx:id="PriceList" layoutX="29.0" layoutY="137.0" prefHeight="98.0" prefWidth="730.0">
          <columns>
-            <TableColumn fx:id="Pytanie" prefWidth="70.0" text="Dimension" />
-            <TableColumn fx:id="OdpA" prefWidth="81.0" text="Amount" />
-            <TableColumn fx:id="OdpB" prefWidth="515.0" text="Description" />
-            <TableColumn fx:id="OdpD" minWidth="0.0" prefWidth="63.0" text="Limit" />
+            <TableColumn fx:id="Dimension" prefWidth="70.0" text="Dimension" />
+            <TableColumn fx:id="Amount" prefWidth="81.0" text="Amount" />
+            <TableColumn fx:id="Description" prefWidth="515.0" text="Description" />
+            <TableColumn fx:id="Lm" minWidth="0.0" prefWidth="63.0" text="Limit" />
          </columns>
       </TableView>
-      <TableView fx:id="QClosed1" layoutX="280.0" layoutY="260.0" prefHeight="222.0" prefWidth="240.0">
+      <TableView fx:id="AditionalPriceList" layoutX="280.0" layoutY="260.0" prefHeight="222.0" prefWidth="240.0">
          <columns>
-            <TableColumn fx:id="Pytanie1" prefWidth="160.0" text="TypeOfAditionalPrice" />
-            <TableColumn fx:id="OdpD1" prefWidth="79.0" text="Amount" />
+            <TableColumn fx:id="Type" prefWidth="160.0" text="TypeOfAditionalPrice" />
+            <TableColumn fx:id="AditionalAmount" prefWidth="79.0" text="Amount" />
          </columns>
       </TableView>
       <ImageView fitHeight="153.0" fitWidth="163.0" layoutX="594.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
@@ -68,11 +68,11 @@
             <Image url="@../Resources/icons/icons8_cash_120px.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="29.0" layoutY="257.0" prefHeight="222.0" prefWidth="245.0" visible="false">
+      <AnchorPane fx:id="AditionalAP" layoutX="29.0" layoutY="257.0" prefHeight="222.0" prefWidth="245.0" visible="false">
          <children>
             <HBox layoutX="5.0" layoutY="178.0" spacing="10.0">
                <children>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#insert" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -84,7 +84,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#update" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -96,7 +96,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="80.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#delete" prefHeight="30.0" prefWidth="80.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -110,23 +110,23 @@
                   </JFXButton>
                </children>
             </HBox>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="14.0" prefHeight="30.0" prefWidth="180.0" promptText="Type of aditional price" unFocusColor="#575757">
+            <JFXTextField fx:id="TypeOfAditionalPrice" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="14.0" prefHeight="30.0" prefWidth="180.0" promptText="Type of aditional price" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="71.0" prefHeight="30.0" prefWidth="180.0" promptText="Amount" unFocusColor="#575757">
+            <JFXTextField fx:id="AmountAditionalPrice" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="71.0" prefHeight="30.0" prefWidth="180.0" promptText="Amount" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="29.0" layoutY="235.0" prefHeight="324.0" prefWidth="245.0" visible="false">
+      <AnchorPane fx:id="PriceListAP" layoutX="29.0" layoutY="235.0" prefHeight="324.0" prefWidth="245.0" visible="false">
          <children>
             <HBox layoutX="3.0" layoutY="252.0" spacing="10.0">
                <children>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#insert" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Add" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -138,7 +138,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#update" prefHeight="30.0" prefWidth="70.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Edit" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -150,7 +150,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="80.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#delete" prefHeight="30.0" prefWidth="80.0" ripplerFill="WHITE" styleClass="EditingButtons" stylesheets="@../Resources/styles/LoginWindowView.css" text="Delete" textFill="WHITE">
                      <font>
                         <Font name="Microsoft YaHei Light" size="10.0" />
                      </font>
@@ -164,22 +164,22 @@
                   </JFXButton>
                </children>
             </HBox>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="14.0" prefHeight="30.0" prefWidth="180.0" promptText="Dimension" unFocusColor="#575757">
+            <JFXTextField fx:id="dimensionTF" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="14.0" prefHeight="30.0" prefWidth="180.0" promptText="Dimension" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="71.0" prefHeight="30.0" prefWidth="180.0" promptText="Amount" unFocusColor="#575757">
+            <JFXTextField fx:id="amountTF" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="71.0" prefHeight="30.0" prefWidth="180.0" promptText="Amount" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextField>
-            <JFXTextArea focusColor="#00b2ff" layoutX="20.0" layoutY="119.0" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
+            <JFXTextArea fx:id="descriptionTA" focusColor="#00b2ff" layoutX="20.0" layoutY="119.0" prefHeight="30.0" prefWidth="180.0" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>
             </JFXTextArea>
-            <JFXTextField focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="191.0" prefHeight="30.0" prefWidth="180.0" promptText="Limit" unFocusColor="#575757">
+            <JFXTextField fx:id="limitTF" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="20.0" layoutY="191.0" prefHeight="30.0" prefWidth="180.0" promptText="Limit" unFocusColor="#575757">
                <font>
                   <Font name="Microsoft YaHei Light" size="14.0" />
                </font>

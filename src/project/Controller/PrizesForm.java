@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Cennik;
-import project.Class.DataUtil;
+import project.Utils.DataUtil;
 import project.Class.Doplata;
 
 import java.io.DataInputStream;

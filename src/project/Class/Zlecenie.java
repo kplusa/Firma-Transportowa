@@ -27,6 +27,26 @@ public class Zlecenie extends Application {
     public String status;
     public String AdresKoncowy;
     public String Kurier;
+    public String oddzialPoczatkowy;
+    public String oddzialKoncowy;
+
+    public String getOddzialPoczatkowy() {
+        return oddzialPoczatkowy;
+    }
+
+    public void setOddzialPoczatkowy(String oddzialPoczatkowy) {
+        this.oddzialPoczatkowy = oddzialPoczatkowy;
+    }
+
+    public String getOddzialKoncowy() {
+        return oddzialKoncowy;
+    }
+
+    public void setOddzialKoncowy(String oddzialKoncowy) {
+        this.oddzialKoncowy= oddzialKoncowy;
+    }
+
+
 
     public String getKurier() {
         return Kurier;
@@ -50,6 +70,12 @@ public class Zlecenie extends Application {
         ID=id;
         status=Status;
         Kurier=kurier;
+    }
+
+    public Zlecenie(String oddzialPoczatkowy, int id,  String oddzialKoncowy) {
+        this.ID=id;
+        this.oddzialPoczatkowy=oddzialPoczatkowy;
+        this.oddzialKoncowy=oddzialKoncowy;
     }
     public void WyswietlZlecenie(int ID) {
         // TODO implement here

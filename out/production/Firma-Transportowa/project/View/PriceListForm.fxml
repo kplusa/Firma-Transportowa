@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.PrizesForm">
    <children>
@@ -50,7 +47,7 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
+      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="106.0" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
       <TableView fx:id="PriceList" layoutX="29.0" layoutY="137.0" prefHeight="98.0" prefWidth="730.0">
          <columns>

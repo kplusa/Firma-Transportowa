@@ -11,8 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Class.DataUtil;
-import project.Client;
+import project.Utils.DataUtil;
 
 import java.io.IOException;
 import java.net.URL;

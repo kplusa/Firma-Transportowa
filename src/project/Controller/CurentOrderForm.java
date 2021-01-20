@@ -1,7 +1,5 @@
 package project.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Cennik;
-import project.Class.DataUtil;
+import project.Utils.DataUtil;
 import project.Class.Zlecenie;
 
 import java.io.DataInputStream;
