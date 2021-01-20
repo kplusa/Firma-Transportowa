@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="APMain" onMouseClicked="#goMenu" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.CurentOrderForm">
    <children>
@@ -49,11 +52,11 @@
       </JFXButton>
       <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
-      <TableView fx:id="QClosed" layoutX="29.0" layoutY="137.0" prefHeight="363.0" prefWidth="730.0">
+      <TableView fx:id="CurrentOrder" layoutX="29.0" layoutY="137.0" prefHeight="363.0" prefWidth="730.0">
          <columns>
-            <TableColumn fx:id="Pytanie" prefWidth="241.0" text="OrderNumber" />
-            <TableColumn fx:id="OdpA" minWidth="5.0" prefWidth="211.0" text="Status" />
-            <TableColumn fx:id="OdpB" prefWidth="277.0" text="Courier" />
+            <TableColumn fx:id="OrderNumber" prefWidth="241.0" text="OrderNumber" />
+            <TableColumn fx:id="Status" minWidth="5.0" prefWidth="211.0" text="Status" />
+            <TableColumn fx:id="Courier" prefWidth="277.0" text="Courier" />
          </columns>
       </TableView>
    </children>

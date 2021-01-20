@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Cennik;
-import project.Class.DataUtil;
+import project.Utils.DataUtil;
 import project.Class.Doplata;
 
 import java.io.DataInputStream;
@@ -58,9 +58,9 @@ public class PrizesForm extends DataUtil implements Initializable {
     @FXML
     private javafx.scene.control.TableColumn<Cennik, Integer> Lm;
     @FXML
-    private javafx.scene.control.TableColumn<Cennik, String> Type;
+    private javafx.scene.control.TableColumn<Doplata, String> Type;
     @FXML
-    private javafx.scene.control.TableColumn<Cennik, Integer> AditionalAmount;
+    private javafx.scene.control.TableColumn<Doplata, Integer> AditionalAmount;
     @FXML
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
@@ -125,6 +125,7 @@ public class PrizesForm extends DataUtil implements Initializable {
                     Limit = Integer.valueOf(tmpstring);
                     Cennik_list.add(new Cennik(Gabaryt, Kwota, Opis, Limit));
                 }
+            System.out.println(PriceList);
             PriceList.setItems(Cennik_list);
             dis.close();
             dos.close();

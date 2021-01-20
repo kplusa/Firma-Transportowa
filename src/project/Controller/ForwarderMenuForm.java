@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Class.DataUtil;
+import project.Utils.DataUtil;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,9 +52,12 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.show();
     }
     @FXML
-    void asign(MouseEvent event) throws IOException {//niemamy
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
+    void asign(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AssignOrderForm.fxml"));
         Parent root = loader.load();
+        AssignOrder assignOrder= loader.getController();
+        assignOrder.setName(getName(), assignOrder.name);
+        assignOrder.setClientType(getClientType(), assignOrder.clientType);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();

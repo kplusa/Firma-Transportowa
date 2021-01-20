@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="800.0" styleClass="NormalFormsBody" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.CourierForm">
    <children>
@@ -53,18 +49,19 @@
       </JFXButton>
       <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
-      <JFXComboBox focusColor="#00b2ff" layoutX="58.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Status" unFocusColor="#575757" />
-      <JFXComboBox focusColor="#00b2ff" layoutX="269.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Order" unFocusColor="#575757" />
-      <TableView fx:id="QClosed" layoutX="58.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0">
+      <JFXComboBox fx:id="StatusSelection" focusColor="#00b2ff" layoutX="58.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Status" unFocusColor="#575757" />
+      <JFXComboBox fx:id="OrderSelection" focusColor="#00b2ff" layoutX="269.0" layoutY="518.0" prefHeight="25.0" prefWidth="180.0" promptText="Order" unFocusColor="#575757" />
+      <TableView fx:id="CourierTabelForm" layoutX="66.0" layoutY="131.0" prefHeight="356.0" prefWidth="667.0">
          <columns>
-            <TableColumn prefWidth="30.0" text="Id" />
-            <TableColumn prefWidth="204.0" text="From" />
-            <TableColumn prefWidth="210.0" text="To" />
-            <TableColumn prefWidth="121.0" text="PostingDate" />
-            <TableColumn prefWidth="101.0" text="Amount" />
+            <TableColumn fx:id="Id" prefWidth="30.0" text="Id" />
+            <TableColumn fx:id="AdresP" prefWidth="156.80001831054688" text="From" />
+            <TableColumn fx:id="AdresK" prefWidth="156.79998779296875" text="To" />
+            <TableColumn fx:id="DataNadania" prefWidth="133.60003662109375" text="PostingDate" />
+            <TableColumn fx:id="Amount" prefWidth="79.2000732421875" text="Amount" />
+            <TableColumn fx:id="Status" prefWidth="110.0" text="Status" />
          </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="558.0" layoutY="531.0" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Ok" textFill="WHITE">
+      <JFXButton fx:id="OKCourier" buttonType="RAISED" layoutX="558.0" layoutY="531.0" onMouseClicked="#aktualizuj" prefHeight="35.0" prefWidth="100.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Ok" textFill="WHITE">
          <font>
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
