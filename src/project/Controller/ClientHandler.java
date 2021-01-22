@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import project.Client;
+import project.Utils.OpenStreetMapUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -13,9 +14,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
+
+import static project.Utils.DataUtil.distance;
 
 class ClientHandler extends Thread implements Initializable {
         JFXTextArea text;
@@ -292,12 +295,66 @@ class ClientHandler extends Thread implements Initializable {
                     }
                 }
                 else if(option==7){//check sql querry,TODO
+                    Map<Integer,Double> toList =new HashMap<>();
+                    Map<Integer, Double> fromList =new HashMap<>();
+                    Map<Integer, String> branchList= new HashMap<>();
+
+
+
+                    StringList.clear();
                     stmt = conn.createStatement();
                     tmpint=getUserId(dataInputStream.readUTF(),conn);
                     from=dataInputStream.readUTF();
                     to=dataInputStream.readUTF();
                     try{
-                        sql="insert into FirmaTransportowa.dbo.Zlecenie values(GETDATE(),'"+from+"','"+to+"','Nowe','"+tmpint+"');";
+                        sql = "select * from  FirmaTransportowa.dbo.Oddzial";
+                        rs=stmt.executeQuery(sql);
+                        while (rs.next())
+                        {
+                            Integer id =rs.getInt(1);
+                            tmpstring= rs.getString(2);
+                            branchList.put(id, tmpstring);
+                        }
+
+                        branchList.forEach((k, v) -> {
+                            Map<String, Double> coords;
+                            double latA=0;
+                            double latB=0;
+                            double latC=0;
+                            double lonA=0;
+                            double lonB=0;
+                            double lonC=0;
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                            latA+= coords.get("lat");
+                            lonA+= coords.get("lon");
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                            latB+= coords.get("lat");
+                            lonB+= coords.get("lon");
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                            latC+= coords.get("lat");
+                            lonC+= coords.get("lon");
+                            fromList.put(k,distance(latA,latB,lonA,lonB));
+                            toList.put(k,distance(latA,latC,lonA,lonC));
+                        });
+                        Map.Entry<Integer, Double> minFromList = Collections.min(fromList.entrySet(), new Comparator<Map.Entry<Integer, Double>>() {
+                            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
+                                return entry1.getValue().compareTo(entry2.getValue());
+                            }
+                        });
+
+                        Map.Entry<Integer, Double> minToList = Collections.min(toList.entrySet(), new Comparator<Map.Entry<Integer, Double>>() {
+                            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
+                                return entry1.getValue().compareTo(entry2.getValue());
+                            }
+                        });
+
+
+//                        System.out.printf("%s: %f", minFromList.getKey(), minFromList.getValue());
+//                        System.out.printf("%s: %f", minToList.getKey(), minToList.getValue());
+
+
+
+                        sql="insert into FirmaTransportowa.dbo.Zlecenie values(GETDATE(),'"+from+"','"+to+"','Nowe','"+tmpint+"','"+minFromList.getKey()+"','"+minToList.getKey()+"');";
                         boolean status=stmt.execute(sql);
                         if(status==false)
                         {
@@ -318,6 +375,11 @@ class ClientHandler extends Thread implements Initializable {
                 }
                 else if(option==8){
                     stmt = conn.createStatement();
+                    stmt2 = conn.createStatement();
+                    Map<Integer,Double> toList =new HashMap<>();
+                    Map<Integer, Double> fromList =new HashMap<>();
+                    Map<Integer, String> branchList= new HashMap<>();
+                    toList.clear(); fromList.clear(); branchList.clear();
                     StringList.clear();
                     tmpint=dataInputStream.readInt();
                     from=dataInputStream.readUTF();
@@ -332,9 +394,50 @@ class ClientHandler extends Thread implements Initializable {
                         {
                             e.printStackTrace();
                         }
+                        sql = "select * from  FirmaTransportowa.dbo.Oddzial";
+                        rs2=stmt2.executeQuery(sql);
+                        while (rs2.next())
+                        {
+                            Integer id =rs2.getInt(1);
+                            tmpstring= rs2.getString(2);
+                            branchList.put(id, tmpstring);
+                        }
+
+                        branchList.forEach((k, v) -> {
+                            Map<String, Double> coords;
+                            double latA=0;
+                            double latB=0;
+                            double latC=0;
+                            double lonA=0;
+                            double lonB=0;
+                            double lonC=0;
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                            latA+= coords.get("lat");
+                            lonA+= coords.get("lon");
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                            latB+= coords.get("lat");
+                            lonB+= coords.get("lon");
+                            coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                            latC+= coords.get("lat");
+                            lonC+= coords.get("lon");
+                            fromList.put(k,distance(latA,latB,lonA,lonB));
+                            toList.put(k,distance(latA,latC,lonA,lonC));
+                        });
+
+                        Map.Entry<Integer, Double> minFromList = Collections.min(fromList.entrySet(), new Comparator<Map.Entry<Integer, Double>>() {
+                            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
+                                return entry1.getValue().compareTo(entry2.getValue());
+                            }
+                        });
+
+                        Map.Entry<Integer, Double> minToList = Collections.min(toList.entrySet(), new Comparator<Map.Entry<Integer, Double>>() {
+                            public int compare(Map.Entry<Integer, Double> entry1, Map.Entry<Integer, Double> entry2) {
+                                return entry1.getValue().compareTo(entry2.getValue());
+                            }
+                        });
                         sql="update FirmaTransportowa.dbo.Zlecenie set FirmaTransportowa.dbo.Zlecenie.dataNadania='"+rs.getString(2)+"',FirmaTransportowa.dbo.Zlecenie.adresPoczatkowy='"+from+"'," +
-                                "FirmaTransportowa.dbo.Zlecenie.adresKoncowy='"+to+"',FirmaTransportowa.dbo.Zlecenie.status='"+rs.getString(5)+"',FirmaTransportowa.dbo.Zlecenie.uzytkownikId='"+rs.getString(6)+"'" +
-                                "where FirmaTransportowa.dbo.Zlecenie.id='"+tmpint+"'";
+                                "FirmaTransportowa.dbo.Zlecenie.adresKoncowy='"+to+"',FirmaTransportowa.dbo.Zlecenie.status='"+rs.getString(5)+"',FirmaTransportowa.dbo.Zlecenie.uzytkownikId='"+rs.getString(6)+"',FirmaTransportowa.dbo.Zlecenie.oddzialPoczatkowyId='"+minFromList.getKey()+"',FirmaTransportowa.dbo.Zlecenie.oddzialKoncowyId='"+minToList.getKey()+"'" +
+                                " where FirmaTransportowa.dbo.Zlecenie.id='"+tmpint+"'";
                         boolean status=stmt.execute(sql);
                         if(status==false)
                         {
@@ -422,7 +525,6 @@ class ClientHandler extends Thread implements Initializable {
                     try{
                         sql="select FirmaTransportowa.dbo.Doplata.typDoplaty,FirmaTransportowa.dbo.Doplata.dataZmiany from FirmaTransportowa.dbo.Doplata order by FirmaTransportowa.dbo.Doplata.dataZmiany DESC;";
                         rs=stmt.executeQuery(sql);
-                        System.out.println("1");
                         while(rs.next())
                         {
                             tmpstring=rs.getString(1);
@@ -495,7 +597,6 @@ class ClientHandler extends Thread implements Initializable {
                         rs=stmt.executeQuery(sql);
                         rs.next();
                         int oplatid=rs.getInt(1);
-                        System.out.println(oplatid);
                         Float waga=dataInputStream.readFloat();//2
                         tmpint=dataInputStream.readInt();//3
                         tmpchar=dataInputStream.readChar();//4
@@ -777,7 +878,7 @@ class ClientHandler extends Thread implements Initializable {
                         e.printStackTrace();
                     }
                 }
-                else if(option==30)//TODO HERE I"M
+                else if(option==30)
                 { stmt = conn.createStatement();
                 StringList.clear();;
                 counter=0;
@@ -799,29 +900,7 @@ class ClientHandler extends Thread implements Initializable {
                 {
                     e.printStackTrace();
                 }}
-                else if(option==30)
-                { stmt = conn.createStatement();
-                    StringList.clear();;
-                    counter=0;
-                    try{
-                        sql="select FirmaTransportowa.dbo.Oddzial.miejscowosc from FirmaTransportowa.dbo.Oddzial";
-                        rs=stmt.executeQuery(sql);
-                        while(rs.next()){
-                            counter++;
-                            StringList.add(rs.getString(1));
-                        }
-                        dataOutputStream.writeInt(counter);
-                        for(String send:StringList){
-                            dataOutputStream.writeUTF(send);
-                        }
-                        text.appendText("\nWyslano oddzialy dla spedytora");
-                        conn.close();
-                    }
-                    catch (IOException | SQLException e)
-                    {
-                        e.printStackTrace();
-                    }}
-                else if(option==31)//TODO HERE I"M
+                else if(option==31)
                 {
                     stmt = conn.createStatement();
                     tmpstring=dataInputStream.readUTF();
@@ -849,7 +928,6 @@ class ClientHandler extends Thread implements Initializable {
                                 dataOutputStream.writeUTF("Blad");
                                 text.appendText("\nBlad w dodawaniu oddzialu");
                             }
-
                         }
                         else
                         {
@@ -860,6 +938,82 @@ class ClientHandler extends Thread implements Initializable {
                         conn.close();
                     }
                     catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }}
+                else if(option==32)
+                {
+                    stmt = conn.createStatement();
+                    StringList.clear();
+                    LocalDate date= LocalDate.now();
+                    tmpint=date.getMonthValue();
+                    tmpstring=String.valueOf(tmpint);
+                    counter=0;
+                    try{
+                        sql="with cte as \n" +
+                                "(select K.id Col1, K.imie Col2, COUNT(P.id) Col3, row_number() \n" +
+                                "over (partition by K.id  order by K.id desc) RowNum \n" +
+                                "from FirmaTransportowa.dbo.Kurier K right join FirmaTransportowa.dbo.ZlecenieKurier ZK on K.id=ZK.kurierId\n" +
+                                "right join FirmaTransportowa.dbo.Zlecenie Z on ZK.zlecenieId=Z.id \n" +
+                                "left join FirmaTransportowa.dbo.Paczka P on P.zlecenieId=Z.id\n" +
+                                "where P.zlecenieId=Z.id AND MONTH(z.dataNadania)='"+tmpstring+"'\n" +
+                                "group by K.id,K.imie\n" +
+                                ")\n" +
+                                "select Col1, Col2, Col3 from cte \n" +
+                                "order by col1 asc\n" +
+                                ";";
+                        rs=stmt.executeQuery(sql);
+                        while (rs.next())
+                        {
+                            counter++;
+                            tmpstring=rs.getString(1);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(2);
+                            StringList.add(tmpstring);
+                            tmpstring=rs.getString(3);
+                            StringList.add(tmpstring);
+                        }
+                        dataOutputStream.writeInt(counter);
+                        for(String send:StringList){
+                            dataOutputStream.writeUTF(send);
+                        }
+                        text.appendText("\n Wyslano Kurierow do plac");
+                        conn.close();
+                    }
+                    catch (IOException | SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else if(option==33)
+                { stmt = conn.createStatement();
+                    counter=0;
+                    tmpint=dataInputStream.readInt();
+                    UserId=dataInputStream.readInt();
+                    try{
+                        status="Juz istnieje";
+                        LocalDate data;
+                        data=LocalDate.now();
+                        int rok=data.getYear();
+                        int miesiac=data.getMonthValue();
+                        sql="select * from FirmaTransportowa.dbo.WyplataKurier where FirmaTransportowa.dbo.WyplataKurier.rok='"+rok+"' AND FirmaTransportowa.dbo.WyplataKurier.miesiac='"+miesiac+"'AND FirmaTransportowa.dbo.WyplataKurier.kurierId='"+UserId+"'";
+                        rs=stmt.executeQuery(sql);
+                        if(!rs.next()){
+                            sql="insert into FirmaTransportowa.dbo.WyplataKurier values('"+rok+"','"+miesiac+"','"+tmpint+"','"+UserId+"')";
+                            stmt.execute(sql);
+                            status="Dodano";
+                        }
+                        dataOutputStream.writeUTF(status);
+                        if(status.equals("Dodano"))
+                        {
+                            text.appendText("\nDodano prowizje kuriera");
+                        }
+                        else{
+                            text.appendText("\nNie dodano prowizje kuriera");
+                        }
+                        conn.close();
+                    }
+                    catch (SQLException e)
                     {
                         e.printStackTrace();
                     }}
@@ -995,9 +1149,11 @@ class ClientHandler extends Thread implements Initializable {
             }catch (IOException | SQLException e) {
                 e.printStackTrace();
             }
-        } catch (IOException e) {
+            rs.close();
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
+
     }
     public int getUserId(String mail, Connection conn) throws IOException, SQLException {
         dataInputStream=new DataInputStream(socket.getInputStream());

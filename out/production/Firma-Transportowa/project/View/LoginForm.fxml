@@ -6,24 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="500.0" styleClass="background" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
+<AnchorPane fx:id="APMain" prefHeight="600.0" prefWidth="500.0" styleClass="background" stylesheets="@../Resources/styles/LoginWindowView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.Controller.LoginForm">
    <children>
       <AnchorPane layoutX="50.0" layoutY="100.0" prefHeight="400.0" prefWidth="400.0" styleClass="body" stylesheets="@../Resources/styles/LoginWindowView.css">
          <children>
-            <HBox alignment="CENTER" layoutX="80.0" layoutY="171.0" spacing="20.0">
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Resources/icons/icons8_key_30px.png" />
-                     </image>
-                  </ImageView>
-                  <JFXPasswordField fx:id="pas" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
-                     <font>
-                        <Font name="Microsoft YaHei Light" size="14.0" />
-                     </font>
-                  </JFXPasswordField>
-               </children>
-            </HBox>
             <HBox alignment="CENTER" layoutX="80.0" layoutY="101.0" spacing="20.0">
                <children>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -31,14 +17,28 @@
                         <Image url="@../Resources/icons/icons8_secured_letter_30px.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField fx:id="mail" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
+                  <JFXTextField fx:id="mail" focusColor="#00b2ff" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your e-mail" unFocusColor="#575757">
                      <font>
                         <Font name="Microsoft YaHei Light" size="14.0" />
                      </font>
                   </JFXTextField>
                </children>
             </HBox>
-            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="260.0" onMouseClicked="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
+            <HBox alignment="CENTER" layoutX="80.0" layoutY="171.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/icons/icons8_key_30px.png" />
+                     </image>
+                  </ImageView>
+                  <JFXPasswordField fx:id="pas" cache="true" focusColor="#00b2ff" labelFloat="true" prefHeight="25.0" prefWidth="200.0" promptText="Your password" unFocusColor="#575757">
+                     <font>
+                        <Font name="Microsoft YaHei Light" size="14.0" />
+                     </font>
+                  </JFXPasswordField>
+               </children>
+            </HBox>
+            <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="260.0" onAction="#login" prefHeight="34.0" prefWidth="102.0" ripplerFill="WHITE" style="-fx-background-color: #00B2FF;" text="Login" textFill="WHITE">
                <font>
                   <Font name="Microsoft YaHei Light" size="18.0" />
                </font></JFXButton>

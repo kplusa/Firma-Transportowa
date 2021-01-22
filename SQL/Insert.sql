@@ -4,6 +4,7 @@ insert into Adres(ulica,nrDomu,miejscowosc,kodPocztowy) values ('Warszawska','16
 insert into Uzytkownik(imie, nazwisko,mail,haslo,telefon,typUzytkownika,adresId) values('Piotr','Walasek','piotr.walasek@gmail.com','klient','123456789','Klient','1');
 insert into Uzytkownik(imie, nazwisko,mail,haslo,telefon,typUzytkownika,adresId) values('Dominik','Tuora','dominik.tuora@gmail.com','spedytor','189419848','Spedytor','2');
 insert into Uzytkownik(imie, nazwisko,mail,haslo,telefon,typUzytkownika,adresId) values('Kamil','Mróz','mroz.kamil@gmail.com','kurier','123469532','Kurier','3');
+insert into Uzytkownik(imie, nazwisko,mail,haslo,telefon,typUzytkownika,adresId) values('Jan','Nowak','jan.nowak','kurier','123469532','Kurier','3');
 insert into Oddzial(miejscowosc) values('Warszawa');
 insert into Oddzial(miejscowosc) values('Kielce');
 insert into Oddzial(miejscowosc) values('Kraków');
@@ -28,6 +29,7 @@ insert into Doplata(typDoplaty,kwota,dataZmiany) values('Przesylka ekspresowa','
 insert into PaczkaDoplata(paczkaId,doplataId) values('1','3');
 insert into PaczkaDoplata(paczkaId,doplataId) values('2','2');
 insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','Kamil','Mróz','3');
+insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','Jan','Nowak','4');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('1','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('2','1','1');
-insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','1','1');
+insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','2','1');

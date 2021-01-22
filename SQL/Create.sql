@@ -95,9 +95,9 @@ create table Uzytkownik
   create table WyplataKurier
   (
   id int primary KEY IDENTITY (1,1),
-  rok varchar(20)  not null,
-  miesiac varchar(20)  not null,
-  procent int(20)  not null,
+  rok int  not null,
+  miesiac int  not null,
+  procent int  not null,
   kurierId int,
   Foreign key (kurierId) references Uzytkownik (id)
   )

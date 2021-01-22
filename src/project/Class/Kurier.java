@@ -9,13 +9,37 @@ import javafx.stage.StageStyle;
 
 public class Kurier extends Użytkownik {
     public int id;
+    public String imie;
     public TypKuriera TypKuriera;
+    public int ilosc;
+
+    public int getIlosc() {
+        return ilosc;
+    }
+
+    public void setIlosc(int ilosc) {
+        this.ilosc = ilosc;
+    }
+
     public String location;
     public Kurier(int id, String location) {
         this.id = id;
         this.location = location;
     }
 
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public Kurier(int Id, String Imie, int Ilosc) {
+        this.id = Id;
+        this.imie=Imie;
+        this.ilosc=Ilosc;
+    }
     public int getId() {
         return id;
     }

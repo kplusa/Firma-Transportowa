@@ -51,12 +51,12 @@ public class LoginForm implements Initializable {
 
     @FXML
     void closeAction(MouseEvent event) {
-    System.exit(0);
+        System.exit(0);
     }
 
     @FXML
     void minAction(MouseEvent event) {
-     Client.stage.setIconified(true);
+        Client.stage.setIconified(true);
     }
 
     @FXML
@@ -88,7 +88,7 @@ public class LoginForm implements Initializable {
         });
     }
     @FXML
-    void login(MouseEvent event) throws IOException {
+    void login(ActionEvent event) throws IOException {
         ip = InetAddress.getByName("localhost");
         s = new Socket(ip, 5057);
         dis = new DataInputStream(s.getInputStream());
@@ -156,8 +156,9 @@ public class LoginForm implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-MakeDraggable();
+        MakeDraggable();
     }
 }

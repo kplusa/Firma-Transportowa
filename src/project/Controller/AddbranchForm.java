@@ -18,7 +18,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Oddzial;
-import project.Class.Zlecenie;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
