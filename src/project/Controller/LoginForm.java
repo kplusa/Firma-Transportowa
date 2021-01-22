@@ -88,7 +88,7 @@ public class LoginForm implements Initializable {
         });
     }
     @FXML
-    void login(MouseEvent event) throws IOException {
+    void login(ActionEvent event) throws IOException {
         ip = InetAddress.getByName("localhost");
         s = new Socket(ip, 5057);
         dis = new DataInputStream(s.getInputStream());
