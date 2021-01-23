@@ -35,8 +35,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddOrderform extends DataUtil implements Initializable {
-    @FXML
-    private AnchorPane APMain;
+
     @FXML
     public Label name;
     @FXML
@@ -63,10 +62,7 @@ public class AddOrderform extends DataUtil implements Initializable {
     private JFXTextArea ToLabel;
     @FXML
     private Label state;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
+
     private int counter;
     public int id,ilosc;
     public String adresPoczatkowy,adresKoncowy,dataNadania,tmpstring;
@@ -133,39 +129,7 @@ public class AddOrderform extends DataUtil implements Initializable {
         });
     }
 
-    public ObservableList<Zlecenie> fill_table() throws IOException {
-        ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(6);
-            dos.writeUTF(getName());
-            counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {
-                tmpstring = dis.readUTF();
-                id = Integer.valueOf(tmpstring);
-                adresPoczatkowy = dis.readUTF();
-                adresKoncowy = dis.readUTF();
-                dataNadania = dis.readUTF();
-                tmpstring = dis.readUTF();
-                ilosc = Integer.valueOf(tmpstring);
-                ZlecenieList.add(new Zlecenie(id,adresPoczatkowy,adresKoncowy, dataNadania,ilosc));
-            }
-            Orders.setItems(ZlecenieList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ZlecenieList;
-    }
+
 
     private void fillLabels() {
         if (Orders.getSelectionModel().getSelectedItem() != null) {
@@ -179,14 +143,7 @@ public class AddOrderform extends DataUtil implements Initializable {
     @FXML private void add()
     {
         try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            connectClient();
                     dos.writeInt(7);
                     dos.writeUTF(name.getText());
                     dos.writeUTF(FromLabel.getText());
@@ -194,7 +151,7 @@ public class AddOrderform extends DataUtil implements Initializable {
                     tmpstring = dis.readUTF();
                     System.out.println(tmpstring);
             state.setText(tmpstring);
-            fill_table();
+            Zlecenie.fill_table(Orders);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(even -> {
                 state.setText("");
@@ -212,14 +169,7 @@ public class AddOrderform extends DataUtil implements Initializable {
     private void edit()
     {
         try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            connectClient();
                 if (Orders.getSelectionModel().getSelectedItem() != null) {
                     Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
                     if (IdLabel.getText().equals(zlecenie.getID()) && FromLabel.getText().equals(zlecenie.getAdresPoczatkowy())
@@ -236,9 +186,7 @@ public class AddOrderform extends DataUtil implements Initializable {
                     }
                 }
             state.setText(tmpstring);
-            System.out.println(tmpstring);
-            System.out.println(state);
-            fill_table();
+            Zlecenie.fill_table(Orders);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(even -> {
                         state.setText("");
@@ -255,14 +203,7 @@ public class AddOrderform extends DataUtil implements Initializable {
     @FXML private void delete()
     {
         try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            connectClient();
             dos.writeInt(9);
             dos.writeInt(Integer.valueOf(IdLabel.getText()));
             dos.writeUTF(FromLabel.getText());
@@ -271,7 +212,7 @@ public class AddOrderform extends DataUtil implements Initializable {
             state.setText(dis.readUTF());
             if(state.getText().equals("Deleted"))
             {
-                fill_table();
+                Zlecenie.fill_table(Orders);
                 Thread.sleep(300);
                 IdLabel.setText("");
                 FromLabel.setText("");

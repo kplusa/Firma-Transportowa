@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import project.Class.Zlecenie;
 import project.Utils.DataUtil;
 
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class CourierMenuForm extends DataUtil implements Initializable {
         CourierForm courierForm= loader.getController();
         courierForm.setName(getName(), courierForm.name);
         courierForm.setClientType(getClientType(), courierForm.clientType);
-        courierForm.fill_table();
+        Zlecenie.filltableCourier(courierForm.CourierTabelForm, courierForm.name);
         courierForm.initializeOrder();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();

@@ -6,21 +6,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import project.Utils.DataUtil;
+
 /**
  * 
  */
-public class Opłata extends Application {
+public class Opłata extends DataUtil {
 
     /**
      * Default constructor
      */
     public Opłata() {
     }
-    public static Stage stage =null;
-    @Override
-    public void start(Stage stage) throws Exception {
 
-    }
 
     /**
      * 

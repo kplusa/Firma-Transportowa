@@ -94,63 +94,7 @@ public class AssignOrder extends DataUtil implements Initializable  {
         window.setScene(scene);
         window.show();
     }
-    @FXML
-    public ObservableList<Zlecenie> fillOrderTable() throws IOException {
-        ObservableList<Zlecenie> orderList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(27);
-            counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {
-                idOrder = Integer.valueOf(dis.readUTF());
-                fromBranch = dis.readUTF();
-                toBranch = dis.readUTF();
-                orderList.add(new Zlecenie(fromBranch, idOrder, toBranch));
-            }
-            OrderTV.setItems(orderList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return orderList;
-    }
 
-    public ObservableList<Kurier> fillCourierTable() throws IOException {
-        ObservableList<Kurier> courierList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(28);
-            counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {
-                idCourier = Integer.valueOf(dis.readUTF());
-                location = dis.readUTF();
-                courierList.add(new Kurier(idCourier, location));
-            }
-            CourierTV.setItems(courierList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return courierList;
-    }
     private void count(String A, String B)
     {
         double latA=0;
@@ -228,8 +172,8 @@ public class AssignOrder extends DataUtil implements Initializable  {
                 IdCourierTF.setText("");
                 Distance.setText("");
                 Thread.sleep(300);
-                fillOrderTable();
-                fillCourierTable();
+                Zlecenie.fillOrderTable(OrderTV);
+                Zlecenie.fillCourierTable(CourierTV);
             }
 
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -254,8 +198,8 @@ public class AssignOrder extends DataUtil implements Initializable  {
         IdCourier.setCellValueFactory(new PropertyValueFactory<>("id"));
         Location.setCellValueFactory(new PropertyValueFactory<>("location"));
         try {
-            fillOrderTable();
-            fillCourierTable();
+            Zlecenie.fillOrderTable(OrderTV);
+            Zlecenie.fillCourierTable(CourierTV);
         } catch (IOException e) {
             e.printStackTrace();
         }

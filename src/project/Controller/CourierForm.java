@@ -31,15 +31,7 @@ import java.util.ResourceBundle;
 
 public class CourierForm extends DataUtil implements Initializable {
     @FXML
-    private AnchorPane APMain;
-    @FXML
     public Label name;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private int counter, id;
-    private Date data;
     private String adresP, adresK, status, tmpstring, datas;
     private int ilosc;
     private Zlecenie selectedZlecenie;
@@ -102,15 +94,7 @@ public class CourierForm extends DataUtil implements Initializable {
             System.out.println(testouput);
             selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
             System.out.println(selectedZlecenie.ID);
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            connectClient();
             dos.writeInt(42);
             dos.writeUTF(testouput);
             dos.writeInt(selectedZlecenie.ID);
@@ -118,19 +102,11 @@ public class CourierForm extends DataUtil implements Initializable {
             dos.close();
             s.close();
             Thread.sleep(300);
-            fill_table();
+            Zlecenie.filltableCourier(CourierTabelForm,name);
         }
         if (OrderSelection.getSelectionModel().getSelectedItem() != null)
         {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            connectClient();
             tmpstring = OrderSelection.getSelectionModel().getSelectedItem();
 
             dos.writeInt(44);
@@ -145,17 +121,10 @@ public class CourierForm extends DataUtil implements Initializable {
     public void initializeOrder()
     {
         try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            connectClient();
             dos.writeInt(43);
             dos.writeUTF(name.getText());
-            counter = dis.readInt();
+            var counter = dis.readInt();
             for (int i = 1;i <= counter; i++)
             {
                 tmpstring = dis.readUTF();
@@ -186,41 +155,5 @@ public class CourierForm extends DataUtil implements Initializable {
         OrderSelection.getItems().add("Pomiędzy odziałami");
     }
 
-    @FXML
-    public ObservableList<Zlecenie> fill_table() throws IOException {
-        ObservableList<Zlecenie> zlecenieList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(41);
-            dos.writeUTF(name.getText());
-            counter = dis.readInt();
-            for (int i = 1;i <= counter; i++)
-            {
-                tmpstring = dis.readUTF();
-                id = Integer.valueOf(tmpstring);
-                datas = dis.readUTF();
-                adresP = dis.readUTF();
-                adresK = dis.readUTF();
-                status = dis.readUTF();
-                tmpstring = dis.readUTF();
-                ilosc = Integer.valueOf(tmpstring);
-                zlecenieList.add(new Zlecenie(id, datas, adresP, adresK, status, ilosc));
-            }
-            CourierTabelForm.setItems(zlecenieList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return zlecenieList;
-    }
+
 }

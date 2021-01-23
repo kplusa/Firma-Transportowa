@@ -1,11 +1,21 @@
 package project.Class;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import javax.swing.text.TableView;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 
 public class Kurier extends Użytkownik {
     public int id;
@@ -44,10 +54,8 @@ public class Kurier extends Użytkownik {
     public Kurier() {
     }
     public static Stage stage =null;
-    @Override
-    public void start(Stage stage) throws Exception {
 
-    }
+
 
 
     public void ZmienTyp(int ID) {

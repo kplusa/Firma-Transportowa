@@ -6,10 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import project.Utils.DataUtil;
+
 /**
  * 
  */
-public class Użytkownik extends Application {
+public class Użytkownik extends DataUtil {
 
     /**
      * Default constructor
@@ -17,10 +19,7 @@ public class Użytkownik extends Application {
     public Użytkownik() {
     }
     public static Stage stage =null;
-    @Override
-    public void start(Stage stage) throws Exception {
 
-    }
 
     /**
      * 

@@ -29,22 +29,12 @@ import java.util.ResourceBundle;
 
 public class PrizesForm extends DataUtil implements Initializable {
     @FXML
-    private AnchorPane APMain;
-    @FXML
     public Label name;
 
 
     @FXML
     public Label clientType;
 
-    private String st;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private int counter, Limit;
-    private Float Kwota;
-    private String tmpstring,Gabaryt, Opis;
     @FXML
     TableView<Cennik> PriceList;
     @FXML
@@ -96,71 +86,11 @@ public class PrizesForm extends DataUtil implements Initializable {
         Type.setCellValueFactory(new PropertyValueFactory<>("TypDoplaty"));
         AditionalAmount.setCellValueFactory(new PropertyValueFactory<>("KwotaD"));
         try {
-            fill_table();
-            fill_table_second();
+            Cennik.fillPriceList(PriceList);
+            Doplata.fillTableAdditional(AditionalPriceList);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    @FXML
-    public ObservableList<Cennik> fill_table() throws IOException {
-        ObservableList<Cennik> Cennik_list = FXCollections.observableArrayList();
-        try {
-                try {
-                    ip = InetAddress.getByName("localhost");
-                    s = new Socket(ip, 5057);
-                    dis = new DataInputStream(s.getInputStream());
-                    dos = new DataOutputStream(s.getOutputStream());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                dos.writeInt(3);
-                counter = dis.readInt();
-                for (int i = 1; i <= counter; i++) {
-                    Gabaryt = dis.readUTF();
-                    tmpstring = dis.readUTF();
-                    Kwota = Float.valueOf(tmpstring);
-                    Opis = dis.readUTF();
-                    tmpstring = dis.readUTF();
-                    Limit = Integer.valueOf(tmpstring);
-                    Cennik_list.add(new Cennik(Gabaryt, Kwota, Opis, Limit));
-                }
-            System.out.println(PriceList);
-            PriceList.setItems(Cennik_list);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return Cennik_list;
-    }
-    public ObservableList<Doplata> fill_table_second() throws IOException {
-        ObservableList<Doplata> DoplataList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(4);
-            counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {
-                Opis = dis.readUTF();
-                tmpstring = dis.readUTF();
-                Kwota = Float.valueOf(tmpstring);
-                DoplataList.add(new Doplata(Opis, Kwota));
-            }
-            AditionalPriceList.setItems(DoplataList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return DoplataList;
-    }
+
 }

@@ -28,19 +28,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CurentOrderForm extends DataUtil implements Initializable {
-    private String st;
+
     private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private int counter,id;
-    private String stat,kurier,tmpstring;
+
     @FXML
     public Label name;
     @FXML
     public Label clientType;
-    @FXML
-    private AnchorPane APMain;
     @FXML
     TableView<Zlecenie> CurrentOrder;
     @FXML
@@ -82,36 +76,5 @@ public class CurentOrderForm extends DataUtil implements Initializable {
         Status.setCellValueFactory(new PropertyValueFactory<>("status"));
         Courier.setCellValueFactory(new PropertyValueFactory<>("Kurier"));
     }
-    @FXML
-    public ObservableList<Zlecenie> fill_table() throws IOException {
-        ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(5);
-            dos.writeUTF(name.getText());
-            counter = dis.readInt();
-            for (int i = 1; i <= counter; i++) {
-                tmpstring = dis.readUTF();
-                id = Integer.valueOf(tmpstring);
-                stat = dis.readUTF();
-                kurier = dis.readUTF();
-                if(!stat.equals("Dostarczone")){
-                ZlecenieList.add(new Zlecenie(id, stat, kurier));}
-            }
-            CurrentOrder.setItems(ZlecenieList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ZlecenieList;
-    }
+
 }

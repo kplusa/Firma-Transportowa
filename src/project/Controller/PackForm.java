@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import project.Class.Zlecenie;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -70,7 +71,7 @@ public class PackForm extends DataUtil implements  Initializable {
          AddOrderform addOrderform= loader.getController();
         addOrderform.setName(getName(), addOrderform.name);
         addOrderform.setClientType(getClientType(), addOrderform.clientType);
-        addOrderform.fill_table();
+        Zlecenie.fill_table(addOrderform.Orders);
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -106,6 +107,7 @@ public class PackForm extends DataUtil implements  Initializable {
                     e.printStackTrace();
                     System.out.println("Brak polaczenia z serwerem");
                 }
+            dos = new DataOutputStream(s.getOutputStream());
                 dos.writeInt(10);
                 counter = dis.readInt();
                 for(int i=0;i<counter;i++) {
