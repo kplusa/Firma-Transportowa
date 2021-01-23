@@ -1,0 +1,573 @@
+@startuml
+
+title __CONTROLLER's Class Diagram__\n
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AddOrderform {
+          + adresKoncowy : String
+          + adresPoczatkowy : String
+          + clientType : Label
+          + dataNadania : String
+          + id : int
+          + ilosc : int
+          + name : Label
+          + tmpstring : String
+          ~ Orders : TableView<Zlecenie>
+          - APMain : AnchorPane
+          - AmountColumn : TableColumn<Zlecenie, Integer>
+          - DateLabel : JFXTextField
+          - FromColumn : TableColumn<Zlecenie, String>
+          - FromLabel : JFXTextArea
+          - IdColumn : TableColumn<Zlecenie, Integer>
+          - IdLabel : JFXTextField
+          - PostingDateColumn : TableColumn<Zlecenie, String>
+          - ToColumn : TableColumn<Zlecenie, String>
+          - ToLabel : JFXTextArea
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          - s : Socket
+          - state : Label
+          + fill_table()
+          + initialize()
+          ~ addpack()
+          ~ back()
+          ~ goMenu()
+          - add()
+          - delete()
+          - edit()
+          - fillLabels()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AddbranchForm {
+          + Place : TableColumn
+          + PlaceLabel : JFXTextField
+          + PlaceTable : TableView
+          + clientType : Label
+          + name : Label
+          + state : Label
+          - APMain : AnchorPane
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          - s : Socket
+          - tmpstring : String
+          + fill_table()
+          + initialize()
+          ~ add()
+          ~ back()
+          ~ goMenu()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AssignOrder {
+          + clientType : Label
+          + name : Label
+          ~ CourierTV : TableView<Kurier>
+          ~ OrderTV : TableView<Zlecenie>
+          ~ Status : Label
+          - APMain : AnchorPane
+          - Distance : JFXTextField
+          - FromBranch : TableColumn<Zlecenie, String>
+          - IdCourier : TableColumn<Kurier, Integer>
+          - IdCourierTF : JFXTextField
+          - IdOrder : TableColumn<Zlecenie, Integer>
+          - IdOrderTF : JFXTextField
+          - Location : TableColumn<Kurier, String>
+          - ToBranch : TableColumn<Zlecenie, String>
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - fromBranch : String
+          - idCourier : int
+          - idOrder : int
+          - ip : InetAddress
+          - location : String
+          - s : Socket
+          - status : String
+          - toBranch : String
+          + fillCourierTable()
+          + fillOrderTable()
+          + initialize()
+          ~ assign()
+          ~ back()
+          ~ goMenu()
+          - count()
+          - fillFields()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ClientHandler {
+          ~ dataInputStream : DataInputStream
+          ~ dataOutputStream : DataOutputStream
+          ~ socket : Socket
+          ~ state : boolean
+          ~ text : JFXTextArea
+          - StringList : List<String>
+          - UserId : int
+          - counter : int
+          - data : Date
+          - email : String
+          - from : String
+          - id : int
+          - mail : String
+          - option : int
+          - pass : String
+          - pass2 : String
+          - password : String
+          - rs : ResultSet
+          - rs2 : ResultSet
+          - secondStringList : List<String>
+          - sql : String
+          - sql2 : String
+          - status : String
+          - stmt : Statement
+          - stmt2 : Statement
+          - tmpchar : char
+          - tmpfloat : float
+          - tmpint : int
+          - tmpstring : String
+          - tmpstring2 : String
+          - to : String
+          - type : String
+          - uni : String
+          + getUserId()
+          + run()
+          ~ ClientHandler()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ClientMenuForm {
+          + clientType : Label
+          + name : Label
+          - APMain : AnchorPane
+          + initialize()
+          ~ goLogin()
+          ~ goaddorder()
+          ~ gocurrentorders()
+          ~ goprizes()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CourierForm {
+          + clientType : Label
+          + name : Label
+          ~ CourierTabelForm : TableView<Zlecenie>
+          - APMain : AnchorPane
+          - AdresK : TableColumn<Zlecenie, String>
+          - AdresP : TableColumn<Zlecenie, String>
+          - Amount : TableColumn<Zlecenie, Integer>
+          - DataNadania : TableColumn<Zlecenie, String>
+          - Id : TableColumn<Zlecenie, Integer>
+          - OKCourier : JFXButton
+          - OrderSelection : JFXComboBox<String>
+          - Status : TableColumn<Zlecenie, String>
+          - StatusSelection : JFXComboBox<String>
+          - adresK : String
+          - adresP : String
+          - counter : int
+          - data : Date
+          - datas : String
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - id : int
+          - ilosc : int
+          - ip : InetAddress
+          - s : Socket
+          - status : String
+          - tmpstring : String
+          + fill_table()
+          + initialize()
+          + initializeOrder()
+          ~ aktualizuj()
+          ~ back()
+          ~ goMenu()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CourierMenuForm {
+          + clientType : Label
+          + name : Label
+          - APMain : AnchorPane
+          + initialize()
+          ~ goLogin()
+          ~ gocurrentorders()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CurentOrderForm {
+          + clientType : Label
+          + name : Label
+          ~ CurrentOrder : TableView<Zlecenie>
+          - APMain : AnchorPane
+          - Courier : TableColumn<Zlecenie, String>
+          - OrderNumber : TableColumn<Zlecenie, Integer>
+          - Status : TableColumn<Zlecenie, String>
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - id : int
+          - ip : InetAddress
+          - kurier : String
+          - s : Socket
+          - st : String
+          - stat : String
+          - tmpstring : String
+          + fill_table()
+          + initialize()
+          ~ back()
+          ~ goMenu()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ForwarderMenuForm {
+          + clientType : Label
+          + name : Label
+          - APMain : AnchorPane
+          + initialize()
+          ~ asign()
+          ~ branch()
+          ~ goLogin()
+          ~ payment()
+          ~ prices()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ForwarderPriceListForm {
+          + clientType : Label
+          + name : Label
+          ~ AditionalPriceList : TableView<Doplata>
+          ~ PriceList : TableView<Cennik>
+          - APMain : AnchorPane
+          - AditionalAP : AnchorPane
+          - AditionalAmount : TableColumn<Cennik, Integer>
+          - Amount : TableColumn<Cennik, Float>
+          - AmountAditionalPrice : JFXTextField
+          - Description : TableColumn<Cennik, String>
+          - Dimension : TableColumn<Cennik, String>
+          - Gabaryt : String
+          - Kwota : Float
+          - Limit : int
+          - Lm : TableColumn<Cennik, Integer>
+          - Opis : String
+          - PriceListAP : AnchorPane
+          - Type : TableColumn<Cennik, String>
+          - TypeOfAditionalPrice : JFXTextField
+          - amountTF : JFXTextField
+          - counter : int
+          - descriptionTA : JFXTextArea
+          - dimensionTF : JFXTextField
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          - limitTF : JFXTextField
+          - s : Socket
+          - status : Label
+          - tmpstring : String
+          + fill_table()
+          + fill_table_second()
+          + initialize()
+          ~ back()
+          ~ goMenu()
+          - delete()
+          - fillAdditionalData()
+          - fillPriceListData()
+          - insert()
+          - update()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.LoginForm {
+          {static} ~ HBoxXMax : int
+          {static} ~ HBoxXMin : int
+          {static} ~ HBoxYMax : int
+          {static} ~ HBoxYMin : int
+          ~ mail : JFXTextField
+          ~ pas : JFXPasswordField
+          ~ status : Label
+          ~ x : double
+          ~ y : double
+          - APMain : AnchorPane
+          {static} - SCREEN_BOUNDS : Rectangle2D
+          - clientType : String
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          {static} - offset_XY : double[]
+          - s : Socket
+          - st : String
+          + MakeDraggable()
+          + initialize()
+          {static} # allowDrag()
+          ~ closeAction()
+          ~ goRegister()
+          ~ login()
+          ~ minAction()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PackForm {
+          + DimensionCombo : JFXComboBox
+          + DimensionLabel : Label
+          + PriceCombo : JFXComboBox
+          + PriceLabel : Label
+          + SummaryLabel : Label
+          + WeightLabel : JFXTextField
+          + clientType : Label
+          + listOfPrizes : Label
+          + name : Label
+          + state : Label
+          ~ dimensions : ObservableList
+          ~ prices : ObservableList
+          - APMain : AnchorPane
+          - StringList : List<String>
+          - Zlecenieid : int
+          - counter : int
+          - counterOfAditional : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          - s : Socket
+          - tmpFloat : Float
+          - tmpint : int
+          - tmpstring : String
+          + fill()
+          + initialize()
+          + zlecid()
+          ~ DimensionToLabel()
+          ~ PriceToLabel()
+          ~ SetsummaryLabel()
+          ~ addpacktobase()
+          ~ back()
+          ~ goMenu()
+          ~ resetb()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PaymentForm {
+          + Courier : TableColumn<Kurier, String>
+          + CourierLabel : JFXTextField
+          + ID : TableColumn<Kurier, Integer>
+          + PercentageLabel : JFXTextField
+          + Quantity : TableColumn<Kurier, Integer>
+          + Table : TableView<Kurier>
+          + clientType : Label
+          + name : Label
+          + state : Label
+          - APMain : AnchorPane
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - id : int
+          - ilosc : int
+          - imie : String
+          - ip : InetAddress
+          - s : Socket
+          - tmpstring : String
+          + add()
+          + fill_table()
+          + initialize()
+          ~ back()
+          ~ goMenu()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PrizesForm {
+          + clientType : Label
+          + name : Label
+          ~ AditionalPriceList : TableView<Doplata>
+          ~ PriceList : TableView<Cennik>
+          - APMain : AnchorPane
+          - AditionalAmount : TableColumn<Doplata, Integer>
+          - Amount : TableColumn<Cennik, Float>
+          - Description : TableColumn<Cennik, String>
+          - Dimension : TableColumn<Cennik, String>
+          - Gabaryt : String
+          - Kwota : Float
+          - Limit : int
+          - Lm : TableColumn<Cennik, Integer>
+          - Opis : String
+          - Type : TableColumn<Doplata, String>
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - ip : InetAddress
+          - s : Socket
+          - tmpstring : String
+          + fill_table()
+          + fill_table_second()
+          + initialize()
+          ~ back()
+          ~ goMenu()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.RegisterForm {
+          {static} ~ HBoxXMax : int
+          {static} ~ HBoxXMin : int
+          {static} ~ HBoxYMax : int
+          {static} ~ HBoxYMin : int
+          ~ x : double
+          ~ y : double
+          - APMain : AnchorPane
+          - city : JFXTextField
+          - code : JFXTextField
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - firstname : JFXTextField
+          - ip : InetAddress
+          - lastname : JFXTextField
+          - mail : JFXTextField
+          - number : JFXTextField
+          - pass : JFXPasswordField
+          - pass2 : JFXPasswordField
+          - phone : JFXTextField
+          - s : Socket
+          - st : String
+          - status : Label
+          - street : JFXTextField
+          - type : JFXComboBox
+          + initialize()
+          ~ MakeDraggable()
+          ~ closeAction()
+          ~ goLogin()
+          ~ minAction()
+          ~ register()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ServerForm {
+          {static} + string : String
+          {static} ~ HBoxXMax : int
+          {static} ~ HBoxXMin : int
+          {static} ~ HBoxYMax : int
+          {static} ~ HBoxYMin : int
+          ~ run : JFXButton
+          ~ serverSocket : ServerSocket
+          ~ socket : Socket
+          ~ text : JFXTextArea
+          ~ x : double
+          ~ y : double
+          - APMain : AnchorPane
+          + initialize()
+          + runserver()
+          ~ MakeDraggable()
+          ~ closeAction()
+          ~ minAction()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ServerForm.SocketServerThread {
+          + run()
+      }
+    }
+  }
+  
+
+  project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
+  project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
+  project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
+  project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm .up.|> javafx.fxml.Initializable
+  project.Controller.CourierForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
+  project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
+  project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
+  project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.LoginForm .up.|> javafx.fxml.Initializable
+  project.Controller.PackForm .up.|> javafx.fxml.Initializable
+  project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
+  project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
+  project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
+  project.Controller.ServerForm .up.|> javafx.fxml.Initializable
+  project.Controller.ServerForm +-down- project.Controller.ServerForm.SocketServerThread
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -82,7 +82,7 @@ public class Zlecenie extends Application {
         status=Status;
         Kurier=kurier;
     }
-    public Zlecenie(String oddzialPoczatkowy, int id,  String oddzialKoncowy) {
+    public Zlecenie(String oddzialPoczatkowy, int id,  String oddzialKoncowy) {//TODO builder
         this.ID=id;
         this.oddzialPoczatkowy=oddzialPoczatkowy;
         this.oddzialKoncowy=oddzialKoncowy;

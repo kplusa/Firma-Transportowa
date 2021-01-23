@@ -1,13 +1,8 @@
 package project.Class;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-public class Kurier extends Użytkownik {
+public class Kurier extends Uzytkownik {
     public int id;
     public String imie;
     public TypKuriera TypKuriera;

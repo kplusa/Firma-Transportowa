@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class RegisterForm implements Initializable {
@@ -62,7 +63,6 @@ public class RegisterForm implements Initializable {
     private JFXTextField number;
     @FXML
     private JFXTextField code;
-    private ObservableList list= FXCollections.observableArrayList();
     @FXML
     void closeAction(MouseEvent event) {
         System.exit(0);
@@ -137,9 +137,7 @@ public class RegisterForm implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        list.add("Klient");
-        list.add("Kurier");
-        list.add("Spedytor");
+        ObservableList<String> list = FXCollections.observableArrayList(List.of("Klient","Kurier","Spedytor"));
         type.setItems(list);
         MakeDraggable();
     }

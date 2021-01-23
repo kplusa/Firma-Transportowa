@@ -32,19 +32,8 @@ public class PrizesForm extends DataUtil implements Initializable {
     private AnchorPane APMain;
     @FXML
     public Label name;
-
-
     @FXML
     public Label clientType;
-
-    private String st;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private int counter, Limit;
-    private Float Kwota;
-    private String tmpstring,Gabaryt, Opis;
     @FXML
     TableView<Cennik> PriceList;
     @FXML
@@ -61,6 +50,14 @@ public class PrizesForm extends DataUtil implements Initializable {
     private javafx.scene.control.TableColumn<Doplata, String> Type;
     @FXML
     private javafx.scene.control.TableColumn<Doplata, Integer> AditionalAmount;
+    private Socket s;
+    private InetAddress ip;
+    private DataInputStream dis;
+    private DataOutputStream dos;
+    private int counter, Limit;
+    private Float Kwota;
+    private String tmpstring,Gabaryt, Opis;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));

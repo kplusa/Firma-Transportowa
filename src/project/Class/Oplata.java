@@ -9,12 +9,12 @@ import javafx.stage.StageStyle;
 /**
  * 
  */
-public class Użytkownik extends Application {
+public class Oplata extends Application {
 
     /**
      * Default constructor
      */
-    public Użytkownik() {
+    public Oplata() {
     }
     public static Stage stage =null;
     @Override
@@ -30,48 +30,44 @@ public class Użytkownik extends Application {
     /**
      * 
      */
-    private String Imie;
+    public String Termin;
 
     /**
      * 
      */
-    private String Nazwisko;
+    public float Kwota;
 
     /**
      * 
      */
-    private String Mail;
+    public boolean Status;
 
     /**
      * 
      */
-    private int Telefon;
+    public SposobPlatnosci SposobPlatnosci;
 
-    /**
-     * 
-     */
-    private String Haslo;
 
 
 
     /**
-     * 
+     * @param ID
      */
-    public void Zaloguj() {
+    public void SprawdzOplate(int ID) {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void Wyloguj() {
+    public void DodajOplate() {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void Rejestracja() {
+    public void WyliczOplate() {
         // TODO implement here
     }
 
