@@ -247,6 +247,8 @@ public class Zlecenie extends DataUtil {
                 var id = Integer.valueOf(tmpstring);
                 var stat = dis.readUTF();
                 var kurier = dis.readUTF();
+                kurier+=" ";
+                kurier+=dis.readUTF();
                 if(!stat.equals("Dostarczone")){
                     ZlecenieList.add(new Zlecenie(id, stat, kurier));}
             }

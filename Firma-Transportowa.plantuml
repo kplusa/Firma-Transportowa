@@ -1,0 +1,353 @@
+@startuml
+
+title __FIRMA-TRANSPORTOWA's Class Diagram__\n
+
+  namespace project {
+    namespace Class {
+      class project.Class.Cennik {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Doplata {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Klient {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Kurier {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Oddzial {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Oplata {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Paczka {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Spedytor {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      enum SposobPlatnosci {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      enum TypKuriera {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Uzytkownik {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Class {
+      class project.Class.Zlecenie {
+      }
+    }
+  }
+  
+
+  namespace project {
+    class project.Client {
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AddOrderform {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AddbranchForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.AssignOrder {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ClientHandler {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ClientMenuForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CourierForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CourierMenuForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.CurentOrderForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ForwarderMenuForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ForwarderPriceListForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.LoginForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PackForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PaymentForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.PrizesForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.RegisterForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Controller {
+      class project.Controller.ServerForm {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.ConfigDB {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.DataBaseSelect {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      abstract class project.Facade.Facade {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.OpenStreetMapBase {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.UserAuthentication {
+      }
+    }
+  }
+  
+
+  namespace project {
+    class project.Server {
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
+      class project.Utils.DataUtil {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
+      class project.Utils.OpenStreetMapUtils {
+      }
+    }
+  }
+  
+
+  project.Class.Cennik -up-|> project.Utils.DataUtil
+  project.Class.Doplata -up-|> project.Utils.DataUtil
+  project.Class.Klient -up-|> project.Class.Uzytkownik
+  project.Class.Kurier -up-|> project.Class.Uzytkownik
+  project.Class.Kurier o-- project.Class.TypKuriera : TypKuriera
+  project.Class.Oddzial -up-|> project.Utils.DataUtil
+  project.Class.Oplata -up-|> project.Utils.DataUtil
+  project.Class.Oplata o-- project.Class.SposobPlatnosci : SposobPlatnosci
+  project.Class.Paczka -up-|> project.Utils.DataUtil
+  project.Class.Spedytor -up-|> project.Class.Uzytkownik
+  project.Class.Uzytkownik -up-|> project.Utils.DataUtil
+  project.Class.Zlecenie -up-|> project.Utils.DataUtil
+  project.Client -up-|> javafx.application.Application
+  project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
+  project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
+  project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
+  project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.ClientHandler -up-|> project.Facade.Facade
+  project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm .up.|> javafx.fxml.Initializable
+  project.Controller.CourierForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
+  project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
+  project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
+  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
+  project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.LoginForm .up.|> javafx.fxml.Initializable
+  project.Controller.PackForm .up.|> javafx.fxml.Initializable
+  project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
+  project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
+  project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
+  project.Controller.ServerForm .up.|> javafx.fxml.Initializable
+  project.Facade.Facade o-- project.Facade.ConfigDB : configDB
+  project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
+  project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
+  project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
+  project.Server -up-|> javafx.application.Application
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

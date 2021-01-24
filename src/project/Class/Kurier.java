@@ -2,7 +2,7 @@ package project.Class;
 
 import javafx.stage.Stage;
 
-public class Kurier extends Użytkownik {
+public class Kurier extends Uzytkownik {
     public int id;
     public String imie;
     public TypKuriera TypKuriera;
@@ -63,8 +63,9 @@ public class Kurier extends Użytkownik {
     public Kurier() {
     }
     public static Stage stage =null;
+    public void start(Stage stage) throws Exception {
 
-
+    }
 
     public void ZmienTyp(int ID) {
         // TODO implement here

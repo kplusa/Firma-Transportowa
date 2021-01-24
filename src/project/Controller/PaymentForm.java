@@ -144,8 +144,10 @@ public class PaymentForm extends DataUtil implements Initializable {
             }
             dos.writeInt(32);
             counter = dis.readInt();
+            System.out.println(counter);
             for (int i = 1; i <= counter; i++) {
                 tmpstring=dis.readUTF();
+                System.out.println(tmpstring);
                 id=Integer.valueOf(tmpstring);
                 imie=dis.readUTF();
                 tmpstring=dis.readUTF();

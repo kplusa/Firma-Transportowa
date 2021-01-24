@@ -38,7 +38,7 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         window.setScene(scene);
         window.show();
         LoginForm loginForm=loader.getController();
-        loginForm.allowDrag(root,window);
+        LoginForm.allowDrag(root,window);
     }
     @FXML
     void goprizes(ActionEvent event) throws IOException {
