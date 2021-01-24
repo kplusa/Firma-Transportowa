@@ -1,5 +1,6 @@
 package project.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +13,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Class.Zlecenie;
-import project.Utils.DataUtil;
-import project.Client;
+import project.Factory.Menu;
+import project.Factory.MenuFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientMenuForm extends DataUtil implements Initializable {
+public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
     @FXML
     private AnchorPane APMain;
     @FXML
@@ -80,4 +81,25 @@ public class ClientMenuForm extends DataUtil implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail, String clientType) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
+        Parent root = loader.load();
+        clientMenuForm = loader.getController();
+        clientMenuForm.setName(mail.getText(), clientMenuForm.name);
+        clientMenuForm.setClientType(clientType, clientMenuForm.clientType);
+
+        return root;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, CourierMenuForm courierMenuFormMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ForwarderMenuForm forwarderMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
+    }
 }

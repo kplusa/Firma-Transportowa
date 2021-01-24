@@ -1,6 +1,6 @@
 package project.Controller;
 
-import javafx.event.ActionEvent;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,24 +12,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Utils.DataUtil;
+import project.Factory.Menu;
+import project.Factory.MenuFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ForwarderMenuForm extends DataUtil implements Initializable {
+public class ForwarderMenuForm extends MenuFactory implements Initializable, Menu {
     @FXML
     private AnchorPane APMain;
     @FXML
     public Label name;
     @FXML
     public Label clientType;
+
     @FXML
     void prices(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderPriceListForm.fxml"));
         Parent root = loader.load();
-        ForwarderPriceListForm forwarderPriceListForm= loader.getController();
+        ForwarderPriceListForm forwarderPriceListForm = loader.getController();
         forwarderPriceListForm.setName(getName(), forwarderPriceListForm.name);
         forwarderPriceListForm.setClientType(getClientType(), forwarderPriceListForm.clientType);
         Scene scene = new Scene(root);
@@ -38,11 +40,12 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void branch(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderAddBranch.fxml"));
         Parent root = loader.load();
-        AddbranchForm addbranchForm= loader.getController();
+        AddbranchForm addbranchForm = loader.getController();
         addbranchForm.setName(getName(), addbranchForm.name);
         addbranchForm.setClientType(getClientType(), addbranchForm.clientType);
         Scene scene = new Scene(root);
@@ -51,11 +54,12 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void asign(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AssignOrderForm.fxml"));
         Parent root = loader.load();
-        AssignOrder assignOrder= loader.getController();
+        AssignOrder assignOrder = loader.getController();
         assignOrder.setName(getName(), assignOrder.name);
         assignOrder.setClientType(getClientType(), assignOrder.clientType);
         Scene scene = new Scene(root);
@@ -64,11 +68,12 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void payment(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/PaymentForm.fxml"));
         Parent root = loader.load();
-        PaymentForm paymentForm= loader.getController();
+        PaymentForm paymentForm = loader.getController();
         paymentForm.setName(getName(), paymentForm.name);
         paymentForm.setClientType(getClientType(), paymentForm.clientType);
         Scene scene = new Scene(root);
@@ -77,6 +82,7 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void goLogin(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
@@ -87,11 +93,33 @@ public class ForwarderMenuForm extends DataUtil implements Initializable {
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
-        LoginForm loginForm=loader.getController();
-        loginForm.allowDrag(root,window);
+        LoginForm loginForm = loader.getController();
+        loginForm.allowDrag(root, window);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ForwarderMenuForm forwarderMenuForm, JFXTextField mail, String clientType) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
+        Parent root = loader.load();
+        forwarderMenuForm = loader.getController();
+        forwarderMenuForm.setName(mail.getText(), forwarderMenuForm.name);
+        forwarderMenuForm.setClientType(clientType, forwarderMenuForm.clientType);
+
+        return root;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, CourierMenuForm courierMenuFormMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
     }
 }

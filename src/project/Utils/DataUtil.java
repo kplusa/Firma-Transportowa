@@ -20,7 +20,7 @@ public class DataUtil {
     @FXML
     private Label name;
     @FXML
-    private static Label clientType;
+    private  Label clientType;
 
     public static String getName() {
         return Name;

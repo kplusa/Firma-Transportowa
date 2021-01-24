@@ -17,6 +17,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Client;
+import project.Factory.MenuFactory;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -101,41 +102,28 @@ public class LoginForm implements Initializable {
         status.setText(st);
         FXMLLoader loader=null;
         Parent root = null;
+        MenuFactory menuFactory= new MenuFactory();
         if (st.equals("Poprawne dane-Klient"))
         {
-
-            loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-            root = loader.load();
             clientType="Client";
-            ClientMenuForm clientMenuForm= loader.getController();
-            clientMenuForm.setName(mail.getText(), clientMenuForm.name);
-            clientMenuForm.setClientType(clientType, clientMenuForm.clientType);
-
-
+            ClientMenuForm clientMenuForm = (ClientMenuForm) menuFactory.getMenu(clientType);
+            root =clientMenuForm.loadFXML(loader, clientMenuForm, mail ,clientType);
         }
         else if(st.equals("Poprawne dane-Kurier"))
         {
-            loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-            root = loader.load();
             clientType="Courier";
-            CourierMenuForm courierMenuForm= loader.getController();
-            courierMenuForm.setName(mail.getText(), courierMenuForm.name);
-            courierMenuForm.setClientType(clientType, courierMenuForm.clientType);
+            CourierMenuForm courierMenuForm = (CourierMenuForm) menuFactory.getMenu(clientType);
+            root =courierMenuForm.loadFXML(loader, courierMenuForm, mail ,clientType);
 
         }
         else if(st.equals("Poprawne dane-Spedytor"))
         {
-            loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-            root = loader.load();
             clientType="Forwarder";
-            ForwarderMenuForm forwarderMenuForm= loader.getController();
-            forwarderMenuForm.setName(mail.getText(), forwarderMenuForm.name);
-            forwarderMenuForm.setClientType(clientType, forwarderMenuForm.clientType);
+            ForwarderMenuForm forwarderMenuForm = (ForwarderMenuForm) menuFactory.getMenu(clientType);
+            root =forwarderMenuForm.loadFXML(loader, forwarderMenuForm, mail ,clientType);
+
         }
         if(st.equals("Poprawne dane-Klient")||st.equals("Poprawne dane-Kurier")||st.equals("Poprawne dane-Spedytor")){
-
-
-
             Scene scene = new Scene(root);
             ((Node) event.getSource()).getScene().getWindow().hide();
             Stage window = new Stage();
