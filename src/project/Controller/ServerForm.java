@@ -30,14 +30,6 @@ public class ServerForm implements Initializable {
     @FXML
     JFXButton run;
     @FXML
-    void closeAction(MouseEvent event) {
-        System.exit(0);
-    }
-    @FXML
-    void minAction(MouseEvent event) {
-        Client.stage.setIconified(true);
-    }
-    @FXML
     JFXTextArea text;
     @FXML
     void MakeDraggable(){

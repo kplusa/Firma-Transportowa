@@ -7,6 +7,6 @@ Drop Table Zlecenie
 Drop Table Cennik
 Drop Table Oplata
 Drop Table Oddzial
-Drop Table Uzytkownik
 Drop Table Adres
+Drop Table Uzytkownik
 Drop Table WyplataKurier

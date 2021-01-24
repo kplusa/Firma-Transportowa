@@ -31,3 +31,4 @@ insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','K
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('1','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('2','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','1','1');
+insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('5','1','1');

@@ -1,7 +1,9 @@
 package project.Controller;
 
 import com.jfoenix.controls.JFXTextArea;
+import project.Utils.ConfigDB;
 import project.Utils.OpenStreetMapUtils;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.sql.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
+
 import static project.Utils.DataUtil.distance;
 
 class ClientHandler extends Thread {
@@ -24,9 +27,9 @@ class ClientHandler extends Thread {
     private float tmpfloat;
     private char tmpchar;
     boolean state;
-    private Date data;
     private List<String> StringList = new ArrayList<String>();
     private List<String> secondStringList = new ArrayList<String>();
+    private Connection conn;
 
     ClientHandler(Socket s, JFXTextArea t) {
         socket = s;
@@ -35,18 +38,8 @@ class ClientHandler extends Thread {
 
     public void run() {
         try {
-            Connection conn = null;
-            try {
-                String url = "jdbc:sqlserver://DESKTOP-U746ETR\\SQLEXPRESS:1433";
-                String username = "PIPpro";
-                String password = "12345";
-                conn = DriverManager.getConnection(url, username, password);
-                if (conn != null) {
-                    DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            ConfigDB configDB = new ConfigDB();
+            conn = configDB.config();
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             try {
