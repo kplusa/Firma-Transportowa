@@ -37,7 +37,7 @@ public class ClientMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
         LoginForm loginForm=loader.getController();
-        loginForm.allowDrag(root,window);
+        LoginForm.allowDrag(root,window);
     }
     @FXML
     void goprizes(ActionEvent event) throws IOException {

@@ -18,7 +18,7 @@ public class Server extends Application {
         primaryStage.setTitle("PIP PROJEKT GR 3");
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.DECORATED);
-        this.stage=primaryStage;
+        stage=primaryStage;
         primaryStage.show();
     }
 

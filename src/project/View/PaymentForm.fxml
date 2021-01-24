@@ -51,14 +51,13 @@
             <Font name="Microsoft YaHei Light" size="18.0" />
          </font>
       </JFXButton>
-      <Label layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
+      <Label fx:id="state" layoutX="319.0" layoutY="541.0" prefHeight="17.0" prefWidth="65.0" />
       <Label layoutX="69.0" layoutY="340.0" prefHeight="17.0" prefWidth="200.0" />
-      <TableView fx:id="QClosed" layoutX="94.0" layoutY="159.0" prefHeight="195.0" prefWidth="612.0">
+      <TableView fx:id="Table" layoutX="94.0" layoutY="159.0" prefHeight="195.0" prefWidth="612.0">
          <columns>
-            <TableColumn fx:id="ID" prefWidth="28.000030517578125" text="ID" />
-            <TableColumn fx:id="Courier" prefWidth="248.79998779296875" text="Courier" />
-            <TableColumn fx:id="Quantity" prefWidth="171.20001220703125" text="Quantity of packs" />
-            <TableColumn fx:id="Percantage" prefWidth="163.2000732421875" text="Percantage" />
+            <TableColumn fx:id="ID" prefWidth="68.0" text="ID" />
+            <TableColumn fx:id="Courier" prefWidth="277.5999755859375" text="Courier" />
+            <TableColumn fx:id="Quantity" prefWidth="267.2000732421875" text="Quantity of packs" />
          </columns>
       </TableView>
       <JFXTextField fx:id="CourierLabel" focusColor="#00b2ff" focusTraversable="false" labelFloat="true" layoutX="94.0" layoutY="441.0" prefHeight="30.0" prefWidth="180.0" promptText="Courier" unFocusColor="#575757">

@@ -1,31 +1,40 @@
 package project.Class;
 
-import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import javax.swing.text.TableView;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-
-public class Kurier extends Użytkownik {
+public class Kurier extends Uzytkownik {
     public int id;
+    public String imie;
     public TypKuriera TypKuriera;
+    public int ilosc;
+
+    public int getIlosc() {
+        return ilosc;
+    }
+
+    public void setIlosc(int ilosc) {
+        this.ilosc = ilosc;
+    }
+
     public String location;
     public Kurier(int id, String location) {
         this.id = id;
         this.location = location;
     }
 
+    public String getImie() {
+        return imie;
+    }
+
+    public void setImie(String imie) {
+        this.imie = imie;
+    }
+
+    public Kurier(int Id, String Imie, int Ilosc) {
+        this.id = Id;
+        this.imie=Imie;
+        this.ilosc=Ilosc;
+    }
     public int getId() {
         return id;
     }
@@ -54,8 +63,9 @@ public class Kurier extends Użytkownik {
     public Kurier() {
     }
     public static Stage stage =null;
+    public void start(Stage stage) throws Exception {
 
-
+    }
 
 
     public void ZmienTyp(int ID) {

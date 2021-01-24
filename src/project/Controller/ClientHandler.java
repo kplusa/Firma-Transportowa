@@ -37,12 +37,12 @@ class ClientHandler extends Thread {
         try {
             Connection conn = null;
             try {
-                String url = "jdbc:sqlserver://DESKTOP-U746ETR\\SQLEXPRESS:1433";
+                String url = "jdbc:sqlserver://DESKTOP-TRG3U04\\SQLEXPRESS:1433";
                 String username = "PIPpro";
                 String password = "12345";
                 conn = DriverManager.getConnection(url, username, password);
                 if (conn != null) {
-                    DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+                    DatabaseMetaData dm = conn.getMetaData();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -739,7 +739,9 @@ class ClientHandler extends Thread {
                             tmpstring = rs.getString(3);
                             StringList.add(tmpstring);
                         }
+                        System.out.println(counter);
                         dataOutputStream.writeInt(counter);
+                        System.out.println(StringList);
                         for (String send : StringList) {
                             dataOutputStream.writeUTF(send);
                         }
@@ -782,18 +784,23 @@ class ClientHandler extends Thread {
                                 "\tAND FirmaTransportowa.dbo.ZlecenieKurier.kurierId = FirmaTransportowa.dbo.Kurier.id\n" +
                                 "\tAND FirmaTransportowa.dbo.Kurier.uzytkownikId = FirmaTransportowa.dbo.Uzytkownik.id\n" +
                                 "\tAND FirmaTransportowa.dbo.Uzytkownik.mail= '" + tmpstring + "'\n" +
-                                "\tAND FirmaTransportowa.dbo.Zlecenie.status = 'Odebrane';";
+                                "\tAND FirmaTransportowa.dbo.Zlecenie.status <> 'Dostarczone'" +
+                                "order by FirmaTransportowa.dbo.Zlecenie.id asc;";
                         tmpstring2 = tmpstring;
                         rs = stmt.executeQuery(sql);
-                        sql2 = "SELECT FirmaTransportowa.dbo.Paczka.zlecenieId ,COUNT(*)\n" +
-                                "  FROM FirmaTransportowa.dbo.Paczka, FirmaTransportowa.dbo.Zlecenie, FirmaTransportowa.dbo.Uzytkownik, FirmaTransportowa.dbo.ZlecenieKurier, FirmaTransportowa.dbo.Kurier\n" +
-                                "  WHERE FirmaTransportowa.dbo.Zlecenie.id = FirmaTransportowa.dbo.Paczka.zlecenieId\n" +
-                                "  AND FirmaTransportowa.dbo.ZlecenieKurier.zlecenieId = FirmaTransportowa.dbo.Zlecenie.id\n" +
-                                "  AND FirmaTransportowa.dbo.ZlecenieKurier.kurierId = FirmaTransportowa.dbo.Kurier.id\n" +
-                                "  AND FirmaTransportowa.dbo.Kurier.uzytkownikId = FirmaTransportowa.dbo.Uzytkownik.id\n" +
-                                "  AND FirmaTransportowa.dbo.Zlecenie.status = 'Odebrane'\n" +
-                                "  AND FirmaTransportowa.dbo.Uzytkownik.mail = '" + tmpstring2 + "' GROUP BY\n" +
-                                "  FirmaTransportowa.dbo.Paczka.zlecenieId;";
+                        sql2 = " with cte as (\n" +
+                                "   select Z.id Col1, P.id Col2  from FirmaTransportowa.dbo.Zlecenie Z \n" +
+                                " left join FirmaTransportowa.dbo.Paczka P on P.zlecenieId = Z.id  \n" +
+                                " join FirmaTransportowa.dbo.ZlecenieKurier ZK on ZK.zlecenieId = Z.id\n" +
+                                "join FirmaTransportowa.dbo.Kurier K on K.id = ZK.kurierId\n" +
+                                "join FirmaTransportowa.dbo.Uzytkownik U on U.id = K.uzytkownikId\n" +
+                                "\n" +
+                                "  where z.status <> 'Dostarczone'\n" +
+                                "  and u.mail='"+tmpstring+"'\n" +
+                                ")\n" +
+                                "select Col1, count(Col2)\n" +
+                                "from cte\n" +
+                                "group by Col1;";
                         rs2 = stmt2.executeQuery(sql2);
                         while (rs.next()) {
                             counter++;
@@ -870,7 +877,6 @@ class ClientHandler extends Thread {
                 e.printStackTrace();
             }
             conn.close();
-            rs.close();
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }

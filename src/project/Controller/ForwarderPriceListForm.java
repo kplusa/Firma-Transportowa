@@ -171,7 +171,7 @@ public class ForwarderPriceListForm extends DataUtil implements Initializable {
     private void insert(ActionEvent event) throws IOException {
         try {
             connectClient();
-            if (PriceListAP.isVisible()) {
+            if (PriceListAP.isVisible()) {//TODO DOS
                 dos.writeInt(21);
                 dos.writeUTF(dimensionTF.getText());
                 dos.writeFloat(Float.valueOf(amountTF.getText()));

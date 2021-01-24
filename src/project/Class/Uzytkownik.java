@@ -11,13 +11,14 @@ import project.Utils.DataUtil;
 /**
  * 
  */
-public class Opłata extends DataUtil {
+public class Uzytkownik extends DataUtil {
 
     /**
      * Default constructor
      */
-    public Opłata() {
+    public Uzytkownik() {
     }
+    public static Stage stage =null;
 
 
     /**
@@ -28,44 +29,48 @@ public class Opłata extends DataUtil {
     /**
      * 
      */
-    public String Termin;
+    private String Imie;
 
     /**
      * 
      */
-    public float Kwota;
+    private String Nazwisko;
 
     /**
      * 
      */
-    public boolean Status;
+    private String Mail;
 
     /**
      * 
      */
-    public SposobPlatnosci SposobPlatnosci;
+    private int Telefon;
 
+    /**
+     * 
+     */
+    private String Haslo;
 
 
 
     /**
-     * @param ID
+     * 
      */
-    public void SprawdzOplate(int ID) {
+    public void Zaloguj() {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void DodajOplate() {
+    public void Wyloguj() {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void WyliczOplate() {
+    public void Rejestracja() {
         // TODO implement here
     }
 

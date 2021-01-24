@@ -39,7 +39,7 @@ public class CourierMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
         LoginForm loginForm=loader.getController();
-        loginForm.allowDrag(root,window);
+        LoginForm.allowDrag(root,window);
     }
     @FXML
     void gocurrentorders(MouseEvent event) throws IOException {
