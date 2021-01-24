@@ -101,36 +101,10 @@ title __CONTROLLER's Class Diagram__\n
           ~ dataInputStream : DataInputStream
           ~ dataOutputStream : DataOutputStream
           ~ socket : Socket
-          ~ state : boolean
           ~ text : JFXTextArea
-          - StringList : List<String>
           - UserId : int
-          - counter : int
-          - data : Date
-          - email : String
-          - from : String
-          - id : int
-          - mail : String
-          - option : int
-          - pass : String
-          - pass2 : String
-          - password : String
-          - rs : ResultSet
-          - rs2 : ResultSet
-          - secondStringList : List<String>
-          - sql : String
-          - sql2 : String
-          - status : String
           - stmt : Statement
           - stmt2 : Statement
-          - tmpchar : char
-          - tmpfloat : float
-          - tmpint : int
-          - tmpstring : String
-          - tmpstring2 : String
-          - to : String
-          - type : String
-          - uni : String
           + getUserId()
           + run()
           ~ ClientHandler()
@@ -359,9 +333,27 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.PaymentForm {
+          + Courier : TableColumn<Kurier, String>
+          + CourierLabel : JFXTextField
+          + ID : TableColumn<Kurier, Integer>
+          + PercentageLabel : JFXTextField
+          + Quantity : TableColumn<Kurier, Integer>
+          + Table : TableView<Kurier>
           + clientType : Label
           + name : Label
+          + state : Label
           - APMain : AnchorPane
+          - counter : int
+          - dis : DataInputStream
+          - dos : DataOutputStream
+          - id : int
+          - ilosc : int
+          - imie : String
+          - ip : InetAddress
+          - s : Socket
+          - tmpstring : String
+          + add()
+          + fill_table()
           + initialize()
           ~ back()
           ~ goMenu()
@@ -470,6 +462,7 @@ title __CONTROLLER's Class Diagram__\n
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable

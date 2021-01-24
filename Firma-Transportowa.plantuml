@@ -233,6 +233,46 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   
 
   namespace project {
+    namespace Facade {
+      class project.Facade.ConfigDB {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.DataBaseSelect {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      abstract class project.Facade.Facade {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.OpenStreetMapBase {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.UserAuthentication {
+      }
+    }
+  }
+  
+
+  namespace project {
     class project.Server {
     }
   }
@@ -273,6 +313,7 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
@@ -295,6 +336,10 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Controller.PrizesForm -up-|> project.Utils.DataUtil
   project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm .up.|> javafx.fxml.Initializable
+  project.Facade.Facade o-- project.Facade.ConfigDB : configDB
+  project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
+  project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
+  project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
   project.Server -up-|> javafx.application.Application
 
 

@@ -67,19 +67,27 @@ title __CLASS's Class Diagram__\n
     namespace Class {
       class project.Class.Kurier {
           + id : int
+          + ilosc : int
+          + imie : String
           + location : String
           {static} + stage : Stage
           + DodajKuriera()
           + Kurier()
           + Kurier()
+          + Kurier()
           + UsunKuriera()
           + ZmienTyp()
           + getId()
+          + getIlosc()
+          + getImie()
           + getLocation()
           + getTypKuriera()
           + setId()
+          + setIlosc()
+          + setImie()
           + setLocation()
           + setTypKuriera()
+          + start()
       }
     }
   }

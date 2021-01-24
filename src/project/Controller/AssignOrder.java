@@ -138,12 +138,6 @@ public class AssignOrder extends DataUtil implements Initializable  {
                 count(fromBranch,location);
             }
         });
-
-
-
-
-
-
     }
     @FXML
     void assign(ActionEvent event) throws IOException {
@@ -165,8 +159,6 @@ public class AssignOrder extends DataUtil implements Initializable  {
                 status = dis.readUTF();
             }
                 Status.setText(status);
-
-
             if (status.equals("Added")) {
                 IdOrderTF.setText("");
                 IdCourierTF.setText("");
