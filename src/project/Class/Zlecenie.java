@@ -1,17 +1,11 @@
 package project.Class;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -22,7 +16,7 @@ import java.net.Socket;
 
 public class Zlecenie extends DataUtil {
 
-    public static Stage stage =null;
+    public static Stage stage = null;
 
     public int ID;
     public String DataNadania;
@@ -33,79 +27,101 @@ public class Zlecenie extends DataUtil {
     public int Ilosc;
     public String oddzialPoczatkowy;
     public String oddzialKoncowy;
+
     public String getOddzialPoczatkowy() {
         return oddzialPoczatkowy;
     }
+
     public void setOddzialPoczatkowy(String oddzialPoczatkowy) {
         this.oddzialPoczatkowy = oddzialPoczatkowy;
     }
+
     public String getOddzialKoncowy() {
         return oddzialKoncowy;
     }
+
     public void setOddzialKoncowy(String oddzialKoncowy) {
-        this.oddzialKoncowy= oddzialKoncowy;
+        this.oddzialKoncowy = oddzialKoncowy;
     }
-    public int  getIlosc() {
+
+    public int getIlosc() {
         return Ilosc;
     }
+
     public void setIlosc(int ilosc) {
         Ilosc = ilosc;
     }
+
     public String getKurier() {
         return Kurier;
     }
+
     public void setKurier(String kurier) {
         Kurier = kurier;
     }
+
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public int getID() {
         return ID;
     }
+
     public void setID(int ID) {
         this.ID = ID;
     }
+
     public String getAdresKoncowy() {
         return AdresKoncowy;
     }
+
     public void setAdresKoncowy(String adresKoncowy) {
         AdresKoncowy = adresKoncowy;
     }
+
     public String getAdresPoczatkowy() {
         return AdresPoczatkowy;
     }
+
     public void setAdresPoczatkowy(String adresPoczatkowy) {
         AdresPoczatkowy = adresPoczatkowy;
     }
+
     public String getDataNadania() {
         return DataNadania;
     }
+
     public void setDataNadania(String dataNadania) {
         DataNadania = dataNadania;
     }
+
     public Zlecenie(int id, String Status, String kurier) {
-        ID=id;
-        status=Status;
-        Kurier=kurier;
+        ID = id;
+        status = Status;
+        Kurier = kurier;
     }
-    public Zlecenie(String oddzialPoczatkowy, int id,  String oddzialKoncowy) {
-        this.ID=id;
-        this.oddzialPoczatkowy=oddzialPoczatkowy;
-        this.oddzialKoncowy=oddzialKoncowy;
+
+    public Zlecenie(String oddzialPoczatkowy, int id, String oddzialKoncowy) {
+        this.ID = id;
+        this.oddzialPoczatkowy = oddzialPoczatkowy;
+        this.oddzialKoncowy = oddzialKoncowy;
     }
-    public Zlecenie(int id,String adresPoczatkowy,String adresKoncowy, String dataNadania,int ilosc) {
-        ID=id;
-        AdresPoczatkowy=adresPoczatkowy;
-        AdresKoncowy=adresKoncowy;
-        DataNadania=dataNadania;
-        Ilosc=ilosc;
+
+    public Zlecenie(int id, String adresPoczatkowy, String adresKoncowy, String dataNadania, int ilosc) {
+        ID = id;
+        AdresPoczatkowy = adresPoczatkowy;
+        AdresKoncowy = adresKoncowy;
+        DataNadania = dataNadania;
+        Ilosc = ilosc;
     }
+
     public Zlecenie(int id, String data, String adresP, String adresK, String status, int ilosc) {
-        this.ID=id;
+        this.ID = id;
         this.DataNadania = data;
         this.AdresPoczatkowy = adresP;
         this.AdresKoncowy = adresK;
@@ -135,7 +151,7 @@ public class Zlecenie extends DataUtil {
                 var dataNadania = dis.readUTF();
                 tmpstring = dis.readUTF();
                 var ilosc = Integer.valueOf(tmpstring);
-                ZlecenieList.add(new Zlecenie(id,adresPoczatkowy,adresKoncowy, dataNadania,ilosc));
+                ZlecenieList.add(new Zlecenie(id, adresPoczatkowy, adresKoncowy, dataNadania, ilosc));
             }
             Orders.setItems(ZlecenieList);
             dis.close();
@@ -146,6 +162,7 @@ public class Zlecenie extends DataUtil {
         }
         return ZlecenieList;
     }
+
     @FXML
     public static ObservableList<Zlecenie> fillOrderTable(TableView OrderTV) throws IOException {
         ObservableList<Zlecenie> orderList = FXCollections.observableArrayList();
@@ -197,6 +214,7 @@ public class Zlecenie extends DataUtil {
         }
         return courierList;
     }
+
     @FXML
     public static ObservableList<Zlecenie> filltableCourier(TableView CourierTabelForm, Label name) throws IOException {
         ObservableList<Zlecenie> zlecenieList = FXCollections.observableArrayList();
@@ -212,8 +230,7 @@ public class Zlecenie extends DataUtil {
             dos.writeInt(41);
             dos.writeUTF(name.getText());
             var counter = dis.readInt();
-            for (int i = 1;i <= counter; i++)
-            {
+            for (int i = 1; i <= counter; i++) {
                 var tmpstring = dis.readUTF();
                 var id = Integer.valueOf(tmpstring);
                 var datas = dis.readUTF();
@@ -228,12 +245,12 @@ public class Zlecenie extends DataUtil {
             dis.close();
             dos.close();
             s.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return zlecenieList;
     }
+
     @FXML
     public static ObservableList<Zlecenie> filltableCurrentOrder(TableView CurrentOrder, Label name) throws IOException {
         ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
@@ -247,10 +264,11 @@ public class Zlecenie extends DataUtil {
                 var id = Integer.valueOf(tmpstring);
                 var stat = dis.readUTF();
                 var kurier = dis.readUTF();
-                kurier+=" ";
-                kurier+=dis.readUTF();
-                if(!stat.equals("Dostarczone")){
-                    ZlecenieList.add(new Zlecenie(id, stat, kurier));}
+                kurier += " ";
+                kurier += dis.readUTF();
+                if (!stat.equals("Dostarczone")) {
+                    ZlecenieList.add(new Zlecenie(id, stat, kurier));
+                }
             }
             CurrentOrder.setItems(ZlecenieList);
             dis.close();
@@ -260,18 +278,6 @@ public class Zlecenie extends DataUtil {
             e.printStackTrace();
         }
         return ZlecenieList;
-    }
-    public void WyswietlZlecenie(int ID) {
-        // TODO implement here
-    }
-    public void DodajZlecenie() {
-        // TODO implement here
-    }
-    public void UsunZlecenie(int ID) {
-        // TODO implement here
-    }
-    public void ZmienZlecenie(int ID) {
-        // TODO implement here
     }
 
 }

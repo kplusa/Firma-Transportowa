@@ -5,15 +5,11 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.AddOrderform {
-          + adresKoncowy : String
-          + adresPoczatkowy : String
+          + Orders : TableView<Zlecenie>
           + clientType : Label
-          + dataNadania : String
           + id : int
-          + ilosc : int
           + name : Label
           + tmpstring : String
-          ~ Orders : TableView<Zlecenie>
           - AmountColumn : TableColumn<Zlecenie, Integer>
           - DateLabel : JFXTextField
           - FromColumn : TableColumn<Zlecenie, String>
@@ -23,7 +19,6 @@ title __CONTROLLER's Class Diagram__\n
           - PostingDateColumn : TableColumn<Zlecenie, String>
           - ToColumn : TableColumn<Zlecenie, String>
           - ToLabel : JFXTextArea
-          - counter : int
           - state : Label
           + initialize()
           ~ addpack()
@@ -66,7 +61,6 @@ title __CONTROLLER's Class Diagram__\n
           ~ CourierTV : TableView<Kurier>
           ~ OrderTV : TableView<Zlecenie>
           ~ Status : Label
-          - APMain : AnchorPane
           - Distance : JFXTextField
           - FromBranch : TableColumn<Zlecenie, String>
           - IdCourier : TableColumn<Kurier, Integer>
@@ -75,17 +69,13 @@ title __CONTROLLER's Class Diagram__\n
           - IdOrderTF : JFXTextField
           - Location : TableColumn<Kurier, String>
           - ToBranch : TableColumn<Zlecenie, String>
-          - counter : int
           - dis : DataInputStream
           - dos : DataOutputStream
           - fromBranch : String
-          - idCourier : int
-          - idOrder : int
           - ip : InetAddress
           - location : String
           - s : Socket
           - status : String
-          - toBranch : String
           + initialize()
           ~ assign()
           ~ back()
@@ -149,11 +139,6 @@ title __CONTROLLER's Class Diagram__\n
           - OrderSelection : JFXComboBox<String>
           - Status : TableColumn<Zlecenie, String>
           - StatusSelection : JFXComboBox<String>
-          - adresK : String
-          - adresP : String
-          - datas : String
-          - ilosc : int
-          - status : String
           - tmpstring : String
           + initialize()
           + initializeOrder()
@@ -191,7 +176,6 @@ title __CONTROLLER's Class Diagram__\n
           - Courier : TableColumn<Zlecenie, String>
           - OrderNumber : TableColumn<Zlecenie, Integer>
           - Status : TableColumn<Zlecenie, String>
-          - s : Socket
           + initialize()
           ~ back()
           ~ goMenu()
@@ -230,30 +214,20 @@ title __CONTROLLER's Class Diagram__\n
           + status : Label
           ~ AditionalPriceList : TableView<Doplata>
           ~ PriceList : TableView<Cennik>
-          - APMain : AnchorPane
           - AditionalAP : AnchorPane
           - AditionalAmount : TableColumn<Cennik, Integer>
           - Amount : TableColumn<Cennik, Float>
           - AmountAditionalPrice : JFXTextField
           - Description : TableColumn<Cennik, String>
           - Dimension : TableColumn<Cennik, String>
-          - Gabaryt : String
-          - Kwota : Float
-          - Limit : int
           - Lm : TableColumn<Cennik, Integer>
-          - Opis : String
           - PriceListAP : AnchorPane
           - Type : TableColumn<Cennik, String>
           - TypeOfAditionalPrice : JFXTextField
           - amountTF : JFXTextField
-          - counter : int
           - descriptionTA : JFXTextArea
           - dimensionTF : JFXTextField
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
           - limitTF : JFXTextField
-          - s : Socket
           - tmpstring : String
           + initialize()
           ~ back()
@@ -317,7 +291,6 @@ title __CONTROLLER's Class Diagram__\n
           + state : Label
           ~ dimensions : ObservableList
           ~ prices : ObservableList
-          - APMain : AnchorPane
           - StringList : List<String>
           - Zlecenieid : int
           - counter : int
@@ -327,7 +300,6 @@ title __CONTROLLER's Class Diagram__\n
           - ip : InetAddress
           - s : Socket
           - tmpFloat : Float
-          - tmpint : int
           - tmpstring : String
           + fill()
           + initialize()
@@ -357,7 +329,6 @@ title __CONTROLLER's Class Diagram__\n
           + information : Label
           + name : Label
           + state : Label
-          - APMain : AnchorPane
           - counter : int
           - dis : DataInputStream
           - dos : DataOutputStream
@@ -471,35 +442,44 @@ title __CONTROLLER's Class Diagram__\n
 
   project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
   project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddOrderform o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm .up.|> project.Factory.Menu
   project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierMenuForm .up.|> project.Factory.Menu
   project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
   project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PackForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
   project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
   project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm +-down- project.Controller.ServerForm.SocketServerThread

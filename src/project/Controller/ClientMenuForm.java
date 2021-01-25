@@ -89,7 +89,6 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         clientMenuForm = loader.getController();
         clientMenuForm.setName(mail.getText(), clientMenuForm.name);
         clientMenuForm.setClientType(clientType, clientMenuForm.clientType);
-
         return root;
     }
 

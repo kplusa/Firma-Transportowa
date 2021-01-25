@@ -25,7 +25,7 @@ public class OpenStreetMapBase {
         String to = dataInputStream.readUTF();
         try {
             String sql;
-            ResultSet rs=null;
+            ResultSet rs = null;
             try {
                 sql = "select * from FirmaTransportowa.dbo.Zlecenie Where FirmaTransportowa.dbo.Zlecenie.id='" + tmpint + "';";
                 rs = stmt.executeQuery(sql);
@@ -78,7 +78,7 @@ public class OpenStreetMapBase {
         }
     }
 
-    public void InsertOrder(int tmpint,Statement stmt, Statement stmt2, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws IOException {
+    public void InsertOrder(int tmpint, Statement stmt, Statement stmt2, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws IOException {
         Map<Integer, Double> toList = new HashMap<>();
         Map<Integer, Double> fromList = new HashMap<>();
         Map<Integer, String> branchList = new HashMap<>();

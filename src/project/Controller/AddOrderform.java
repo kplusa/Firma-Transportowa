@@ -1,9 +1,8 @@
 package project.Controller;
+
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.PauseTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,24 +14,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import project.Class.Cennik;
+import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
-import project.Class.Doplata;
-import project.Class.Zlecenie;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.sql.DatabaseMetaData;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddOrderform extends DataUtil implements Initializable {

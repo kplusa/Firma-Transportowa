@@ -1,16 +1,14 @@
 package project.Observer;
 
-import javafx.concurrent.Task;
-import project.Client;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class Observer extends Thread implements ObserverInterface{
-    static String status="";
+public class Observer extends Thread implements ObserverInterface {
+    static String status = "";
+
     public String getStatus() {
         return status;
     }
@@ -24,7 +22,7 @@ public class Observer extends Thread implements ObserverInterface{
         while (true) {
             try {
                 Thread.sleep(600000);
-                if(!status.equals("Nowe zlecenie")){
+                if (!status.equals("Nowe zlecenie")) {
                     DataInputStream dis = null;
                     DataOutputStream dos = null;
                     try {
@@ -37,7 +35,7 @@ public class Observer extends Thread implements ObserverInterface{
                     }
                     dos.writeInt(0);
                     setStatus(dis.readUTF());
-                    }
+                }
             } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             } catch (Exception e) {

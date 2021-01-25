@@ -311,6 +311,62 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   
 
   namespace project {
+    namespace State {
+      class project.State.AddPackState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ButtonMenu {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ClientMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.CourierMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ForwarderMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      interface project.State.MenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
+      interface project.Utils.Adapter {
+      }
+    }
+  }
+  
+
+  namespace project {
     namespace Utils {
       class project.Utils.DataUtil {
       }
@@ -341,35 +397,44 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Client -up-|> javafx.application.Application
   project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
   project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddOrderform o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm .up.|> project.Factory.Menu
   project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierMenuForm .up.|> project.Factory.Menu
   project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
   project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PackForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
   project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
   project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm .up.|> javafx.fxml.Initializable
   project.Facade.Facade o-- project.Facade.ConfigDB : configDB
@@ -379,6 +444,16 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Factory.MenuFactory -up-|> project.Utils.DataUtil
   project.Observer.Observer .up.|> project.Observer.ObserverInterface
   project.Server -up-|> javafx.application.Application
+  project.State.AddPackState .up.|> project.State.MenuState
+  project.State.AddPackState -up-|> project.Utils.DataUtil
+  project.State.ButtonMenu o-- project.State.MenuState : menuState
+  project.State.ClientMenuState .up.|> project.State.MenuState
+  project.State.ClientMenuState -up-|> project.Utils.DataUtil
+  project.State.CourierMenuState .up.|> project.State.MenuState
+  project.State.CourierMenuState -up-|> project.Utils.DataUtil
+  project.State.ForwarderMenuState .up.|> project.State.MenuState
+  project.State.ForwarderMenuState -up-|> project.Utils.DataUtil
+  project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
 
 
 right footer

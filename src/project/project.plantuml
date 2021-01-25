@@ -7,6 +7,7 @@ title __PROJECT's Class Diagram__\n
         {static} + stage : Stage
         {static} + main()
         + start()
+        {static} + startpop()
     }
   }
   

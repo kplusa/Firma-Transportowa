@@ -2,32 +2,19 @@ package project.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class CourierForm extends DataUtil implements Initializable {
@@ -60,19 +47,21 @@ public class CourierForm extends DataUtil implements Initializable {
     private javafx.scene.control.TableColumn<Zlecenie, String> Status;
     @FXML
     private javafx.scene.control.TableColumn<Zlecenie, Integer> Amount;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @FXML
     void aktualizuj(MouseEvent event) throws IOException, InterruptedException {
         if (CourierTabelForm.getSelectionModel().getSelectedItem() != null
-                && StatusSelection.getSelectionModel().getSelectedItem() != null)
-        {
+                && StatusSelection.getSelectionModel().getSelectedItem() != null) {
             String testouput = StatusSelection.getSelectionModel().getSelectedItem();
             System.out.println(testouput);
             selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
@@ -85,10 +74,9 @@ public class CourierForm extends DataUtil implements Initializable {
             dos.close();
             s.close();
             Thread.sleep(300);
-            Zlecenie.filltableCourier(CourierTabelForm,name);
+            Zlecenie.filltableCourier(CourierTabelForm, name);
         }
-        if (OrderSelection.getSelectionModel().getSelectedItem() != null)
-        {
+        if (OrderSelection.getSelectionModel().getSelectedItem() != null) {
             connectClient();
             tmpstring = OrderSelection.getSelectionModel().getSelectedItem();
 
@@ -101,15 +89,14 @@ public class CourierForm extends DataUtil implements Initializable {
             Thread.sleep(300);
         }
     }
-    public void initializeOrder()
-    {
+
+    public void initializeOrder() {
         try {
             connectClient();
             dos.writeInt(43);
             dos.writeUTF(name.getText());
             var counter = dis.readInt();
-            for (int i = 1;i <= counter; i++)
-            {
+            for (int i = 1; i <= counter; i++) {
                 tmpstring = dis.readUTF();
                 OrderSelection.getSelectionModel().select(tmpstring);
                 System.out.println(tmpstring);
@@ -117,8 +104,7 @@ public class CourierForm extends DataUtil implements Initializable {
             dis.close();
             dos.close();
             s.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -131,7 +117,9 @@ public class CourierForm extends DataUtil implements Initializable {
         DataNadania.setCellValueFactory(new PropertyValueFactory<>("DataNadania"));
         Amount.setCellValueFactory(new PropertyValueFactory<>("Ilosc"));
         Status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        StatusSelection.getItems().add("Odebrane");
+        StatusSelection.getItems().add("Odebrane od nadawcy");
+        StatusSelection.getItems().add("Dostarczone do oddziału");
+        StatusSelection.getItems().add("Odebrane z oddziału");
         StatusSelection.getItems().add("Dostarczone");
         OrderSelection.getItems().add("Początkowy");
         OrderSelection.getItems().add("Końcowy");

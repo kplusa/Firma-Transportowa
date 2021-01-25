@@ -13,6 +13,7 @@ import java.io.IOException;
 public class Oddzial extends DataUtil {
     public int id;
     public String miejscowosc;
+
     public String getMiejscowosc() {
         return miejscowosc;
     }

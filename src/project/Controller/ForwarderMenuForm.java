@@ -1,7 +1,6 @@
 package project.Controller;
 
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,7 +15,6 @@ import javafx.stage.StageStyle;
 import project.Factory.Menu;
 import project.Factory.MenuFactory;
 import project.Observer.Observer;
-import project.Observer.ObserverInterface;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +29,7 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
     public Label clientType;
     @FXML
     public Label information;
-    Observer observer=new Observer();
+    Observer observer = new Observer();
 
     @FXML
     void prices(MouseEvent event) throws IOException {
@@ -47,6 +45,7 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void branch(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderAddBranch.fxml"));
@@ -61,6 +60,7 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void asign(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AssignOrderForm.fxml"));
@@ -109,8 +109,8 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-         Observer observer=new Observer();
-       information.setText(observer.getStatus());
+        Observer observer = new Observer();
+        information.setText(observer.getStatus());
     }
 
     @Override

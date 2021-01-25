@@ -1,6 +1,7 @@
 package project.Facade;
 
 import com.jfoenix.controls.JFXTextArea;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -21,12 +22,14 @@ public class UserAuthentication {
             String type = rs.getString(3);
             if (mail.equals(email) && pass.equals(password)) {
                 status = "Poprawne dane-" + type;
-                text.appendText("\nZalogowano:" + mail);
+                if (text != null)
+                    text.appendText("\nZalogowano:" + mail);
                 break;
             }
         }
         dataOutputStream.writeUTF(status);
     }
+
     public void register(Statement stmt, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws SQLException, IOException {
         String status = "Zarejestrowano";
         String mail = dataInputStream.readUTF();
@@ -48,7 +51,10 @@ public class UserAuthentication {
             int tmpint = 0;
             String tmpstring;
             while (rs.next()) {
-                unistreet = null; uninumber = null; unicity = null; unicode = null;
+                unistreet = null;
+                uninumber = null;
+                unicity = null;
+                unicode = null;
                 tmpint = rs.getInt(1);
                 tmpstring = rs.getString(2);
                 if (tmpstring.equals(street)) {
@@ -66,7 +72,7 @@ public class UserAuthentication {
                 if (tmpstring.equals(code)) {
                     unicode = "equals";
                 }
-                if (unistreet != null && uninumber!= null  && unicity!= null  && unicode!= null ) {
+                if (unistreet != null && uninumber != null && unicity != null && unicode != null) {
                     break;
                 }
             }
