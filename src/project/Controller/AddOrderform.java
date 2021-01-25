@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Class.Cennik;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 import project.Class.Doplata;
 import project.Class.Zlecenie;
@@ -35,13 +36,13 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AddOrderform extends DataUtil implements Initializable {
-
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
     @FXML
     public Label clientType;
     @FXML
-    TableView<Zlecenie> Orders;
+    public TableView<Zlecenie> Orders;
     @FXML
     private javafx.scene.control.TableColumn<Zlecenie, Integer> IdColumn;
     @FXML
@@ -63,21 +64,11 @@ public class AddOrderform extends DataUtil implements Initializable {
     @FXML
     private Label state;
 
-    private int counter;
-    public int id,ilosc;
-    public String adresPoczatkowy,adresKoncowy,dataNadania,tmpstring;
+    public int id;
+    public String tmpstring;
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-        Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
-        clientMenuForm.setName(getName(), clientMenuForm.name);
-        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @FXML
     void addpack(ActionEvent event) throws IOException {
@@ -104,16 +95,7 @@ public class AddOrderform extends DataUtil implements Initializable {
     }
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
-        Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
-        clientMenuForm.setName(getName(), clientMenuForm.name);
-        clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

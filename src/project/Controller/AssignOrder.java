@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import project.Class.*;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 import project.Utils.OpenStreetMapUtils;
 
@@ -33,17 +34,14 @@ import java.util.ResourceBundle;
 
 public class AssignOrder extends DataUtil implements Initializable  {
 
-
-    @FXML
-    private AnchorPane APMain;
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private int idOrder,idCourier, counter;
-    private String fromBranch, toBranch, location,status;
+    private String fromBranch, location,status;
     @FXML
     private JFXTextField IdOrderTF;
     @FXML
@@ -70,29 +68,11 @@ public class AssignOrder extends DataUtil implements Initializable  {
     public Label clientType,information;
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
 
     private void count(String A, String B)

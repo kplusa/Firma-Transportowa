@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Zlecenie;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -30,10 +31,10 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class CourierForm extends DataUtil implements Initializable {
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
-    private String adresP, adresK, status, tmpstring, datas;
-    private int ilosc;
+    private String tmpstring;
     private Zlecenie selectedZlecenie;
 
 
@@ -61,29 +62,11 @@ public class CourierForm extends DataUtil implements Initializable {
     private javafx.scene.control.TableColumn<Zlecenie, Integer> Amount;
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-        Parent root = loader.load();
-        CourierMenuForm courierMenuForm= loader.getController();
-        courierMenuForm.setName(getName(), courierMenuForm.name);
-        courierMenuForm.setClientType(getClientType(), courierMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-        Parent root = loader.load();
-        CourierMenuForm courierMenuForm= loader.getController();
-        courierMenuForm.setName(getName(), courierMenuForm.name);
-        courierMenuForm.setClientType(getClientType(), courierMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @FXML
     void aktualizuj(MouseEvent event) throws IOException, InterruptedException {

@@ -65,7 +65,7 @@ public class ServerForm implements Initializable {
             while (true){
                 try {
                     socket=serverSocket.accept();
-                    text.appendText("\nOtrzymano połączenie");
+                    text.appendText("\nOtrzymano polaczenie");
                     Thread acceptedThread=new Thread(new ClientHandler(socket,text));
                     acceptedThread.setDaemon(true);
                     acceptedThread.start();

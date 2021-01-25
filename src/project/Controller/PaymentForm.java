@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import project.Class.Kurier;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -30,8 +31,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PaymentForm extends DataUtil implements Initializable {
-    @FXML
-    private AnchorPane APMain;
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
+
     @FXML
     public Label name;
     @FXML
@@ -58,29 +59,11 @@ public class PaymentForm extends DataUtil implements Initializable {
     private String imie,tmpstring;
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
