@@ -117,7 +117,9 @@ public class CourierForm extends DataUtil implements Initializable {
         DataNadania.setCellValueFactory(new PropertyValueFactory<>("DataNadania"));
         Amount.setCellValueFactory(new PropertyValueFactory<>("Ilosc"));
         Status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        StatusSelection.getItems().add("Odebrane");
+        StatusSelection.getItems().add("Odebrane od nadawcy");
+        StatusSelection.getItems().add("Dostarczone do oddziału");
+        StatusSelection.getItems().add("Odebrane z oddziału");
         StatusSelection.getItems().add("Dostarczone");
         OrderSelection.getItems().add("Początkowy");
         OrderSelection.getItems().add("Końcowy");
