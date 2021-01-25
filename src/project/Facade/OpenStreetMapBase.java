@@ -91,6 +91,7 @@ public class OpenStreetMapBase {
                 Integer id = rs.getInt(1);
                 String tmpstring = rs.getString(2);
                 branchList.put(id, tmpstring);
+                System.out.println(id);
             }
             branchList.forEach((k, v) -> {
                 Map<String, Double> coords;
