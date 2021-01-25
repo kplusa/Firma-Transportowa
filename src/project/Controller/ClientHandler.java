@@ -60,6 +60,7 @@ class ClientHandler extends Facade {
                     text.appendText("\nWyslano aktualne zlecenia do dodawania zlecen");
                 } else if (option == 7) {
                     tmpint1 = getUserId(dataInputStream.readUTF(), conn);
+                    stmt2 = conn.createStatement();
                     InsertOrder(tmpint1,stmt,stmt2,dataInputStream,dataOutputStream,text);
                     setNotify();
                 } else if (option == 8) {
