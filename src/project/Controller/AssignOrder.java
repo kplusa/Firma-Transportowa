@@ -2,23 +2,16 @@ package project.Controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.PauseTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import project.Class.*;
+import project.Class.Kurier;
+import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 import project.Utils.OpenStreetMapUtils;
@@ -32,7 +25,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class AssignOrder extends DataUtil implements Initializable  {
+public class AssignOrder extends DataUtil implements Initializable {
 
     ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
@@ -41,7 +34,7 @@ public class AssignOrder extends DataUtil implements Initializable  {
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private String fromBranch, location,status;
+    private String fromBranch, location, status;
     @FXML
     private JFXTextField IdOrderTF;
     @FXML
@@ -65,36 +58,38 @@ public class AssignOrder extends DataUtil implements Initializable  {
     @FXML
     private javafx.scene.control.TableColumn<Kurier, String> Location;
     @FXML
-    public Label clientType,information;
+    public Label clientType, information;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
 
-    private void count(String A, String B)
-    {
-        double latA=0;
-        double latB=0;
-        double lonA=0;
-        double lonB=0;
+    private void count(String A, String B) {
+        double latA = 0;
+        double latB = 0;
+        double lonA = 0;
+        double lonB = 0;
         Map<String, Double> coords;
         coords = OpenStreetMapUtils.getInstance().getCoordinates(A);
-        latA+= coords.get("lat");
-        lonA+= coords.get("lon");
+        latA += coords.get("lat");
+        lonA += coords.get("lon");
         coords = OpenStreetMapUtils.getInstance().getCoordinates(B);
 
-        latB+= coords.get("lat");
-        lonB+= coords.get("lon");
-        Distance.setText(String.format("%.2f",distance(latA, latB,
-                lonA, lonB))+" KM");
+        latB += coords.get("lat");
+        lonB += coords.get("lon");
+        Distance.setText(String.format("%.2f", distance(latA, latB,
+                lonA, lonB)) + " KM");
     }
+
     private void fillFields() {
-        fromBranch="";
-        location="";
+        fromBranch = "";
+        location = "";
 
         OrderTV.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 0) {
@@ -102,9 +97,10 @@ public class AssignOrder extends DataUtil implements Initializable  {
                     Zlecenie zlecenie = OrderTV.getSelectionModel().getSelectedItem();
                     IdOrderTF.setText(String.valueOf(zlecenie.getID()));
                     fromBranch = zlecenie.getOddzialPoczatkowy();
-            }}
-            if(!location.equals("")&&!fromBranch.equals("")){
-                count(fromBranch,location);
+                }
+            }
+            if (!location.equals("") && !fromBranch.equals("")) {
+                count(fromBranch, location);
             }
         });
         CourierTV.setOnMouseClicked((MouseEvent event) -> {
@@ -112,13 +108,15 @@ public class AssignOrder extends DataUtil implements Initializable  {
                 if (CourierTV.getSelectionModel().getSelectedItem() != null) {
                     Kurier kurier = CourierTV.getSelectionModel().getSelectedItem();
                     IdCourierTF.setText(String.valueOf(kurier.getId()));
-                    location= kurier.getLocation();
-            }}
-            if(!location.equals("")&&!fromBranch.equals("")){
-                count(fromBranch,location);
+                    location = kurier.getLocation();
+                }
+            }
+            if (!location.equals("") && !fromBranch.equals("")) {
+                count(fromBranch, location);
             }
         });
     }
+
     @FXML
     void assign(ActionEvent event) throws IOException {
         try {
@@ -130,15 +128,15 @@ public class AssignOrder extends DataUtil implements Initializable  {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if(IdCourierTF.getText().isEmpty()||IdOrderTF.getText().isEmpty()||Distance.getText().isEmpty())
-                status="Insert error";
-               else{
+            if (IdCourierTF.getText().isEmpty() || IdOrderTF.getText().isEmpty() || Distance.getText().isEmpty())
+                status = "Insert error";
+            else {
                 dos.writeInt(29);
                 dos.writeUTF(IdCourierTF.getText());
                 dos.writeUTF(IdOrderTF.getText());
                 status = dis.readUTF();
             }
-                Status.setText(status);
+            Status.setText(status);
             if (status.equals("Added")) {
                 IdOrderTF.setText("");
                 IdCourierTF.setText("");

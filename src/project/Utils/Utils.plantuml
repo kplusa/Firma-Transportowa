@@ -4,6 +4,16 @@ title __UTILS's Class Diagram__\n
 
   namespace project {
     namespace Utils {
+      interface project.Utils.Adapter {
+          {abstract} + getCoordinates()
+          {abstract} + getRequest()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
       class project.Utils.DataUtil {
           {static} + ClientType : String
           {static} + Name : String
@@ -31,15 +41,15 @@ title __UTILS's Class Diagram__\n
           {static} - instance : OpenStreetMapUtils
           - jsonParser : JSONParser
           + OpenStreetMapUtils()
-          {static} + distance()
           + getCoordinates()
           {static} + getInstance()
-          - getRequest()
+          + getRequest()
       }
     }
   }
   
 
+  project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
 
 
 right footer

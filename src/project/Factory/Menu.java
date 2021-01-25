@@ -10,7 +10,9 @@ import project.Controller.ForwarderMenuForm;
 import java.io.IOException;
 
 public interface Menu {
-    Parent loadFXML(FXMLLoader loader, ForwarderMenuForm forwarderMenuForm, JFXTextField mail , String clientType) throws IOException;
-    Parent loadFXML(FXMLLoader loader, CourierMenuForm courierMenuFormMenuForm, JFXTextField mail , String clientType) throws IOException;
-    Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail , String clientType) throws IOException;
+    Parent loadFXML(FXMLLoader loader, ForwarderMenuForm forwarderMenuForm, JFXTextField mail, String clientType) throws IOException;
+
+    Parent loadFXML(FXMLLoader loader, CourierMenuForm courierMenuFormMenuForm, JFXTextField mail, String clientType) throws IOException;
+
+    Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail, String clientType) throws IOException;
 }

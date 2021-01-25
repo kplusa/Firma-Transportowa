@@ -34,8 +34,9 @@ public class Doplata extends DataUtil {
 
     public Doplata(String typDoplaty, Float kwotaD) {
         TypDoplaty = typDoplaty;
-        KwotaD=kwotaD;
+        KwotaD = kwotaD;
     }
+
     public static ObservableList<Doplata> fillTableAdditional(TableView AditionalPriceList) throws IOException {
         ObservableList<Doplata> DoplataList = FXCollections.observableArrayList();
         try {

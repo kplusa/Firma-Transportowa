@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -19,7 +18,7 @@ public class DataUtil {
     @FXML
     private Label name;
     @FXML
-    private  Label clientType;
+    private Label clientType;
 
     public static String getName() {
         return Name;
@@ -67,7 +66,7 @@ public class DataUtil {
         return (c * r);
     }
 
-    public  static void connectClient() {
+    public static void connectClient() {
         try {
             ip = InetAddress.getByName("localhost");
             s = new Socket(ip, 5057);

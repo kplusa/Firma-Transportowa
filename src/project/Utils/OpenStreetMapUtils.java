@@ -1,5 +1,10 @@
 package project.Utils;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -7,14 +12,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-
-public class OpenStreetMapUtils {
-
-
+public class OpenStreetMapUtils implements Adapter {
     private static OpenStreetMapUtils instance = null;
     private JSONParser jsonParser;
 
@@ -29,7 +27,7 @@ public class OpenStreetMapUtils {
         return instance;
     }
 
-    private String getRequest(String url) throws Exception {
+    public String getRequest(String url) throws Exception {
         final URL obj = new URL(url);
         final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -83,33 +81,13 @@ public class OpenStreetMapUtils {
             JSONArray array = (JSONArray) obj;
             if (array.size() > 0) {
                 JSONObject jsonObject = (JSONObject) array.get(0);
-
                 String lon = (String) jsonObject.get("lon");
                 String lat = (String) jsonObject.get("lat");
                 res.put("lon", Double.parseDouble(lon));
                 res.put("lat", Double.parseDouble(lat));
-
             }
         }
 
         return res;
-    }
-    public static double distance(double lat1,
-                                  double lat2, double lon1,
-                                  double lon2)
-    {
-        lon1 = Math.toRadians(lon1);
-        lon2 = Math.toRadians(lon2);
-        lat1 = Math.toRadians(lat1);
-        lat2 = Math.toRadians(lat2);
-        double dlon = lon2 - lon1;
-        double dlat = lat2 - lat1;
-        double a = Math.pow(Math.sin(dlat / 2), 2)
-                + Math.cos(lat1) * Math.cos(lat2)
-                * Math.pow(Math.sin(dlon / 2),2);
-
-        double c = 2 * Math.asin(Math.sqrt(a));
-        double r = 6371;
-        return(c * r);
     }
 }

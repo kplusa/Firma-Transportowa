@@ -1,13 +1,16 @@
 package project.Controller;
 
 import com.jfoenix.controls.JFXTextArea;
-import project.Facade.*;
+import project.Facade.Facade;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 
@@ -18,6 +21,7 @@ class ClientHandler extends Facade {
     DataOutputStream dataOutputStream = null;
     private Statement stmt, stmt2;
     private int UserId;
+
     ClientHandler(Socket s, JFXTextArea t) {
         socket = s;
         text = t;
@@ -35,7 +39,7 @@ class ClientHandler extends Facade {
                 String status = "";
                 String tmpstring1;
                 int tmpint1;
-                if(option==0) {
+                if (option == 0) {
                     dataOutputStream.writeUTF(getNotify());
                     deleteNotify();
                 } else if (option == 1) {
@@ -61,11 +65,11 @@ class ClientHandler extends Facade {
                 } else if (option == 7) {
                     tmpint1 = getUserId(dataInputStream.readUTF(), conn);
                     stmt2 = conn.createStatement();
-                    InsertOrder(tmpint1,stmt,stmt2,dataInputStream,dataOutputStream,text);
+                    InsertOrder(tmpint1, stmt, stmt2, dataInputStream, dataOutputStream, text);
                     setNotify();
                 } else if (option == 8) {
                     stmt2 = conn.createStatement();
-                    UpdateOrder(stmt,stmt2,dataInputStream,dataOutputStream,text);
+                    UpdateOrder(stmt, stmt2, dataInputStream, dataOutputStream, text);
                 } else if (option == 9) {
                     tmpint1 = dataInputStream.readInt();
                     EditBase("Delete from FirmaTransportowa.dbo.Zlecenie where FirmaTransportowa.dbo.Zlecenie.id='" + tmpint1 + "';", stmt);
@@ -173,18 +177,17 @@ class ClientHandler extends Facade {
                     LocalDate date = LocalDate.now();
                     int tmpint = date.getMonthValue();
                     String tmpstring = String.valueOf(tmpint);
-                    SelectFromDatabase(3, "with cte as \n" +
+                    SelectFromDatabase(3, "with cte as\n" +
                             "(select K.id Col1, K.imie Col2, COUNT(P.id) Col3, row_number() \n" +
-                            "over (partition by K.id  order by K.id desc) RowNum \n" +
+                            "over (partition by K.id  order by K.id desc) RowNum\n" +
                             "from FirmaTransportowa.dbo.Kurier K right join FirmaTransportowa.dbo.ZlecenieKurier ZK on K.id=ZK.kurierId\n" +
                             "right join FirmaTransportowa.dbo.Zlecenie Z on ZK.zlecenieId=Z.id \n" +
                             "left join FirmaTransportowa.dbo.Paczka P on P.zlecenieId=Z.id\n" +
                             "where P.zlecenieId=Z.id AND MONTH(z.dataNadania)='" + tmpstring + "'\n" +
-                            "group by K.id,K.imie\n" +
-                            ")\n" +
-                            "select Col1, Col2, Col3 from cte \n" +
-                            "order by col1 asc\n" +
-                            ";", stmt, dataOutputStream);
+                            "group by K.id,K.imie)\n" +
+                            " select IsNull(Col1,0), IsNull(Col2,0), Col3\n" +
+                            "from cte\n" +
+                            "order by col1 asc", stmt, dataOutputStream);
                     text.appendText("\n Wyslano Kurierow do plac");
                 } else if (option == 33) {
                     tmpint1 = dataInputStream.readInt();
@@ -196,7 +199,7 @@ class ClientHandler extends Facade {
                     addwithselect("select * from FirmaTransportowa.dbo.WyplataKurier where FirmaTransportowa.dbo.WyplataKurier.rok='" + rok + "' AND FirmaTransportowa.dbo.WyplataKurier.miesiac='" + miesiac + "'AND FirmaTransportowa.dbo.WyplataKurier.kurierId='" + UserId + "'", "insert into FirmaTransportowa.dbo.WyplataKurier values('" + rok + "','" + miesiac + "','" + tmpint1 + "','" + UserId + "')", stmt, dataOutputStream, text);
                 } else if (option == 41) {
                     tmpstring1 = dataInputStream.readUTF();
-                    SelectFromDatabase(6,"with cte as (\n" +
+                    SelectFromDatabase(6, "with cte as (\n" +
                             "select Z.id Col1, P.id Col2, Z.dataNadania Col3, Z.adresPoczatkowy Col4, Z.adresKoncowy Col5, Z.status Col6\n" +
                             "from FirmaTransportowa.dbo.Zlecenie Z \n" +
                             "left join FirmaTransportowa.dbo.Paczka P on P.zlecenieId = Z.id  \n" +
@@ -204,12 +207,12 @@ class ClientHandler extends Facade {
                             "join FirmaTransportowa.dbo.Kurier K on K.id = ZK.kurierId\n" +
                             "join FirmaTransportowa.dbo.Uzytkownik U on U.id = K.uzytkownikId\n" +
                             "where z.status <> 'Dostarczone'\n" +
-                            "and u.mail='"+ tmpstring1 +"'\n" +
+                            "and u.mail='" + tmpstring1 + "'\n" +
                             ")\n" +
                             "select Col1,  Col3, Col4, Col5, Col6, count(Col2)\n" +
                             "from cte\n" +
-                            "group by Col1, Col3, Col4, Col5, Col6",stmt,dataOutputStream);
-                        text.appendText("\nWyslano aktualne zlecenia dla kuriera");
+                            "group by Col1, Col3, Col4, Col5, Col6", stmt, dataOutputStream);
+                    text.appendText("\nWyslano aktualne zlecenia dla kuriera");
                 } else if (option == 42) {
                     try {
                         tmpstring1 = dataInputStream.readUTF();

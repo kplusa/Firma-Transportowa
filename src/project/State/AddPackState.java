@@ -14,12 +14,12 @@ import project.Utils.DataUtil;
 
 import java.io.IOException;
 
-public class AddPackState extends DataUtil implements MenuState{
+public class AddPackState extends DataUtil implements MenuState {
     @Override
     public void goMenuState(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientMenuForm.fxml"));
         Parent root = loader.load();
-        ClientMenuForm clientMenuForm= loader.getController();
+        ClientMenuForm clientMenuForm = loader.getController();
         clientMenuForm.setName(getName(), clientMenuForm.name);
         clientMenuForm.setClientType(getClientType(), clientMenuForm.clientType);
         Scene scene = new Scene(root);
@@ -33,7 +33,7 @@ public class AddPackState extends DataUtil implements MenuState{
     public void goBackState(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientOrder.fxml"));
         Parent root = loader.load();
-        AddOrderform addOrderform= loader.getController();
+        AddOrderform addOrderform = loader.getController();
         addOrderform.setName(getName(), addOrderform.name);
         addOrderform.setClientType(getClientType(), addOrderform.clientType);
         Zlecenie.fill_table(addOrderform.Orders);

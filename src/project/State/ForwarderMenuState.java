@@ -5,15 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import project.Controller.ForwarderMenuForm;
 import project.Utils.DataUtil;
-import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 
-public class ForwarderMenuState extends DataUtil implements MenuState{
+public class ForwarderMenuState extends DataUtil implements MenuState {
     @Override
-    public void goMenuState(MouseEvent event ) throws IOException {
+    public void goMenuState(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
         Parent root = loader.load();
         ForwarderMenuForm forwarderMenuForm = loader.getController();
@@ -25,9 +26,9 @@ public class ForwarderMenuState extends DataUtil implements MenuState{
         window.setScene(scene);
         window.show();
     }
+
     @Override
-    public void goBackState(ActionEvent event) throws IOException
-    {
+    public void goBackState(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
         Parent root = loader.load();
         ForwarderMenuForm forwarderMenuForm = loader.getController();

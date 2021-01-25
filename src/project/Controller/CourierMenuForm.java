@@ -30,6 +30,7 @@ public class CourierMenuForm extends MenuFactory implements Initializable, Menu 
 
     @FXML
     public Label clientType;
+
     @FXML
     void goLogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
@@ -40,14 +41,15 @@ public class CourierMenuForm extends MenuFactory implements Initializable, Menu 
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
-        LoginForm loginForm=loader.getController();
-        LoginForm.allowDrag(root,window);
+        LoginForm loginForm = loader.getController();
+        LoginForm.allowDrag(root, window);
     }
+
     @FXML
     void gocurrentorders(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierForm.fxml"));
         Parent root = loader.load();
-        CourierForm courierForm= loader.getController();
+        CourierForm courierForm = loader.getController();
         courierForm.setName(getName(), courierForm.name);
         courierForm.setClientType(getClientType(), courierForm.clientType);
         Zlecenie.filltableCourier(courierForm.CourierTabelForm, courierForm.name);
@@ -58,6 +60,7 @@ public class CourierMenuForm extends MenuFactory implements Initializable, Menu 
         window.setScene(scene);
         window.show();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
