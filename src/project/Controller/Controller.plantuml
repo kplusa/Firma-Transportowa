@@ -45,6 +45,7 @@ title __CONTROLLER's Class Diagram__\n
           + PlaceLabel : JFXTextField
           + PlaceTable : TableView
           + clientType : Label
+          + information : Label
           + name : Label
           + state : Label
           + initialize()
@@ -60,6 +61,7 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.AssignOrder {
           + clientType : Label
+          + information : Label
           + name : Label
           ~ CourierTV : TableView<Kurier>
           ~ OrderTV : TableView<Zlecenie>
@@ -120,6 +122,9 @@ title __CONTROLLER's Class Diagram__\n
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ goLogin()
           ~ goaddorder()
           ~ gocurrentorders()
@@ -167,6 +172,9 @@ title __CONTROLLER's Class Diagram__\n
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ goLogin()
           ~ gocurrentorders()
       }
@@ -196,9 +204,13 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.ForwarderMenuForm {
           + clientType : Label
+          + information : Label
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ asign()
           ~ branch()
           ~ goLogin()
@@ -213,7 +225,9 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.ForwarderPriceListForm {
           + clientType : Label
+          + information : Label
           + name : Label
+          + status : Label
           ~ AditionalPriceList : TableView<Doplata>
           ~ PriceList : TableView<Cennik>
           - APMain : AnchorPane
@@ -240,7 +254,6 @@ title __CONTROLLER's Class Diagram__\n
           - ip : InetAddress
           - limitTF : JFXTextField
           - s : Socket
-          - status : Label
           - tmpstring : String
           + initialize()
           ~ back()
@@ -258,6 +271,7 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.LoginForm {
+          {static} + observer : Thread
           {static} ~ HBoxXMax : int
           {static} ~ HBoxXMin : int
           {static} ~ HBoxYMax : int
@@ -340,6 +354,7 @@ title __CONTROLLER's Class Diagram__\n
           + Quantity : TableColumn<Kurier, Integer>
           + Table : TableView<Kurier>
           + clientType : Label
+          + information : Label
           + name : Label
           + state : Label
           - APMain : AnchorPane
@@ -440,8 +455,6 @@ title __CONTROLLER's Class Diagram__\n
           + initialize()
           + runserver()
           ~ MakeDraggable()
-          ~ closeAction()
-          ~ minAction()
       }
     }
   }
@@ -464,16 +477,20 @@ title __CONTROLLER's Class Diagram__\n
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ClientMenuForm .up.|> project.Factory.Menu
+  project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierMenuForm .up.|> project.Factory.Menu
+  project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
+  project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
+  project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable

@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Client;
 import project.Factory.MenuFactory;
+import project.Observer.Observer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,7 +28,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginForm implements Initializable {
+public class LoginForm  implements Initializable {
     double x=0, y=0;
     static final int HBoxXMin=432;
     static final int HBoxXMax=492;
@@ -49,17 +50,15 @@ public class LoginForm implements Initializable {
     @FXML
     Label status;
     private String clientType;
-
+    public static Thread observer;
     @FXML
     void closeAction(MouseEvent event) {
     System.exit(0);
     }
-
     @FXML
     void minAction(MouseEvent event) {
      Client.stage.setIconified(true);
     }
-
     @FXML
     public void MakeDraggable(){
         APMain.setOnMousePressed(event -> {
@@ -103,6 +102,7 @@ public class LoginForm implements Initializable {
         FXMLLoader loader=null;
         Parent root = null;
         MenuFactory menuFactory= new MenuFactory();
+        observer=new Thread(new Observer());
         if (st.equals("Poprawne dane-Klient"))
         {
             clientType="Client";
@@ -121,7 +121,8 @@ public class LoginForm implements Initializable {
             clientType="Forwarder";
             ForwarderMenuForm forwarderMenuForm = (ForwarderMenuForm) menuFactory.getMenu(clientType);
             root =forwarderMenuForm.loadFXML(loader, forwarderMenuForm, mail ,clientType);
-
+            observer.setDaemon(true);
+            observer.start();
         }
         if(st.equals("Poprawne dane-Klient")||st.equals("Poprawne dane-Kurier")||st.equals("Poprawne dane-Spedytor")){
             Scene scene = new Scene(root);
@@ -147,6 +148,7 @@ public class LoginForm implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-MakeDraggable();
-    }
+        MakeDraggable();
+
+           }
 }

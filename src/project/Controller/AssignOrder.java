@@ -67,7 +67,7 @@ public class AssignOrder extends DataUtil implements Initializable  {
     @FXML
     private javafx.scene.control.TableColumn<Kurier, String> Location;
     @FXML
-    public Label clientType;
+    public Label clientType,information;
     @FXML
     void back(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));

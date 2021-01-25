@@ -14,6 +14,7 @@ public abstract class Facade extends Thread{
     DataBaseSelect dataBaseSelect=new DataBaseSelect();
     OpenStreetMapBase openStreetMapBase=new OpenStreetMapBase();
     UserAuthentication userAuthentication=new UserAuthentication();
+    static String notify="";
 
     public void login(Statement stmt, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws IOException, SQLException {
         this.userAuthentication.login(stmt,dataInputStream,dataOutputStream,text);
@@ -47,5 +48,10 @@ public abstract class Facade extends Thread{
     }
     public Connection config(){
         return this.configDB.config();
+    }
+    public static void setNotify(){notify="Nowe zlecenie";}
+    public static void deleteNotify(){notify="";}
+    public static String getNotify() {
+        return notify;
     }
 }

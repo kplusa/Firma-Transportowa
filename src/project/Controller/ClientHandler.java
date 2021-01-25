@@ -29,12 +29,16 @@ class ClientHandler extends Facade {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             try {
+                System.out.println(getNotify());
                 int option = dataInputStream.readInt();
                 stmt = conn.createStatement();
                 String status = "";
                 String tmpstring1;
                 int tmpint1;
-                if (option == 1) {
+                if(option==0) {
+                    dataOutputStream.writeUTF(getNotify());
+                    deleteNotify();
+                } else if (option == 1) {
                     login(stmt, dataInputStream, dataOutputStream, text);
                 } else if (option == 2) {
                     register(stmt, dataInputStream, dataOutputStream, text);
@@ -57,6 +61,7 @@ class ClientHandler extends Facade {
                 } else if (option == 7) {
                     tmpint1 = getUserId(dataInputStream.readUTF(), conn);
                     InsertOrder(tmpint1,stmt,stmt2,dataInputStream,dataOutputStream,text);
+                    setNotify();
                 } else if (option == 8) {
                     stmt2 = conn.createStatement();
                     UpdateOrder(stmt,stmt2,dataInputStream,dataOutputStream,text);

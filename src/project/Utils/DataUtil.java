@@ -16,7 +16,6 @@ public class DataUtil {
     public static DataInputStream dis;
     public static DataOutputStream dos;
     public static Socket s;
-
     @FXML
     private Label name;
     @FXML

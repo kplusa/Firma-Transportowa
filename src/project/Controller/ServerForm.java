@@ -60,7 +60,6 @@ public class ServerForm implements Initializable {
         public void run(){
             try{
                 serverSocket=new ServerSocket(5057);
-
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

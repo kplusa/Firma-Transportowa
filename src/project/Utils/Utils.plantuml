@@ -11,7 +11,7 @@ title __UTILS's Class Diagram__\n
           {static} + dos : DataOutputStream
           {static} + ip : InetAddress
           {static} + s : Socket
-          {static} - clientType : Label
+          - clientType : Label
           - name : Label
           {static} + connectClient()
           {static} + distance()

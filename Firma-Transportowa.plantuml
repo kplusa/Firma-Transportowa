@@ -273,6 +273,38 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   
 
   namespace project {
+    namespace Factory {
+      interface project.Factory.Menu {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Factory {
+      class project.Factory.MenuFactory {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Observer {
+      class project.Observer.Observer {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Observer {
+      interface project.Observer.ObserverInterface {
+      }
+    }
+  }
+  
+
+  namespace project {
     class project.Server {
     }
   }
@@ -315,16 +347,20 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ClientMenuForm .up.|> project.Factory.Menu
+  project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierMenuForm .up.|> project.Factory.Menu
+  project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
+  project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
+  project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable
@@ -340,6 +376,8 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
   project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
   project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
+  project.Factory.MenuFactory -up-|> project.Utils.DataUtil
+  project.Observer.Observer .up.|> project.Observer.ObserverInterface
   project.Server -up-|> javafx.application.Application
 
 

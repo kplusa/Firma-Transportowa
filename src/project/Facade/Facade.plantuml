@@ -28,6 +28,7 @@ title __FACADE's Class Diagram__\n
   namespace project {
     namespace Facade {
       abstract class project.Facade.Facade {
+          {static} ~ notify : String
           + EditBase()
           + InsertOrder()
           + InsertPack()
@@ -36,9 +37,12 @@ title __FACADE's Class Diagram__\n
           + UpdateOrder()
           + addwithselect()
           + config()
+          {static} + deleteNotify()
+          {static} + getNotify()
           + login()
           + register()
           + selectonecell()
+          {static} + setNotify()
       }
     }
   }

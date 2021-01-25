@@ -84,7 +84,7 @@ public class ForwarderPriceListForm extends DataUtil implements Initializable {
     @FXML
     private JFXTextField TypeOfAditionalPrice;
     @FXML
-    private Label status;
+    public Label status,information;
 
 
     @FXML

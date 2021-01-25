@@ -33,6 +33,7 @@
                <children>
                   <Label fx:id="name" layoutX="5.0" layoutY="5.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
                   <Label fx:id="clientType" layoutX="5.0" layoutY="25.0" prefHeight="20.0" prefWidth="150.0" textFill="WHITE" />
+                  <Label fx:id="information" layoutX="5.0" layoutY="47.0" prefHeight="18.0" prefWidth="124.0" textFill="WHITE" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="315.0" layoutY="35.0" prefHeight="35.0" prefWidth="170.0" styleClass="Header" stylesheets="@../Resources/styles/LoginWindowView.css">

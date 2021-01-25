@@ -41,7 +41,7 @@ public class AddbranchForm extends DataUtil implements Initializable {
     @FXML
     public TableColumn Place;
     @FXML
-    public Label state;
+    public Label state,information;
 
 
     @FXML

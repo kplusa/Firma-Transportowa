@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import project.Factory.Menu;
 import project.Factory.MenuFactory;
+import project.Observer.Observer;
+import project.Observer.ObserverInterface;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +29,9 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
     public Label name;
     @FXML
     public Label clientType;
+    @FXML
+    public Label information;
+    Observer observer=new Observer();
 
     @FXML
     void prices(MouseEvent event) throws IOException {
@@ -35,13 +40,13 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         ForwarderPriceListForm forwarderPriceListForm = loader.getController();
         forwarderPriceListForm.setName(getName(), forwarderPriceListForm.name);
         forwarderPriceListForm.setClientType(getClientType(), forwarderPriceListForm.clientType);
+        forwarderPriceListForm.information.setText(observer.getStatus());
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
         window.setScene(scene);
         window.show();
     }
-
     @FXML
     void branch(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderAddBranch.fxml"));
@@ -49,13 +54,13 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         AddbranchForm addbranchForm = loader.getController();
         addbranchForm.setName(getName(), addbranchForm.name);
         addbranchForm.setClientType(getClientType(), addbranchForm.clientType);
+        addbranchForm.information.setText(observer.getStatus());
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
         window.setScene(scene);
         window.show();
     }
-
     @FXML
     void asign(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/AssignOrderForm.fxml"));
@@ -63,6 +68,8 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         AssignOrder assignOrder = loader.getController();
         assignOrder.setName(getName(), assignOrder.name);
         assignOrder.setClientType(getClientType(), assignOrder.clientType);
+        assignOrder.information.setText(observer.getStatus());
+        observer.setStatus("");
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -77,6 +84,7 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         PaymentForm paymentForm = loader.getController();
         paymentForm.setName(getName(), paymentForm.name);
         paymentForm.setClientType(getClientType(), paymentForm.clientType);
+        paymentForm.information.setText(observer.getStatus());
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
         Stage window = new Stage();
@@ -85,7 +93,7 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
     }
 
     @FXML
-    void goLogin(MouseEvent event) throws IOException {
+    void goLogin(MouseEvent event) throws IOException, InterruptedException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -95,12 +103,14 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         window.setScene(scene);
         window.show();
         LoginForm loginForm = loader.getController();
+        loginForm.observer.stop();
         loginForm.allowDrag(root, window);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+         Observer observer=new Observer();
+       information.setText(observer.getStatus());
     }
 
     @Override
@@ -110,7 +120,6 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         forwarderMenuForm = loader.getController();
         forwarderMenuForm.setName(mail.getText(), forwarderMenuForm.name);
         forwarderMenuForm.setClientType(clientType, forwarderMenuForm.clientType);
-
         return root;
     }
 

@@ -49,7 +49,7 @@ public class PaymentForm extends DataUtil implements Initializable {
     @FXML
     public JFXTextField PercentageLabel;
     @FXML
-    public Label state;
+    public Label state,information;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
