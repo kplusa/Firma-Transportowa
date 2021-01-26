@@ -90,43 +90,12 @@ title __CLASS's Class Diagram__\n
   namespace project {
     namespace Class {
       class project.Class.Zlecenie {
-          + AdresKoncowy : String
-          + AdresPoczatkowy : String
-          + DataNadania : String
-          + ID : int
-          + Ilosc : int
-          + Kurier : String
-          + oddzialKoncowy : String
-          + oddzialPoczatkowy : String
           {static} + stage : Stage
-          + status : String
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
           {static} + fillCourierTable()
           {static} + fillOrderTable()
           {static} + fill_table()
           {static} + filltableCourier()
           {static} + filltableCurrentOrder()
-          + getAdresKoncowy()
-          + getAdresPoczatkowy()
-          + getDataNadania()
-          + getID()
-          + getIlosc()
-          + getKurier()
-          + getOddzialKoncowy()
-          + getOddzialPoczatkowy()
-          + getStatus()
-          + setAdresKoncowy()
-          + setAdresPoczatkowy()
-          + setDataNadania()
-          + setID()
-          + setIlosc()
-          + setKurier()
-          + setOddzialKoncowy()
-          + setOddzialPoczatkowy()
-          + setStatus()
       }
     }
   }

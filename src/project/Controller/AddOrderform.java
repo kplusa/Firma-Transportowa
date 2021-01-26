@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import project.Builder.ZlecenieProduct;
 import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
@@ -31,17 +32,17 @@ public class AddOrderform extends DataUtil implements Initializable {
     @FXML
     public Label clientType;
     @FXML
-    public TableView<Zlecenie> Orders;
+    public TableView<ZlecenieProduct> Orders;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> IdColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> IdColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> FromColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> FromColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> ToColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> ToColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> PostingDateColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> PostingDateColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> AmountColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> AmountColumn;
     @FXML
     private JFXTextField IdLabel;
     @FXML
@@ -70,7 +71,7 @@ public class AddOrderform extends DataUtil implements Initializable {
             PackForm packForm = loader.getController();
             packForm.setName(getName(), packForm.name);
             packForm.setClientType(getClientType(), packForm.clientType);
-            Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
+            ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
             packForm.zlecid(zlecenie.getID());
             packForm.fill();
             Scene scene = new Scene(root);
@@ -106,7 +107,7 @@ public class AddOrderform extends DataUtil implements Initializable {
 
     private void fillLabels() {
         if (Orders.getSelectionModel().getSelectedItem() != null) {
-            Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
+            ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
             IdLabel.setText(String.valueOf(zlecenie.getID()));
             FromLabel.setText(zlecenie.getAdresPoczatkowy());
             ToLabel.setText(zlecenie.getAdresKoncowy());
@@ -148,7 +149,7 @@ public class AddOrderform extends DataUtil implements Initializable {
         try {
             connectClient();
             if (Orders.getSelectionModel().getSelectedItem() != null) {
-                Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
+                ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
                 if (IdLabel.getText().equals(zlecenie.getID()) && FromLabel.getText().equals(zlecenie.getAdresPoczatkowy())
                         && ToLabel.getText().equals(String.valueOf(zlecenie.getAdresKoncowy())) && DateLabel.getText().equals(String.valueOf(zlecenie.getDataNadania()))) {
                     tmpstring = "The same data";

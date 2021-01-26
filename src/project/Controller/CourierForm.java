@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import project.Builder.ZlecenieProduct;
 import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
@@ -33,19 +34,19 @@ public class CourierForm extends DataUtil implements Initializable {
     @FXML
     public Label clientType;
     @FXML
-    TableView<Zlecenie> CourierTabelForm;
+    TableView<ZlecenieProduct> CourierTabelForm;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> Id;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> Id;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> DataNadania;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> DataNadania;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> AdresP;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> AdresP;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> AdresK;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> AdresK;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> Status;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> Status;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> Amount;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> Amount;
 
     @FXML
     void back(ActionEvent event) throws IOException {
@@ -62,7 +63,7 @@ public class CourierForm extends DataUtil implements Initializable {
         if (CourierTabelForm.getSelectionModel().getSelectedItem() != null
                 && StatusSelection.getSelectionModel().getSelectedItem() != null) {
             String testouput = StatusSelection.getSelectionModel().getSelectedItem();
-            Zlecenie selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
+            ZlecenieProduct selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
             connectClient();
             dos.writeInt(42);
             dos.writeUTF(testouput);

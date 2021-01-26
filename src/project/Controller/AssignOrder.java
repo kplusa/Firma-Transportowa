@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import project.Builder.ZlecenieProduct;
 import project.Class.Kurier;
 import project.Class.Zlecenie;
 import project.State.ButtonMenu;
@@ -26,7 +27,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AssignOrder extends DataUtil implements Initializable {
-    OpenStreetMapUtils openStreetMapUtils=new OpenStreetMapUtils();
+    OpenStreetMapUtils openStreetMapUtils = new OpenStreetMapUtils();
     ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
@@ -42,17 +43,17 @@ public class AssignOrder extends DataUtil implements Initializable {
     @FXML
     private JFXTextField Distance;
     @FXML
-    TableView<Zlecenie> OrderTV;
+    TableView<ZlecenieProduct> OrderTV;
     @FXML
     TableView<Kurier> CourierTV;
     @FXML
     Label Status;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> IdOrder;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> IdOrder;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> FromBranch;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> FromBranch;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> ToBranch;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> ToBranch;
     @FXML
     private javafx.scene.control.TableColumn<Kurier, Integer> IdCourier;
     @FXML
@@ -76,12 +77,12 @@ public class AssignOrder extends DataUtil implements Initializable {
         double lonA = 0;
         double lonB = 0;
         Map<String, Double> coords;
-        openStreetMapUtils=new OpenStreetMapUtils(A);
-        coords =openStreetMapUtils.getInstance().getCoordinates();
+        openStreetMapUtils = new OpenStreetMapUtils(A);
+        coords = openStreetMapUtils.getInstance().getCoordinates();
         latA += coords.get("lat");
         lonA += coords.get("lon");
-        openStreetMapUtils=new OpenStreetMapUtils(B);
-        coords =openStreetMapUtils.getInstance().getCoordinates();
+        openStreetMapUtils = new OpenStreetMapUtils(B);
+        coords = openStreetMapUtils.getInstance().getCoordinates();
 
         latB += coords.get("lat");
         lonB += coords.get("lon");
@@ -96,7 +97,7 @@ public class AssignOrder extends DataUtil implements Initializable {
         OrderTV.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 0) {
                 if (OrderTV.getSelectionModel().getSelectedItem() != null) {
-                    Zlecenie zlecenie = OrderTV.getSelectionModel().getSelectedItem();
+                    ZlecenieProduct zlecenie = OrderTV.getSelectionModel().getSelectedItem();
                     IdOrderTF.setText(String.valueOf(zlecenie.getID()));
                     fromBranch = zlecenie.getOddzialPoczatkowy();
                 }
@@ -120,7 +121,7 @@ public class AssignOrder extends DataUtil implements Initializable {
     }
 
     @FXML
-    void assign(ActionEvent event) throws IOException {
+    void assign(ActionEvent event) {
         try {
             try {
                 InetAddress ip = InetAddress.getByName("localhost");

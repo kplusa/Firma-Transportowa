@@ -3,6 +3,38 @@
 title __FIRMA-TRANSPORTOWA's Class Diagram__\n
 
   namespace project {
+    namespace Builder {
+      interface project.Builder.Builder {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.Director {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.ZlecenieBuilder {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.ZlecenieProduct {
+      }
+    }
+  }
+  
+
+  namespace project {
     namespace Class {
       class project.Class.Cennik {
       }
@@ -326,6 +358,9 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   }
   
 
+  project.Builder.Director o-- project.Builder.ZlecenieBuilder : builder
+  project.Builder.ZlecenieBuilder .up.|> project.Builder.Builder
+  project.Builder.ZlecenieBuilder o-- project.Builder.ZlecenieProduct : zlecenie
   project.Class.Cennik -up-|> project.Utils.DataUtil
   project.Class.Doplata -up-|> project.Utils.DataUtil
   project.Class.Oddzial -up-|> project.Utils.DataUtil

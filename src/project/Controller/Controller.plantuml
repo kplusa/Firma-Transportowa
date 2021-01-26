@@ -5,19 +5,19 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.AddOrderform {
-          + Orders : TableView<Zlecenie>
+          + Orders : TableView<ZlecenieProduct>
           + clientType : Label
           + id : int
           + name : Label
           + tmpstring : String
-          - AmountColumn : TableColumn<Zlecenie, Integer>
+          - AmountColumn : TableColumn<ZlecenieProduct, Integer>
           - DateLabel : JFXTextField
-          - FromColumn : TableColumn<Zlecenie, String>
+          - FromColumn : TableColumn<ZlecenieProduct, String>
           - FromLabel : JFXTextArea
-          - IdColumn : TableColumn<Zlecenie, Integer>
+          - IdColumn : TableColumn<ZlecenieProduct, Integer>
           - IdLabel : JFXTextField
-          - PostingDateColumn : TableColumn<Zlecenie, String>
-          - ToColumn : TableColumn<Zlecenie, String>
+          - PostingDateColumn : TableColumn<ZlecenieProduct, String>
+          - ToColumn : TableColumn<ZlecenieProduct, String>
           - ToLabel : JFXTextArea
           - state : Label
           + initialize()
@@ -59,16 +59,16 @@ title __CONTROLLER's Class Diagram__\n
           + information : Label
           + name : Label
           ~ CourierTV : TableView<Kurier>
-          ~ OrderTV : TableView<Zlecenie>
+          ~ OrderTV : TableView<ZlecenieProduct>
           ~ Status : Label
           - Distance : JFXTextField
-          - FromBranch : TableColumn<Zlecenie, String>
+          - FromBranch : TableColumn<ZlecenieProduct, String>
           - IdCourier : TableColumn<Kurier, Integer>
           - IdCourierTF : JFXTextField
-          - IdOrder : TableColumn<Zlecenie, Integer>
+          - IdOrder : TableColumn<ZlecenieProduct, Integer>
           - IdOrderTF : JFXTextField
           - Location : TableColumn<Kurier, String>
-          - ToBranch : TableColumn<Zlecenie, String>
+          - ToBranch : TableColumn<ZlecenieProduct, String>
           - dis : DataInputStream
           - dos : DataOutputStream
           - fromBranch : String
@@ -126,15 +126,15 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CourierForm {
           + clientType : Label
           + name : Label
-          ~ CourierTabelForm : TableView<Zlecenie>
-          - AdresK : TableColumn<Zlecenie, String>
-          - AdresP : TableColumn<Zlecenie, String>
-          - Amount : TableColumn<Zlecenie, Integer>
-          - DataNadania : TableColumn<Zlecenie, String>
-          - Id : TableColumn<Zlecenie, Integer>
+          ~ CourierTabelForm : TableView<ZlecenieProduct>
+          - AdresK : TableColumn<ZlecenieProduct, String>
+          - AdresP : TableColumn<ZlecenieProduct, String>
+          - Amount : TableColumn<ZlecenieProduct, Integer>
+          - DataNadania : TableColumn<ZlecenieProduct, String>
+          - Id : TableColumn<ZlecenieProduct, Integer>
           - OKCourier : JFXButton
           - OrderSelection : JFXComboBox<String>
-          - Status : TableColumn<Zlecenie, String>
+          - Status : TableColumn<ZlecenieProduct, String>
           - StatusSelection : JFXComboBox<String>
           - tmpstring : String
           + initialize()
@@ -169,10 +169,10 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CurentOrderForm {
           + clientType : Label
           + name : Label
-          ~ CurrentOrder : TableView<Zlecenie>
-          - Courier : TableColumn<Zlecenie, String>
-          - OrderNumber : TableColumn<Zlecenie, Integer>
-          - Status : TableColumn<Zlecenie, String>
+          ~ CurrentOrder : TableView<ZlecenieProduct>
+          - Courier : TableColumn<ZlecenieProduct, String>
+          - OrderNumber : TableColumn<ZlecenieProduct, Integer>
+          - Status : TableColumn<ZlecenieProduct, String>
           + initialize()
           ~ back()
           ~ goMenu()

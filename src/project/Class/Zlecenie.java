@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import project.Builder.Director;
+import project.Builder.ZlecenieProduct;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -15,122 +17,10 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class Zlecenie extends DataUtil {
-
     public static Stage stage = null;
 
-    public int ID;
-    public String DataNadania;
-    public String AdresPoczatkowy;
-    public String status;
-    public String AdresKoncowy;
-    public String Kurier;
-    public int Ilosc;
-    public String oddzialPoczatkowy;
-    public String oddzialKoncowy;
-
-    public String getOddzialPoczatkowy() {
-        return oddzialPoczatkowy;
-    }
-
-    public void setOddzialPoczatkowy(String oddzialPoczatkowy) {
-        this.oddzialPoczatkowy = oddzialPoczatkowy;
-    }
-
-    public String getOddzialKoncowy() {
-        return oddzialKoncowy;
-    }
-
-    public void setOddzialKoncowy(String oddzialKoncowy) {
-        this.oddzialKoncowy = oddzialKoncowy;
-    }
-
-    public int getIlosc() {
-        return Ilosc;
-    }
-
-    public void setIlosc(int ilosc) {
-        Ilosc = ilosc;
-    }
-
-    public String getKurier() {
-        return Kurier;
-    }
-
-    public void setKurier(String kurier) {
-        Kurier = kurier;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getAdresKoncowy() {
-        return AdresKoncowy;
-    }
-
-    public void setAdresKoncowy(String adresKoncowy) {
-        AdresKoncowy = adresKoncowy;
-    }
-
-    public String getAdresPoczatkowy() {
-        return AdresPoczatkowy;
-    }
-
-    public void setAdresPoczatkowy(String adresPoczatkowy) {
-        AdresPoczatkowy = adresPoczatkowy;
-    }
-
-    public String getDataNadania() {
-        return DataNadania;
-    }
-
-    public void setDataNadania(String dataNadania) {
-        DataNadania = dataNadania;
-    }
-
-    public Zlecenie(int id, String Status, String kurier) {
-        ID = id;
-        status = Status;
-        Kurier = kurier;
-    }
-
-    public Zlecenie(String oddzialPoczatkowy, int id, String oddzialKoncowy) {
-        this.ID = id;
-        this.oddzialPoczatkowy = oddzialPoczatkowy;
-        this.oddzialKoncowy = oddzialKoncowy;
-    }
-
-    public Zlecenie(int id, String adresPoczatkowy, String adresKoncowy, String dataNadania, int ilosc) {
-        ID = id;
-        AdresPoczatkowy = adresPoczatkowy;
-        AdresKoncowy = adresKoncowy;
-        DataNadania = dataNadania;
-        Ilosc = ilosc;
-    }
-
-    public Zlecenie(int id, String data, String adresP, String adresK, String status, int ilosc) {
-        this.ID = id;
-        this.DataNadania = data;
-        this.AdresPoczatkowy = adresP;
-        this.AdresKoncowy = adresK;
-        this.status = status;
-        this.Ilosc = ilosc;
-    }
-
-    public static ObservableList<Zlecenie> fill_table(TableView Orders) throws IOException {
-        ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
+    public static ObservableList<ZlecenieProduct> fill_table(TableView Orders) throws IOException {
+        ObservableList<ZlecenieProduct> ZlecenieList = FXCollections.observableArrayList();
         try {
             try {
                 ip = InetAddress.getByName("localhost");
@@ -151,7 +41,9 @@ public class Zlecenie extends DataUtil {
                 var dataNadania = dis.readUTF();
                 tmpstring = dis.readUTF();
                 var ilosc = Integer.valueOf(tmpstring);
-                ZlecenieList.add(new Zlecenie(id, adresPoczatkowy, adresKoncowy, dataNadania, ilosc));
+                Director director = new Director();
+                director.getZlecenieAdresyIlosc(id, adresPoczatkowy, adresKoncowy, dataNadania, ilosc);
+                ZlecenieList.add(director.builder.zlecenie);
             }
             Orders.setItems(ZlecenieList);
             dis.close();
@@ -164,8 +56,8 @@ public class Zlecenie extends DataUtil {
     }
 
     @FXML
-    public static ObservableList<Zlecenie> fillOrderTable(TableView OrderTV) throws IOException {
-        ObservableList<Zlecenie> orderList = FXCollections.observableArrayList();
+    public static ObservableList<ZlecenieProduct> fillOrderTable(TableView OrderTV) throws IOException {
+        ObservableList<ZlecenieProduct> orderList = FXCollections.observableArrayList();
         try {
             try {
                 connectClient();
@@ -178,7 +70,9 @@ public class Zlecenie extends DataUtil {
                 var idOrder = Integer.valueOf(dis.readUTF());
                 var fromBranch = dis.readUTF();
                 var toBranch = dis.readUTF();
-                orderList.add(new Zlecenie(fromBranch, idOrder, toBranch));
+                Director director = new Director();
+                director.getZlecenieOddzialy(fromBranch, idOrder, toBranch);
+                orderList.add(director.builder.zlecenie);
             }
             OrderTV.setItems(orderList);
             dis.close();
@@ -216,8 +110,8 @@ public class Zlecenie extends DataUtil {
     }
 
     @FXML
-    public static ObservableList<Zlecenie> filltableCourier(TableView CourierTabelForm, Label name) throws IOException {
-        ObservableList<Zlecenie> zlecenieList = FXCollections.observableArrayList();
+    public static ObservableList<ZlecenieProduct> filltableCourier(TableView CourierTabelForm, Label name) throws IOException {
+        ObservableList<ZlecenieProduct> zlecenieList = FXCollections.observableArrayList();
         try {
             try {
                 ip = InetAddress.getByName("localhost");
@@ -239,7 +133,9 @@ public class Zlecenie extends DataUtil {
                 var status = dis.readUTF();
                 tmpstring = dis.readUTF();
                 var ilosc = Integer.valueOf(tmpstring);
-                zlecenieList.add(new Zlecenie(id, datas, adresP, adresK, status, ilosc));
+                Director director = new Director();
+                director.getZlecenieAdresyStatus(id, datas, adresP, adresK, status, ilosc);
+                zlecenieList.add(director.builder.zlecenie);
             }
             CourierTabelForm.setItems(zlecenieList);
             dis.close();
@@ -252,8 +148,8 @@ public class Zlecenie extends DataUtil {
     }
 
     @FXML
-    public static ObservableList<Zlecenie> filltableCurrentOrder(TableView CurrentOrder, Label name) throws IOException {
-        ObservableList<Zlecenie> ZlecenieList = FXCollections.observableArrayList();
+    public static ObservableList<ZlecenieProduct> filltableCurrentOrder(TableView CurrentOrder, Label name) throws IOException {
+        ObservableList<ZlecenieProduct> ZlecenieList = FXCollections.observableArrayList();
         try {
             connectClient();
             dos.writeInt(5);
@@ -267,7 +163,9 @@ public class Zlecenie extends DataUtil {
                 kurier += " ";
                 kurier += dis.readUTF();
                 if (!stat.equals("Dostarczone")) {
-                    ZlecenieList.add(new Zlecenie(id, stat, kurier));
+                    Director director = new Director();
+                    director.getZlecenieStatusKurier(id, stat, kurier);
+                    ZlecenieList.add(director.builder.zlecenie);
                 }
             }
             CurrentOrder.setItems(ZlecenieList);
