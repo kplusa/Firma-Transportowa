@@ -103,8 +103,8 @@ public class ForwarderMenuForm extends MenuFactory implements Initializable, Men
         window.setScene(scene);
         window.show();
         LoginForm loginForm = loader.getController();
-        loginForm.observer.stop();
-        loginForm.allowDrag(root, window);
+        LoginForm.observer.stop();
+        LoginForm.allowDrag(root, window);
     }
 
     @Override

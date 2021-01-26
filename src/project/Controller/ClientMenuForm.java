@@ -20,13 +20,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
+public class ClientMenuForm extends MenuFactory implements Initializable, Menu {
     @FXML
     private AnchorPane APMain;
     @FXML
     public Label name;
     @FXML
     public Label clientType;
+
     @FXML
     void goLogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
@@ -37,14 +38,16 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
-        LoginForm loginForm=loader.getController();
-        LoginForm.allowDrag(root,window);
+        LoginForm loginForm = loader.getController();
+        LoginForm.allowDrag(root, window);
     }
+
     @FXML
     void goprizes(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/PriceListForm.fxml"));
-        Parent root = loader.load(); Scene scene = new Scene(root);
-        PrizesForm prizesForm= loader.getController();
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        PrizesForm prizesForm = loader.getController();
         prizesForm.setName(getName(), prizesForm.name);
         prizesForm.setClientType(getClientType(), prizesForm.clientType);
         ((Node) event.getSource()).getScene().getWindow().hide();
@@ -52,11 +55,13 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void goaddorder(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ClientOrder.fxml"));
-        Parent root = loader.load(); Scene scene = new Scene(root);
-        AddOrderform addOrderform= loader.getController();
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        AddOrderform addOrderform = loader.getController();
         addOrderform.setName(getName(), addOrderform.name);
         addOrderform.setClientType(getClientType(), addOrderform.clientType);
         Zlecenie.fill_table(addOrderform.Orders);
@@ -65,12 +70,13 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         window.setScene(scene);
         window.show();
     }
+
     @FXML
     void gocurrentorders(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CurrentOrdersForm.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        CurentOrderForm curentOrderForm= loader.getController();
+        CurentOrderForm curentOrderForm = loader.getController();
         curentOrderForm.setName(getName(), curentOrderForm.name);
         curentOrderForm.setClientType(getClientType(), curentOrderForm.clientType);
         Zlecenie.filltableCurrentOrder(curentOrderForm.CurrentOrder, curentOrderForm.name);
@@ -79,8 +85,10 @@ public class ClientMenuForm extends MenuFactory implements Initializable,Menu {
         window.setScene(scene);
         window.show();
     }
+
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
 
     @Override
     public Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail, String clientType) throws IOException {

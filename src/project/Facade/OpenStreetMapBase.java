@@ -1,6 +1,7 @@
 package project.Facade;
 
 import com.jfoenix.controls.JFXTextArea;
+import project.Utils.Adapter;
 import project.Utils.OpenStreetMapUtils;
 
 import java.io.DataInputStream;
@@ -14,8 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static project.Utils.DataUtil.distance;
-
 public class OpenStreetMapBase {
+    OpenStreetMapUtils openStreetMapUtils=new OpenStreetMapUtils();
     public void UpdateOrder(Statement stmt, Statement stmt2, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws IOException {
         Map<Integer, Double> toList = new HashMap<>();
         Map<Integer, Double> fromList = new HashMap<>();
@@ -48,13 +49,16 @@ public class OpenStreetMapBase {
                 double lonA = 0;
                 double lonB = 0;
                 double lonC = 0;
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                openStreetMapUtils=new OpenStreetMapUtils(v);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latA += coords.get("lat");
                 lonA += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                openStreetMapUtils=new OpenStreetMapUtils(from);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latB += coords.get("lat");
                 lonB += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                openStreetMapUtils=new OpenStreetMapUtils(to);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latC += coords.get("lat");
                 lonC += coords.get("lon");
                 fromList.put(k, distance(latA, latB, lonA, lonB));
@@ -91,7 +95,6 @@ public class OpenStreetMapBase {
                 Integer id = rs.getInt(1);
                 String tmpstring = rs.getString(2);
                 branchList.put(id, tmpstring);
-                System.out.println(id);
             }
             branchList.forEach((k, v) -> {
                 Map<String, Double> coords;
@@ -101,13 +104,16 @@ public class OpenStreetMapBase {
                 double lonA = 0;
                 double lonB = 0;
                 double lonC = 0;
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                OpenStreetMapUtils openStreetMapUtils=new OpenStreetMapUtils(v);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latA += coords.get("lat");
                 lonA += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                openStreetMapUtils=new OpenStreetMapUtils(from);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latB += coords.get("lat");
                 lonB += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                openStreetMapUtils=new OpenStreetMapUtils(to);
+                coords =openStreetMapUtils.getInstance().getCoordinates();
                 latC += coords.get("lat");
                 lonC += coords.get("lon");
                 fromList.put(k, distance(latA, latB, lonA, lonB));

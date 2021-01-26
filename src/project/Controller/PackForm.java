@@ -44,7 +44,8 @@ public class PackForm extends DataUtil implements Initializable {
     public JFXTextField WeightLabel;
     @FXML
     public Label state;
-    private int Zlecenieid, counter, counterOfAditional = 0;
+    private int Zlecenieid;
+    private int counterOfAditional = 0;
     final ObservableList dimensions = FXCollections.observableArrayList();
     final ObservableList prices = FXCollections.observableArrayList();
     private Socket s;
@@ -88,7 +89,7 @@ public class PackForm extends DataUtil implements Initializable {
             }
             dos = new DataOutputStream(s.getOutputStream());
             dos.writeInt(10);
-            counter = dis.readInt();
+            int counter = dis.readInt();
             for (int i = 0; i < counter; i++) {
                 tmpstring = dis.readUTF();
                 dimensions.add(tmpstring + " " + dis.readUTF());

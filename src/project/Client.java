@@ -17,7 +17,7 @@ public class Client extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("View/LoginForm.fxml"));
         Parent root = loader.load();
         LoginForm loginForm = loader.getController();
-        loginForm.observer = new Thread(new Observer());
+        LoginForm.observer = new Thread(new Observer());
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         stage = primaryStage;

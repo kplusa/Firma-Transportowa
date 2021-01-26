@@ -38,11 +38,11 @@ title __UTILS's Class Diagram__\n
   namespace project {
     namespace Utils {
       class project.Utils.OpenStreetMapUtils {
-          {static} - instance : OpenStreetMapUtils
-          - jsonParser : JSONParser
+          + address : String
+          + OpenStreetMapUtils()
           + OpenStreetMapUtils()
           + getCoordinates()
-          {static} + getInstance()
+          + getInstance()
           + getRequest()
       }
     }
@@ -50,6 +50,7 @@ title __UTILS's Class Diagram__\n
   
 
   project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+  project.Utils.OpenStreetMapUtils o-- project.Utils.OpenStreetMapUtils : instance
 
 
 right footer

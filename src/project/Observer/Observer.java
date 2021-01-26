@@ -14,7 +14,7 @@ public class Observer extends Thread implements ObserverInterface {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        Observer.status = status;
     }
 
     @Override

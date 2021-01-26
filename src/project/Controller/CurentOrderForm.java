@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import project.Class.Zlecenie;
+import project.Builder.ZlecenieProduct;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
@@ -23,13 +23,13 @@ public class CurentOrderForm extends DataUtil implements Initializable {
     @FXML
     public Label clientType;
     @FXML
-    TableView<Zlecenie> CurrentOrder;
+    TableView<ZlecenieProduct> CurrentOrder;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> OrderNumber;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> OrderNumber;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> Status;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> Status;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> Courier;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> Courier;
 
     @FXML
     void back(ActionEvent event) throws IOException {

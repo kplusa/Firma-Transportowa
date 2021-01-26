@@ -34,11 +34,6 @@ public class LoginForm implements Initializable {
     static final int HBoxXMax = 492;
     static final int HBoxYMin = 14;
     static final int HBoxYMax = 44;
-    private String st;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
     private static double[] offset_XY;
     private static final Rectangle2D SCREEN_BOUNDS = Screen.getPrimary().getVisualBounds();
     @FXML
@@ -49,7 +44,6 @@ public class LoginForm implements Initializable {
     JFXPasswordField pas;
     @FXML
     Label status;
-    private String clientType;
     public static Thread observer;
 
     @FXML
@@ -94,20 +88,20 @@ public class LoginForm implements Initializable {
 
     @FXML
     void login(ActionEvent event) throws IOException {
-        ip = InetAddress.getByName("localhost");
-        s = new Socket(ip, 5057);
-        dis = new DataInputStream(s.getInputStream());
-        dos = new DataOutputStream(s.getOutputStream());
+        InetAddress ip = InetAddress.getByName("localhost");
+        Socket s = new Socket(ip, 5057);
+        DataInputStream dis = new DataInputStream(s.getInputStream());
+        DataOutputStream dos = new DataOutputStream(s.getOutputStream());
         dos.writeInt(1);
         dos.writeUTF(mail.getText());
         dos.writeUTF(pas.getText());
-        st = dis.readUTF();
-        System.out.println(st);
+        String st = dis.readUTF();
         status.setText(st);
         FXMLLoader loader = null;
         Parent root = null;
         MenuFactory menuFactory = new MenuFactory();
         observer = new Thread(new Observer());
+        String clientType;
         if (st.equals("Poprawne dane-Klient")) {
             clientType = "Client";
             ClientMenuForm clientMenuForm = (ClientMenuForm) menuFactory.getMenu(clientType);

@@ -3,7 +3,6 @@ package project.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,16 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OpenStreetMapUtils implements Adapter {
-    private static OpenStreetMapUtils instance = null;
-    private JSONParser jsonParser;
-
-    public OpenStreetMapUtils() {
-        jsonParser = new JSONParser();
+    private OpenStreetMapUtils instance = null;
+    public String address;
+    public OpenStreetMapUtils(String string) {
+        this.address=string;
     }
-
-    public static OpenStreetMapUtils getInstance() {
+    public OpenStreetMapUtils( ) {
+    }
+    public OpenStreetMapUtils getInstance() {
         if (instance == null) {
-            instance = new OpenStreetMapUtils();
+            instance = new OpenStreetMapUtils(address);
         }
         return instance;
     }
@@ -44,7 +43,7 @@ public class OpenStreetMapUtils implements Adapter {
         return response.toString();
     }
 
-    public Map<String, Double> getCoordinates(String address) {
+    public Map<String, Double> getCoordinates() {
         Map<String, Double> res;
         StringBuffer query;
         String[] split = address.split(" ");

@@ -5,19 +5,19 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.AddOrderform {
-          + Orders : TableView<Zlecenie>
+          + Orders : TableView<ZlecenieProduct>
           + clientType : Label
           + id : int
           + name : Label
           + tmpstring : String
-          - AmountColumn : TableColumn<Zlecenie, Integer>
+          - AmountColumn : TableColumn<ZlecenieProduct, Integer>
           - DateLabel : JFXTextField
-          - FromColumn : TableColumn<Zlecenie, String>
+          - FromColumn : TableColumn<ZlecenieProduct, String>
           - FromLabel : JFXTextArea
-          - IdColumn : TableColumn<Zlecenie, Integer>
+          - IdColumn : TableColumn<ZlecenieProduct, Integer>
           - IdLabel : JFXTextField
-          - PostingDateColumn : TableColumn<Zlecenie, String>
-          - ToColumn : TableColumn<Zlecenie, String>
+          - PostingDateColumn : TableColumn<ZlecenieProduct, String>
+          - ToColumn : TableColumn<ZlecenieProduct, String>
           - ToLabel : JFXTextArea
           - state : Label
           + initialize()
@@ -59,23 +59,21 @@ title __CONTROLLER's Class Diagram__\n
           + information : Label
           + name : Label
           ~ CourierTV : TableView<Kurier>
-          ~ OrderTV : TableView<Zlecenie>
+          ~ OrderTV : TableView<ZlecenieProduct>
           ~ Status : Label
           - Distance : JFXTextField
-          - FromBranch : TableColumn<Zlecenie, String>
+          - FromBranch : TableColumn<ZlecenieProduct, String>
           - IdCourier : TableColumn<Kurier, Integer>
           - IdCourierTF : JFXTextField
-          - IdOrder : TableColumn<Zlecenie, Integer>
+          - IdOrder : TableColumn<ZlecenieProduct, Integer>
           - IdOrderTF : JFXTextField
           - Location : TableColumn<Kurier, String>
-          - ToBranch : TableColumn<Zlecenie, String>
+          - ToBranch : TableColumn<ZlecenieProduct, String>
           - dis : DataInputStream
           - dos : DataOutputStream
           - fromBranch : String
-          - ip : InetAddress
           - location : String
           - s : Socket
-          - status : String
           + initialize()
           ~ assign()
           ~ back()
@@ -96,7 +94,6 @@ title __CONTROLLER's Class Diagram__\n
           ~ text : JFXTextArea
           - UserId : int
           - stmt : Statement
-          - stmt2 : Statement
           + getUserId()
           + run()
           ~ ClientHandler()
@@ -129,15 +126,15 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CourierForm {
           + clientType : Label
           + name : Label
-          ~ CourierTabelForm : TableView<Zlecenie>
-          - AdresK : TableColumn<Zlecenie, String>
-          - AdresP : TableColumn<Zlecenie, String>
-          - Amount : TableColumn<Zlecenie, Integer>
-          - DataNadania : TableColumn<Zlecenie, String>
-          - Id : TableColumn<Zlecenie, Integer>
+          ~ CourierTabelForm : TableView<ZlecenieProduct>
+          - AdresK : TableColumn<ZlecenieProduct, String>
+          - AdresP : TableColumn<ZlecenieProduct, String>
+          - Amount : TableColumn<ZlecenieProduct, Integer>
+          - DataNadania : TableColumn<ZlecenieProduct, String>
+          - Id : TableColumn<ZlecenieProduct, Integer>
           - OKCourier : JFXButton
           - OrderSelection : JFXComboBox<String>
-          - Status : TableColumn<Zlecenie, String>
+          - Status : TableColumn<ZlecenieProduct, String>
           - StatusSelection : JFXComboBox<String>
           - tmpstring : String
           + initialize()
@@ -172,10 +169,10 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CurentOrderForm {
           + clientType : Label
           + name : Label
-          ~ CurrentOrder : TableView<Zlecenie>
-          - Courier : TableColumn<Zlecenie, String>
-          - OrderNumber : TableColumn<Zlecenie, Integer>
-          - Status : TableColumn<Zlecenie, String>
+          ~ CurrentOrder : TableView<ZlecenieProduct>
+          - Courier : TableColumn<ZlecenieProduct, String>
+          - OrderNumber : TableColumn<ZlecenieProduct, Integer>
+          - Status : TableColumn<ZlecenieProduct, String>
           + initialize()
           ~ back()
           ~ goMenu()
@@ -257,13 +254,7 @@ title __CONTROLLER's Class Diagram__\n
           ~ y : double
           - APMain : AnchorPane
           {static} - SCREEN_BOUNDS : Rectangle2D
-          - clientType : String
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
           {static} - offset_XY : double[]
-          - s : Socket
-          - st : String
           + MakeDraggable()
           + initialize()
           {static} # allowDrag()
@@ -293,7 +284,6 @@ title __CONTROLLER's Class Diagram__\n
           ~ prices : ObservableList
           - StringList : List<String>
           - Zlecenieid : int
-          - counter : int
           - counterOfAditional : int
           - dis : DataInputStream
           - dos : DataOutputStream
@@ -329,15 +319,10 @@ title __CONTROLLER's Class Diagram__\n
           + information : Label
           + name : Label
           + state : Label
-          - counter : int
           - dis : DataInputStream
           - dos : DataOutputStream
-          - id : int
-          - ilosc : int
-          - imie : String
           - ip : InetAddress
           - s : Socket
-          - tmpstring : String
           + add()
           + fill_table()
           + initialize()
@@ -393,7 +378,6 @@ title __CONTROLLER's Class Diagram__\n
           - pass2 : JFXPasswordField
           - phone : JFXTextField
           - s : Socket
-          - st : String
           - status : Label
           - street : JFXTextField
           - type : JFXComboBox
@@ -449,6 +433,7 @@ title __CONTROLLER's Class Diagram__\n
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
   project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
+  project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm .up.|> project.Factory.Menu
@@ -456,7 +441,6 @@ title __CONTROLLER's Class Diagram__\n
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
-  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierMenuForm .up.|> project.Factory.Menu
   project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory

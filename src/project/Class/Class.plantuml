@@ -13,9 +13,6 @@ title __CLASS's Class Diagram__\n
           + Opis : String
           + Cennik()
           + Cennik()
-          + DodajCennik()
-          + UsunCennik()
-          + ZmienCennik()
           {static} + fillPriceList()
           + getDataZmiany()
           + getGabaryt()
@@ -53,41 +50,21 @@ title __CLASS's Class Diagram__\n
 
   namespace project {
     namespace Class {
-      class project.Class.Klient {
-          + TypKlienta : boolean
-          {static} + stage : Stage
-          + Klient()
-          + ZlozZamowienie()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
       class project.Class.Kurier {
           + id : int
           + ilosc : int
           + imie : String
           + location : String
-          {static} + stage : Stage
-          + DodajKuriera()
           + Kurier()
           + Kurier()
-          + Kurier()
-          + UsunKuriera()
-          + ZmienTyp()
           + getId()
           + getIlosc()
           + getImie()
           + getLocation()
-          + getTypKuriera()
           + setId()
           + setIlosc()
           + setImie()
           + setLocation()
-          + setTypKuriera()
-          + start()
       }
     }
   }
@@ -112,131 +89,13 @@ title __CLASS's Class Diagram__\n
 
   namespace project {
     namespace Class {
-      class project.Class.Oplata {
-          + ID : int
-          + Kwota : float
-          + Status : boolean
-          + Termin : String
-          + DodajOplate()
-          + Oplata()
-          + SprawdzOplate()
-          + WyliczOplate()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Paczka {
-          + ID : int
-          + Waga : float
-          + Wymiar : String
-          + DodajPaczke()
-          + Paczka()
-          + ZmienDanePaczki()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Spedytor {
-          {static} + stage : Stage
-          + PrzydzielKuriera()
-          + Spedytor()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum SposobPlatnosci {
-        Blik
-        Gotowka
-        Karta
-        Przelew
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum TypKuriera {
-        koncowy
-        poczatkowy
-        pomiedzyOddzialami
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Uzytkownik {
-          + ID : int
-          {static} + stage : Stage
-          - Haslo : String
-          - Imie : String
-          - Mail : String
-          - Nazwisko : String
-          - Telefon : int
-          + Rejestracja()
-          + Uzytkownik()
-          + Wyloguj()
-          + Zaloguj()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
       class project.Class.Zlecenie {
-          + AdresKoncowy : String
-          + AdresPoczatkowy : String
-          + DataNadania : String
-          + ID : int
-          + Ilosc : int
-          + Kurier : String
-          + oddzialKoncowy : String
-          + oddzialPoczatkowy : String
           {static} + stage : Stage
-          + status : String
-          + DodajZlecenie()
-          + UsunZlecenie()
-          + WyswietlZlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + ZmienZlecenie()
           {static} + fillCourierTable()
           {static} + fillOrderTable()
           {static} + fill_table()
           {static} + filltableCourier()
           {static} + filltableCurrentOrder()
-          + getAdresKoncowy()
-          + getAdresPoczatkowy()
-          + getDataNadania()
-          + getID()
-          + getIlosc()
-          + getKurier()
-          + getOddzialKoncowy()
-          + getOddzialPoczatkowy()
-          + getStatus()
-          + setAdresKoncowy()
-          + setAdresPoczatkowy()
-          + setDataNadania()
-          + setID()
-          + setIlosc()
-          + setKurier()
-          + setOddzialKoncowy()
-          + setOddzialPoczatkowy()
-          + setStatus()
       }
     }
   }
@@ -244,15 +103,7 @@ title __CLASS's Class Diagram__\n
 
   project.Class.Cennik -up-|> project.Utils.DataUtil
   project.Class.Doplata -up-|> project.Utils.DataUtil
-  project.Class.Klient -up-|> project.Class.Uzytkownik
-  project.Class.Kurier -up-|> project.Class.Uzytkownik
-  project.Class.Kurier o-- project.Class.TypKuriera : TypKuriera
   project.Class.Oddzial -up-|> project.Utils.DataUtil
-  project.Class.Oplata -up-|> project.Utils.DataUtil
-  project.Class.Oplata o-- project.Class.SposobPlatnosci : SposobPlatnosci
-  project.Class.Paczka -up-|> project.Utils.DataUtil
-  project.Class.Spedytor -up-|> project.Class.Uzytkownik
-  project.Class.Uzytkownik -up-|> project.Utils.DataUtil
   project.Class.Zlecenie -up-|> project.Utils.DataUtil
 
 

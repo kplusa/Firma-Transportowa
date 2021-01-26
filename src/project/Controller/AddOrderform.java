@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import project.Builder.ZlecenieProduct;
 import project.Class.Zlecenie;
 import project.State.ButtonMenu;
 import project.Utils.DataUtil;
@@ -31,17 +32,17 @@ public class AddOrderform extends DataUtil implements Initializable {
     @FXML
     public Label clientType;
     @FXML
-    public TableView<Zlecenie> Orders;
+    public TableView<ZlecenieProduct> Orders;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> IdColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> IdColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> FromColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> FromColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> ToColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> ToColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> PostingDateColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> PostingDateColumn;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> AmountColumn;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> AmountColumn;
     @FXML
     private JFXTextField IdLabel;
     @FXML
@@ -55,20 +56,22 @@ public class AddOrderform extends DataUtil implements Initializable {
 
     public int id;
     public String tmpstring;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @FXML
     void addpack(ActionEvent event) throws IOException {
 
         if (Orders.getSelectionModel().getSelectedItem() != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/PackForm.fxml"));
             Parent root = loader.load();
-            PackForm packForm= loader.getController();
+            PackForm packForm = loader.getController();
             packForm.setName(getName(), packForm.name);
             packForm.setClientType(getClientType(), packForm.clientType);
-            Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
+            ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
             packForm.zlecid(zlecenie.getID());
             packForm.fill();
             Scene scene = new Scene(root);
@@ -76,16 +79,17 @@ public class AddOrderform extends DataUtil implements Initializable {
             Stage window = new Stage();
             window.setScene(scene);
             window.show();
-        }
-        else{
+        } else {
             state.setText("Wybierz zlecenie");
         }
 
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IdColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -101,67 +105,35 @@ public class AddOrderform extends DataUtil implements Initializable {
     }
 
 
-
     private void fillLabels() {
         if (Orders.getSelectionModel().getSelectedItem() != null) {
-            Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
+            ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
             IdLabel.setText(String.valueOf(zlecenie.getID()));
             FromLabel.setText(zlecenie.getAdresPoczatkowy());
             ToLabel.setText(zlecenie.getAdresKoncowy());
             DateLabel.setText(zlecenie.getDataNadania());
         }
     }
-    @FXML private void add()
-    {
-        try {
-            connectClient();
-                    dos.writeInt(7);
-                    dos.writeUTF(name.getText());
-                    dos.writeUTF(FromLabel.getText());
-                    dos.writeUTF(ToLabel.getText());
-                    tmpstring = dis.readUTF();
-                    System.out.println(tmpstring);
-            state.setText(tmpstring);
-            Zlecenie.fill_table(Orders);
-            PauseTransition pause = new PauseTransition(Duration.seconds(1));
-            pause.setOnFinished(even -> {
-                state.setText("");
-                IdLabel.setText(""); FromLabel.setText(""); ToLabel.setText(""); DateLabel.setText("");}
-            );
-            pause.play();
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private void edit()
-    {
-        try {
-            connectClient();
-                if (Orders.getSelectionModel().getSelectedItem() != null) {
-                    Zlecenie zlecenie = Orders.getSelectionModel().getSelectedItem();
-                    if (IdLabel.getText().equals(zlecenie.getID()) && FromLabel.getText().equals(zlecenie.getAdresPoczatkowy())
-                            && ToLabel.getText().equals(String.valueOf(zlecenie.getAdresKoncowy())) && DateLabel.getText().equals(String.valueOf(zlecenie.getDataNadania()))) {
-                        tmpstring = "The same data";
-                    } else {
-                        dos.writeInt(8);
-                        dos.writeInt(zlecenie.getID());
-                        dos.writeUTF(FromLabel.getText());
-                        dos.writeUTF(ToLabel.getText());
-                        tmpstring = dis.readUTF();
-                        System.out.println(tmpstring);
 
-                    }
-                }
+    @FXML
+    private void add() {
+        try {
+            connectClient();
+            dos.writeInt(7);
+            dos.writeUTF(name.getText());
+            dos.writeUTF(FromLabel.getText());
+            dos.writeUTF(ToLabel.getText());
+            tmpstring = dis.readUTF();
             state.setText(tmpstring);
             Zlecenie.fill_table(Orders);
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
             pause.setOnFinished(even -> {
                         state.setText("");
-                    IdLabel.setText(""); FromLabel.setText(""); ToLabel.setText(""); DateLabel.setText("");}
+                        IdLabel.setText("");
+                        FromLabel.setText("");
+                        ToLabel.setText("");
+                        DateLabel.setText("");
+                    }
             );
             pause.play();
             dis.close();
@@ -171,8 +143,47 @@ public class AddOrderform extends DataUtil implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML private void delete()
-    {
+
+    @FXML
+    private void edit() {
+        try {
+            connectClient();
+            if (Orders.getSelectionModel().getSelectedItem() != null) {
+                ZlecenieProduct zlecenie = Orders.getSelectionModel().getSelectedItem();
+                if (IdLabel.getText().equals(zlecenie.getID()) && FromLabel.getText().equals(zlecenie.getAdresPoczatkowy())
+                        && ToLabel.getText().equals(String.valueOf(zlecenie.getAdresKoncowy())) && DateLabel.getText().equals(String.valueOf(zlecenie.getDataNadania()))) {
+                    tmpstring = "The same data";
+                } else {
+                    dos.writeInt(8);
+                    dos.writeInt(zlecenie.getID());
+                    dos.writeUTF(FromLabel.getText());
+                    dos.writeUTF(ToLabel.getText());
+                    tmpstring = dis.readUTF();
+
+                }
+            }
+            state.setText(tmpstring);
+            Zlecenie.fill_table(Orders);
+            PauseTransition pause = new PauseTransition(Duration.seconds(1));
+            pause.setOnFinished(even -> {
+                        state.setText("");
+                        IdLabel.setText("");
+                        FromLabel.setText("");
+                        ToLabel.setText("");
+                        DateLabel.setText("");
+                    }
+            );
+            pause.play();
+            dis.close();
+            dos.close();
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void delete() {
         try {
             connectClient();
             dos.writeInt(9);
@@ -181,8 +192,7 @@ public class AddOrderform extends DataUtil implements Initializable {
             dos.writeUTF(ToLabel.getText());
             dos.writeUTF(DateLabel.getText());
             state.setText(dis.readUTF());
-            if(state.getText().equals("Deleted"))
-            {
+            if (state.getText().equals("Deleted")) {
                 Zlecenie.fill_table(Orders);
                 Thread.sleep(300);
                 IdLabel.setText("");
