@@ -11,11 +11,13 @@ title __UTILS's Class Diagram__\n
     }
   }
 
+  
 
   namespace project {
     namespace Utils {
       class project.Utils.OpenStreetMapUtils {
-          - jsonParser : JSONParser
+          + address : String
+          + OpenStreetMapUtils()
           + OpenStreetMapUtils()
           + getCoordinates()
           + getInstance()
@@ -26,9 +28,9 @@ title __UTILS's Class Diagram__\n
   
 
   project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+  project.Utils.OpenStreetMapUtils o-- project.Utils.OpenStreetMapUtils : instance
 project.Facade.OpenStreetMapBase o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
 project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
-
 
 right footer
 

@@ -76,10 +76,12 @@ public class AssignOrder extends DataUtil implements Initializable {
         double lonA = 0;
         double lonB = 0;
         Map<String, Double> coords;
-        coords = openStreetMapUtils.getInstance().getCoordinates(A);
+        openStreetMapUtils=new OpenStreetMapUtils(A);
+        coords =openStreetMapUtils.getInstance().getCoordinates();
         latA += coords.get("lat");
         lonA += coords.get("lon");
-        coords = openStreetMapUtils.getInstance().getCoordinates(B);
+        openStreetMapUtils=new OpenStreetMapUtils(B);
+        coords =openStreetMapUtils.getInstance().getCoordinates();
 
         latB += coords.get("lat");
         lonB += coords.get("lon");
