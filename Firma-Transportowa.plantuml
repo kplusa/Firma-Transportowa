@@ -3,6 +3,38 @@
 title __FIRMA-TRANSPORTOWA's Class Diagram__\n
 
   namespace project {
+    namespace Builder {
+      interface project.Builder.Builder {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.Director {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.ZlecenieBuilder {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Builder {
+      class project.Builder.ZlecenieProduct {
+      }
+    }
+  }
+  
+
+  namespace project {
     namespace Class {
       class project.Class.Cennik {
       }
@@ -20,14 +52,6 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
 
   namespace project {
     namespace Class {
-      class project.Class.Klient {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
       class project.Class.Kurier {
       }
     }
@@ -37,54 +61,6 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   namespace project {
     namespace Class {
       class project.Class.Oddzial {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Oplata {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Paczka {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Spedytor {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum SposobPlatnosci {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum TypKuriera {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Uzytkownik {
       }
     }
   }
@@ -233,7 +209,135 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   
 
   namespace project {
+    namespace Facade {
+      class project.Facade.ConfigDB {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.DataBaseSelect {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      abstract class project.Facade.Facade {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.OpenStreetMapBase {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Facade {
+      class project.Facade.UserAuthentication {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Factory {
+      interface project.Factory.Menu {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Factory {
+      class project.Factory.MenuFactory {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Observer {
+      class project.Observer.Observer {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Observer {
+      interface project.Observer.ObserverInterface {
+      }
+    }
+  }
+  
+
+  namespace project {
     class project.Server {
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.AddPackState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ButtonMenu {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ClientMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.CourierMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      class project.State.ForwarderMenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace State {
+      interface project.State.MenuState {
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
+      interface project.Utils.Adapter {
+      }
     }
   }
   
@@ -254,46 +358,75 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   }
   
 
-  project.Class.Cennik -up-|> javafx.application.Application
-  project.Class.Klient -up-|> project.Class.Uzytkownik
-  project.Class.Kurier -up-|> project.Class.Uzytkownik
-  project.Class.Kurier o-- project.Class.TypKuriera : TypKuriera
-  project.Class.Oplata -up-|> javafx.application.Application
-  project.Class.Oplata o-- project.Class.SposobPlatnosci : SposobPlatnosci
-  project.Class.Paczka -up-|> javafx.application.Application
-  project.Class.Spedytor -up-|> project.Class.Uzytkownik
-  project.Class.Uzytkownik -up-|> javafx.application.Application
-  project.Class.Zlecenie -up-|> javafx.application.Application
+  project.Builder.Director o-- project.Builder.Builder : builder
+  project.Builder.ZlecenieBuilder .up.|> project.Builder.Builder
+  project.Builder.ZlecenieBuilder o-- project.Builder.ZlecenieProduct : zlecenie
+  project.Class.Cennik -up-|> project.Utils.DataUtil
+  project.Class.Doplata -up-|> project.Utils.DataUtil
+  project.Class.Oddzial -up-|> project.Utils.DataUtil
+  project.Class.Zlecenie -up-|> project.Utils.DataUtil
   project.Client -up-|> javafx.application.Application
   project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
   project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddOrderform o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
+  project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
+  project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ClientMenuForm .up.|> project.Factory.Menu
+  project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
-  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
+  project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierMenuForm .up.|> project.Factory.Menu
+  project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
+  project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
+  project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PackForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
   project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
   project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm .up.|> javafx.fxml.Initializable
+  project.Facade.Facade o-- project.Facade.ConfigDB : configDB
+  project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
+  project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
+  project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
+  project.Facade.OpenStreetMapBase o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
+  project.Factory.MenuFactory -up-|> project.Utils.DataUtil
+  project.Observer.Observer .up.|> project.Observer.ObserverInterface
   project.Server -up-|> javafx.application.Application
+  project.State.AddPackState .up.|> project.State.MenuState
+  project.State.AddPackState -up-|> project.Utils.DataUtil
+  project.State.ButtonMenu o-- project.State.MenuState : menuState
+  project.State.ClientMenuState .up.|> project.State.MenuState
+  project.State.ClientMenuState -up-|> project.Utils.DataUtil
+  project.State.CourierMenuState .up.|> project.State.MenuState
+  project.State.CourierMenuState -up-|> project.Utils.DataUtil
+  project.State.ForwarderMenuState .up.|> project.State.MenuState
+  project.State.ForwarderMenuState -up-|> project.Utils.DataUtil
+  project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+  project.Utils.OpenStreetMapUtils o-- project.Utils.OpenStreetMapUtils : instance
 
 
 right footer

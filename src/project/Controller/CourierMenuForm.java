@@ -1,5 +1,6 @@
 package project.Controller;
 
+import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +13,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import project.Utils.DataUtil;
+import project.Class.Zlecenie;
+import project.Factory.Menu;
+import project.Factory.MenuFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CourierMenuForm extends DataUtil implements Initializable {
+public class CourierMenuForm extends MenuFactory implements Initializable, Menu {
     @FXML
     private AnchorPane APMain;
     @FXML
@@ -27,6 +30,7 @@ public class CourierMenuForm extends DataUtil implements Initializable {
 
     @FXML
     public Label clientType;
+
     @FXML
     void goLogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/LoginForm.fxml"));
@@ -37,17 +41,18 @@ public class CourierMenuForm extends DataUtil implements Initializable {
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(scene);
         window.show();
-        LoginForm loginForm=loader.getController();
-        loginForm.allowDrag(root,window);
+        LoginForm loginForm = loader.getController();
+        LoginForm.allowDrag(root, window);
     }
+
     @FXML
     void gocurrentorders(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierForm.fxml"));
         Parent root = loader.load();
-        CourierForm courierForm= loader.getController();
+        CourierForm courierForm = loader.getController();
         courierForm.setName(getName(), courierForm.name);
         courierForm.setClientType(getClientType(), courierForm.clientType);
-        courierForm.fill_table();
+        Zlecenie.filltableCourier(courierForm.CourierTabelForm, courierForm.name);
         courierForm.initializeOrder();
         Scene scene = new Scene(root);
         ((Node) event.getSource()).getScene().getWindow().hide();
@@ -55,8 +60,29 @@ public class CourierMenuForm extends DataUtil implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ForwarderMenuForm forwarderMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, CourierMenuForm courierMenuForm, JFXTextField mail, String clientType) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
+        Parent root = loader.load();
+        courierMenuForm = loader.getController();
+        courierMenuForm.setName(mail.getText(), courierMenuForm.name);
+        courierMenuForm.setClientType(clientType, courierMenuForm.clientType);
+        return root;
+    }
+
+    @Override
+    public Parent loadFXML(FXMLLoader loader, ClientMenuForm clientMenuForm, JFXTextField mail, String clientType) throws IOException {
+        return null;
     }
 }

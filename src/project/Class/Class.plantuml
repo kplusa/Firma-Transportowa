@@ -11,12 +11,9 @@ title __CLASS's Class Diagram__\n
           + Kwota : float
           + Limit : int
           + Opis : String
-          {static} + stage : Stage
           + Cennik()
           + Cennik()
-          + DodajCennik()
-          + UsunCennik()
-          + ZmienCennik()
+          {static} + fillPriceList()
           + getDataZmiany()
           + getGabaryt()
           + getID()
@@ -29,7 +26,6 @@ title __CLASS's Class Diagram__\n
           + setKwota()
           + setLimit()
           + setOpis()
-          + start()
       }
     }
   }
@@ -42,23 +38,11 @@ title __CLASS's Class Diagram__\n
           + KwotaD : Float
           + TypDoplaty : String
           + Doplata()
+          {static} + fillTableAdditional()
           + getKwotaD()
           + getTypDoplaty()
           + setKwotaD()
           + setTypDoplaty()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Klient {
-          + TypKlienta : boolean
-          {static} + stage : Stage
-          + Klient()
-          + ZlozZamowienie()
-          + start()
       }
     }
   }
@@ -71,24 +55,16 @@ title __CLASS's Class Diagram__\n
           + ilosc : int
           + imie : String
           + location : String
-          {static} + stage : Stage
-          + DodajKuriera()
           + Kurier()
           + Kurier()
-          + Kurier()
-          + UsunKuriera()
-          + ZmienTyp()
           + getId()
           + getIlosc()
           + getImie()
           + getLocation()
-          + getTypKuriera()
           + setId()
           + setIlosc()
           + setImie()
           + setLocation()
-          + setTypKuriera()
-          + start()
       }
     }
   }
@@ -100,6 +76,8 @@ title __CLASS's Class Diagram__\n
           + id : int
           + miejscowosc : String
           + Oddzial()
+          {static} + addAction()
+          {static} + fill_table()
           + getId()
           + getMiejscowosc()
           + setId()
@@ -111,148 +89,22 @@ title __CLASS's Class Diagram__\n
 
   namespace project {
     namespace Class {
-      class project.Class.Oplata {
-          + ID : int
-          + Kwota : float
-          + Status : boolean
-          + Termin : String
-          {static} + stage : Stage
-          + DodajOplate()
-          + Oplata()
-          + SprawdzOplate()
-          + WyliczOplate()
-          + start()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Paczka {
-          + ID : int
-          + Waga : float
-          + Wymiar : String
-          {static} + stage : Stage
-          + DodajPaczke()
-          + Paczka()
-          + ZmienDanePaczki()
-          + start()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Spedytor {
-          {static} + stage : Stage
-          + PrzydzielKuriera()
-          + Spedytor()
-          + start()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum SposobPlatnosci {
-        Blik
-        Gotowka
-        Karta
-        Przelew
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum TypKuriera {
-        koncowy
-        poczatkowy
-        pomiedzyOddzialami
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Uzytkownik {
-          + ID : int
-          {static} + stage : Stage
-          - Haslo : String
-          - Imie : String
-          - Mail : String
-          - Nazwisko : String
-          - Telefon : int
-          + Rejestracja()
-          + Uzytkownik()
-          + Wyloguj()
-          + Zaloguj()
-          + start()
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
       class project.Class.Zlecenie {
-          + AdresKoncowy : String
-          + AdresPoczatkowy : String
-          + DataNadania : String
-          + ID : int
-          + Ilosc : int
-          + Kurier : String
-          + oddzialKoncowy : String
-          + oddzialPoczatkowy : String
           {static} + stage : Stage
-          + status : String
-          + DodajZlecenie()
-          + UsunZlecenie()
-          + WyswietlZlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + Zlecenie()
-          + ZmienZlecenie()
-          + getAdresKoncowy()
-          + getAdresPoczatkowy()
-          + getDataNadania()
-          + getID()
-          + getIlosc()
-          + getKurier()
-          + getOddzialKoncowy()
-          + getOddzialPoczatkowy()
-          + getStatus()
-          + setAdresKoncowy()
-          + setAdresPoczatkowy()
-          + setDataNadania()
-          + setID()
-          + setIlosc()
-          + setKurier()
-          + setOddzialKoncowy()
-          + setOddzialPoczatkowy()
-          + setStatus()
-          + start()
+          {static} + fillCourierTable()
+          {static} + fillOrderTable()
+          {static} + fill_table()
+          {static} + filltableCourier()
+          {static} + filltableCurrentOrder()
       }
     }
   }
   
 
-  project.Class.Cennik -up-|> javafx.application.Application
-  project.Class.Klient -up-|> project.Class.Uzytkownik
-  project.Class.Kurier -up-|> project.Class.Uzytkownik
-  project.Class.Kurier o-- project.Class.TypKuriera : TypKuriera
-  project.Class.Oplata -up-|> javafx.application.Application
-  project.Class.Oplata o-- project.Class.SposobPlatnosci : SposobPlatnosci
-  project.Class.Paczka -up-|> javafx.application.Application
-  project.Class.Spedytor -up-|> project.Class.Uzytkownik
-  project.Class.Uzytkownik -up-|> javafx.application.Application
-  project.Class.Zlecenie -up-|> javafx.application.Application
+  project.Class.Cennik -up-|> project.Utils.DataUtil
+  project.Class.Doplata -up-|> project.Utils.DataUtil
+  project.Class.Oddzial -up-|> project.Utils.DataUtil
+  project.Class.Zlecenie -up-|> project.Utils.DataUtil
 
 
 right footer

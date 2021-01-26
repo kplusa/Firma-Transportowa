@@ -1,5 +1,9 @@
 package project.Utils;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -7,43 +11,31 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-
-public class OpenStreetMapUtils {
-
-
-    private static OpenStreetMapUtils instance = null;
-    private JSONParser jsonParser;
-
-    public OpenStreetMapUtils() {
-        jsonParser = new JSONParser();
+public class OpenStreetMapUtils implements Adapter {
+    private OpenStreetMapUtils instance = null;
+    public String address;
+    public OpenStreetMapUtils(String string) {
+        this.address=string;
     }
-
-    public static OpenStreetMapUtils getInstance() {
+    public OpenStreetMapUtils( ) {
+    }
+    public OpenStreetMapUtils getInstance() {
         if (instance == null) {
-            instance = new OpenStreetMapUtils();
+            instance = new OpenStreetMapUtils(address);
         }
         return instance;
     }
 
-    private String getRequest(String url) throws Exception {
-
+    public String getRequest(String url) throws Exception {
         final URL obj = new URL(url);
         final HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
         con.setRequestMethod("GET");
-
         if (con.getResponseCode() != 200) {
             return null;
         }
-
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
-
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
@@ -51,7 +43,7 @@ public class OpenStreetMapUtils {
         return response.toString();
     }
 
-    public Map<String, Double> getCoordinates(String address) {
+    public Map<String, Double> getCoordinates() {
         Map<String, Double> res;
         StringBuffer query;
         String[] split = address.split(" ");
@@ -88,12 +80,10 @@ public class OpenStreetMapUtils {
             JSONArray array = (JSONArray) obj;
             if (array.size() > 0) {
                 JSONObject jsonObject = (JSONObject) array.get(0);
-
                 String lon = (String) jsonObject.get("lon");
                 String lat = (String) jsonObject.get("lat");
                 res.put("lon", Double.parseDouble(lon));
                 res.put("lat", Double.parseDouble(lat));
-
             }
         }
 

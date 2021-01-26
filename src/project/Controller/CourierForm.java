@@ -2,47 +2,27 @@ package project.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import project.Builder.ZlecenieProduct;
 import project.Class.Zlecenie;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class CourierForm extends DataUtil implements Initializable {
-    @FXML
-    private AnchorPane APMain;
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
-    private Socket s;
-    private InetAddress ip;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private int counter, id;
-    private Date data;
-    private String adresP, adresK, status, tmpstring, datas;
-    private int ilosc;
-    private Zlecenie selectedZlecenie;
+    private String tmpstring;
 
 
     @FXML
@@ -54,63 +34,37 @@ public class CourierForm extends DataUtil implements Initializable {
     @FXML
     public Label clientType;
     @FXML
-    TableView<Zlecenie> CourierTabelForm;
+    TableView<ZlecenieProduct> CourierTabelForm;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> Id;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> Id;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> DataNadania;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> DataNadania;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> AdresP;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> AdresP;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> AdresK;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> AdresK;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, String> Status;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, String> Status;
     @FXML
-    private javafx.scene.control.TableColumn<Zlecenie, Integer> Amount;
+    private javafx.scene.control.TableColumn<ZlecenieProduct, Integer> Amount;
+
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-        Parent root = loader.load();
-        CourierMenuForm courierMenuForm= loader.getController();
-        courierMenuForm.setName(getName(), courierMenuForm.name);
-        courierMenuForm.setClientType(getClientType(), courierMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/CourierMenuForm.fxml"));
-        Parent root = loader.load();
-        CourierMenuForm courierMenuForm= loader.getController();
-        courierMenuForm.setName(getName(), courierMenuForm.name);
-        courierMenuForm.setClientType(getClientType(), courierMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
+
     @FXML
     void aktualizuj(MouseEvent event) throws IOException, InterruptedException {
         if (CourierTabelForm.getSelectionModel().getSelectedItem() != null
-                && StatusSelection.getSelectionModel().getSelectedItem() != null)
-        {
+                && StatusSelection.getSelectionModel().getSelectedItem() != null) {
             String testouput = StatusSelection.getSelectionModel().getSelectedItem();
-            System.out.println(testouput);
-            selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
-            System.out.println(selectedZlecenie.ID);
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            ZlecenieProduct selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
+            connectClient();
             dos.writeInt(42);
             dos.writeUTF(testouput);
             dos.writeInt(selectedZlecenie.ID);
@@ -118,19 +72,10 @@ public class CourierForm extends DataUtil implements Initializable {
             dos.close();
             s.close();
             Thread.sleep(300);
-            fill_table();
+            Zlecenie.filltableCourier(CourierTabelForm, name);
         }
-        if (OrderSelection.getSelectionModel().getSelectedItem() != null)
-        {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+        if (OrderSelection.getSelectionModel().getSelectedItem() != null) {
+            connectClient();
             tmpstring = OrderSelection.getSelectionModel().getSelectedItem();
 
             dos.writeInt(44);
@@ -142,31 +87,21 @@ public class CourierForm extends DataUtil implements Initializable {
             Thread.sleep(300);
         }
     }
-    public void initializeOrder()
-    {
+
+    public void initializeOrder() {
         try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            connectClient();
             dos.writeInt(43);
             dos.writeUTF(name.getText());
-            counter = dis.readInt();
-            for (int i = 1;i <= counter; i++)
-            {
+            var counter = dis.readInt();
+            for (int i = 1; i <= counter; i++) {
                 tmpstring = dis.readUTF();
                 OrderSelection.getSelectionModel().select(tmpstring);
-                System.out.println(tmpstring);
             }
             dis.close();
             dos.close();
             s.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -179,48 +114,14 @@ public class CourierForm extends DataUtil implements Initializable {
         DataNadania.setCellValueFactory(new PropertyValueFactory<>("DataNadania"));
         Amount.setCellValueFactory(new PropertyValueFactory<>("Ilosc"));
         Status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        StatusSelection.getItems().add("Odebrane");
+        StatusSelection.getItems().add("Odebrane od nadawcy");
+        StatusSelection.getItems().add("Dostarczone do oddziału");
+        StatusSelection.getItems().add("Odebrane z oddziału");
         StatusSelection.getItems().add("Dostarczone");
         OrderSelection.getItems().add("Początkowy");
         OrderSelection.getItems().add("Końcowy");
         OrderSelection.getItems().add("Pomiędzy odziałami");
     }
 
-    @FXML
-    public ObservableList<Zlecenie> fill_table() throws IOException {
-        ObservableList<Zlecenie> zlecenieList = FXCollections.observableArrayList();
-        try {
-            try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            dos.writeInt(41);
-            dos.writeUTF(name.getText());
-            counter = dis.readInt();
-            for (int i = 1;i <= counter; i++)
-            {
-                tmpstring = dis.readUTF();
-                id = Integer.valueOf(tmpstring);
-                datas = dis.readUTF();
-                adresP = dis.readUTF();
-                adresK = dis.readUTF();
-                status = dis.readUTF();
-                tmpstring = dis.readUTF();
-                ilosc = Integer.valueOf(tmpstring);
-                zlecenieList.add(new Zlecenie(id, datas, adresP, adresK, status, ilosc));
-            }
-            CourierTabelForm.setItems(zlecenieList);
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return zlecenieList;
-    }
+
 }

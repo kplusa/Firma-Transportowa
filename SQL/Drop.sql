@@ -1,4 +1,5 @@
 Drop Table ZlecenieKurier
+Drop Table WyplataKurier
 Drop Table Kurier
 Drop Table PaczkaDoplata
 Drop Table Doplata
@@ -8,5 +9,5 @@ Drop Table Cennik
 Drop Table Oplata
 Drop Table Oddzial
 Drop Table Adres
-Drop Table Uzytkownik
-Drop Table WyplataKurier
+
+

@@ -4,14 +4,29 @@ title __UTILS's Class Diagram__\n
 
   namespace project {
     namespace Utils {
+      interface project.Utils.Adapter {
+          {abstract} + getCoordinates()
+          {abstract} + getRequest()
+      }
+    }
+  }
+  
+
+  namespace project {
+    namespace Utils {
       class project.Utils.DataUtil {
-          + ClientType : String
-          + Name : String
+          {static} + ClientType : String
+          {static} + Name : String
+          {static} + dis : DataInputStream
+          {static} + dos : DataOutputStream
+          {static} + ip : InetAddress
+          {static} + s : Socket
           - clientType : Label
           - name : Label
+          {static} + connectClient()
           {static} + distance()
-          + getClientType()
-          + getName()
+          {static} + getClientType()
+          {static} + getName()
           + setClientType()
           + setName()
           + show()
@@ -23,17 +38,19 @@ title __UTILS's Class Diagram__\n
   namespace project {
     namespace Utils {
       class project.Utils.OpenStreetMapUtils {
-          {static} - instance : OpenStreetMapUtils
-          - jsonParser : JSONParser
+          + address : String
+          + OpenStreetMapUtils()
           + OpenStreetMapUtils()
           + getCoordinates()
-          {static} + getInstance()
-          - getRequest()
+          + getInstance()
+          + getRequest()
       }
     }
   }
   
 
+  project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+  project.Utils.OpenStreetMapUtils o-- project.Utils.OpenStreetMapUtils : instance
 
 
 right footer

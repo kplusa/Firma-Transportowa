@@ -14,12 +14,12 @@ insert into Oplata(termin,kwota,status,sposob) values('20201221','20','Oplacone'
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('A','10','80x60x40','20200101','10');
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('B','15','80x80x40','20200101','15');
 insert into Cennik(gabaryt,kwota,opis,dataZmiany,limit) values('C','20','80x80x60','20200101','20');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId,oddzialKoncowyID) values('20200110','a','aleja Tysi¹clecia Pañstwa Polskiego 7, 25-314 Kielce','Dostarczone','1','1','3');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId, oddzialPoczatkowyId,oddzialKoncowyID) values('20200111','b','Poznañ','Odebrane','2','3','2');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200112','c','Gdynia','Odebrane','3','2','1');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200117','Kielce','Gdynia','Odebrane','3','2','1');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200118','Skarzysko','Gdynia','Odebrane','3','2','1');
-insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200119','Tarnów','Katowice','Odebrane','3','3','2');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId,oddzialKoncowyID) values('20200110','Warszawa','aleja Tysi¹clecia Pañstwa Polskiego 7, 25-314 Kielce','Dostarczone','1','1','3');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId, oddzialPoczatkowyId,oddzialKoncowyID) values('20200111','Gdynia','Poznañ','Odebrane','1','3','2');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200112','Katowice','Gdynia','Odebrane','1','2','1');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200117','Kielce','Gdynia','Odebrane','1','2','1');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200118','Skarzysko','Gdynia','Odebrane','1','2','1');
+insert into Zlecenie(dataNadania,adresPoczatkowy,adresKoncowy,status,uzytkownikId,oddzialPoczatkowyId, oddzialKoncowyID) values('20200119','Tarnów','Katowice','Nowe','1','3','2');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('5','1','1','1');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('7','2','2','3');
 insert into Paczka(waga,zlecenieId,cennikId,oplataId) values('8','3','3','2');
@@ -32,4 +32,5 @@ insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','K
 insert into Kurier(typKuriera,imie,nazwisko,uzytkownikId) values('Pocz¹tkowy','Jan','Nowak','4');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('1','1','1');
 insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('2','1','1');
-insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','2','1');
+insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('3','1','1');
+insert into ZlecenieKurier(zlecenieId,kurierId,numerPorzadkowy) values('4','1','1');

@@ -6,19 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import project.Class.Kurier;
+import project.State.ButtonMenu;
 import project.Utils.DataUtil;
 
 import java.io.DataInputStream;
@@ -30,8 +25,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PaymentForm extends DataUtil implements Initializable {
-    @FXML
-    private AnchorPane APMain;
+    ButtonMenu buttonMenu = new ButtonMenu(getClientType());
+
     @FXML
     public Label name;
     @FXML
@@ -39,49 +34,32 @@ public class PaymentForm extends DataUtil implements Initializable {
     @FXML
     public TableView<Kurier> Table;
     @FXML
-    public TableColumn<Kurier,Integer> ID;
+    public TableColumn<Kurier, Integer> ID;
     @FXML
-    public TableColumn<Kurier,String> Courier;
+    public TableColumn<Kurier, String> Courier;
     @FXML
-    public TableColumn<Kurier,Integer> Quantity;
+    public TableColumn<Kurier, Integer> Quantity;
     @FXML
     public JFXTextField CourierLabel;
     @FXML
     public JFXTextField PercentageLabel;
     @FXML
-    public Label state;
+    public Label state, information;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private int counter,id,ilosc;
-    private String imie,tmpstring;
+
     @FXML
     void back(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ForwarderMenu.fxml"));
-        Parent root = loader.load();
-        ForwarderMenuForm forwarderMenuForm= loader.getController();
-        forwarderMenuForm.setName(getName(), forwarderMenuForm.name);
-        forwarderMenuForm.setClientType(getClientType(), forwarderMenuForm.clientType);
-        Scene scene = new Scene(root);
-        ((Node) event.getSource()).getScene().getWindow().hide();
-        Stage window = new Stage();
-        window.setScene(scene);
-        window.show();
+        buttonMenu.onClick(event);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -98,38 +76,38 @@ public class PaymentForm extends DataUtil implements Initializable {
                 if (Table.getSelectionModel().getSelectedItem() != null) {
                     Kurier kurier = Table.getSelectionModel().getSelectedItem();
                     CourierLabel.setText(String.valueOf(kurier.getId()));
-                }}
+                }
+            }
         });
     }
+
     @FXML
-    public void add(ActionEvent event){
-    if(!PercentageLabel.getText().equals(""))
-    {
-        try {
+    public void add(ActionEvent event) {
+        if (!PercentageLabel.getText().equals("")) {
             try {
-                ip = InetAddress.getByName("localhost");
-                s = new Socket(ip, 5057);
-                dis = new DataInputStream(s.getInputStream());
-                dos = new DataOutputStream(s.getOutputStream());
+                try {
+                    ip = InetAddress.getByName("localhost");
+                    s = new Socket(ip, 5057);
+                    dis = new DataInputStream(s.getInputStream());
+                    dos = new DataOutputStream(s.getOutputStream());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                dos.writeInt(33);
+                dos.writeInt(Integer.valueOf(PercentageLabel.getText()));
+                dos.writeInt(Table.getSelectionModel().getSelectedItem().getId());
+                state.setText(dis.readUTF());
+                dis.close();
+                dos.close();
+                s.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            dos.writeInt(33);
-            dos.writeInt(Integer.valueOf(PercentageLabel.getText()));
-            dos.writeInt(Table.getSelectionModel().getSelectedItem().getId());
-            state.setText(dis.readUTF());
-            dis.close();
-            dos.close();
-            s.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            state.setText("Wprowadz wartosc do Percentage");
         }
     }
-    else
-    {
-        state.setText("Wprowadz wartosc do Percentage");
-    }
-    }
+
     @FXML
     public ObservableList<Kurier> fill_table() throws IOException {
         ObservableList<Kurier> KurierList = FXCollections.observableArrayList();
@@ -143,14 +121,14 @@ public class PaymentForm extends DataUtil implements Initializable {
                 e.printStackTrace();
             }
             dos.writeInt(32);
-            counter = dis.readInt();
+            int counter = dis.readInt();
             for (int i = 1; i <= counter; i++) {
-                tmpstring=dis.readUTF();
-                id=Integer.valueOf(tmpstring);
-                imie=dis.readUTF();
-                tmpstring=dis.readUTF();
-                ilosc=Integer.valueOf(tmpstring);
-                KurierList.add(new Kurier(id,imie,ilosc));
+                String tmpstring = dis.readUTF();
+                int id = Integer.valueOf(tmpstring);
+                String imie = dis.readUTF();
+                tmpstring = dis.readUTF();
+                int ilosc = Integer.valueOf(tmpstring);
+                KurierList.add(new Kurier(id, imie, ilosc));
             }
             Table.setItems(KurierList);
             dis.close();

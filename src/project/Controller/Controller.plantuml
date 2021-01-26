@@ -5,32 +5,21 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.AddOrderform {
-          + adresKoncowy : String
-          + adresPoczatkowy : String
+          + Orders : TableView<ZlecenieProduct>
           + clientType : Label
-          + dataNadania : String
           + id : int
-          + ilosc : int
           + name : Label
           + tmpstring : String
-          ~ Orders : TableView<Zlecenie>
-          - APMain : AnchorPane
-          - AmountColumn : TableColumn<Zlecenie, Integer>
+          - AmountColumn : TableColumn<ZlecenieProduct, Integer>
           - DateLabel : JFXTextField
-          - FromColumn : TableColumn<Zlecenie, String>
+          - FromColumn : TableColumn<ZlecenieProduct, String>
           - FromLabel : JFXTextArea
-          - IdColumn : TableColumn<Zlecenie, Integer>
+          - IdColumn : TableColumn<ZlecenieProduct, Integer>
           - IdLabel : JFXTextField
-          - PostingDateColumn : TableColumn<Zlecenie, String>
-          - ToColumn : TableColumn<Zlecenie, String>
+          - PostingDateColumn : TableColumn<ZlecenieProduct, String>
+          - ToColumn : TableColumn<ZlecenieProduct, String>
           - ToLabel : JFXTextArea
-          - counter : int
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
-          - s : Socket
           - state : Label
-          + fill_table()
           + initialize()
           ~ addpack()
           ~ back()
@@ -51,16 +40,9 @@ title __CONTROLLER's Class Diagram__\n
           + PlaceLabel : JFXTextField
           + PlaceTable : TableView
           + clientType : Label
+          + information : Label
           + name : Label
           + state : Label
-          - APMain : AnchorPane
-          - counter : int
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
-          - s : Socket
-          - tmpstring : String
-          + fill_table()
           + initialize()
           ~ add()
           ~ back()
@@ -74,32 +56,24 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.AssignOrder {
           + clientType : Label
+          + information : Label
           + name : Label
           ~ CourierTV : TableView<Kurier>
-          ~ OrderTV : TableView<Zlecenie>
+          ~ OrderTV : TableView<ZlecenieProduct>
           ~ Status : Label
-          - APMain : AnchorPane
           - Distance : JFXTextField
-          - FromBranch : TableColumn<Zlecenie, String>
+          - FromBranch : TableColumn<ZlecenieProduct, String>
           - IdCourier : TableColumn<Kurier, Integer>
           - IdCourierTF : JFXTextField
-          - IdOrder : TableColumn<Zlecenie, Integer>
+          - IdOrder : TableColumn<ZlecenieProduct, Integer>
           - IdOrderTF : JFXTextField
           - Location : TableColumn<Kurier, String>
-          - ToBranch : TableColumn<Zlecenie, String>
-          - counter : int
+          - ToBranch : TableColumn<ZlecenieProduct, String>
           - dis : DataInputStream
           - dos : DataOutputStream
           - fromBranch : String
-          - idCourier : int
-          - idOrder : int
-          - ip : InetAddress
           - location : String
           - s : Socket
-          - status : String
-          - toBranch : String
-          + fillCourierTable()
-          + fillOrderTable()
           + initialize()
           ~ assign()
           ~ back()
@@ -117,36 +91,9 @@ title __CONTROLLER's Class Diagram__\n
           ~ dataInputStream : DataInputStream
           ~ dataOutputStream : DataOutputStream
           ~ socket : Socket
-          ~ state : boolean
           ~ text : JFXTextArea
-          - StringList : List<String>
           - UserId : int
-          - counter : int
-          - data : Date
-          - email : String
-          - from : String
-          - id : int
-          - mail : String
-          - option : int
-          - pass : String
-          - pass2 : String
-          - password : String
-          - rs : ResultSet
-          - rs2 : ResultSet
-          - secondStringList : List<String>
-          - sql : String
-          - sql2 : String
-          - status : String
           - stmt : Statement
-          - stmt2 : Statement
-          - tmpchar : char
-          - tmpfloat : float
-          - tmpint : int
-          - tmpstring : String
-          - tmpstring2 : String
-          - to : String
-          - type : String
-          - uni : String
           + getUserId()
           + run()
           ~ ClientHandler()
@@ -162,6 +109,9 @@ title __CONTROLLER's Class Diagram__\n
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ goLogin()
           ~ goaddorder()
           ~ gocurrentorders()
@@ -176,31 +126,17 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CourierForm {
           + clientType : Label
           + name : Label
-          ~ CourierTabelForm : TableView<Zlecenie>
-          - APMain : AnchorPane
-          - AdresK : TableColumn<Zlecenie, String>
-          - AdresP : TableColumn<Zlecenie, String>
-          - Amount : TableColumn<Zlecenie, Integer>
-          - DataNadania : TableColumn<Zlecenie, String>
-          - Id : TableColumn<Zlecenie, Integer>
+          ~ CourierTabelForm : TableView<ZlecenieProduct>
+          - AdresK : TableColumn<ZlecenieProduct, String>
+          - AdresP : TableColumn<ZlecenieProduct, String>
+          - Amount : TableColumn<ZlecenieProduct, Integer>
+          - DataNadania : TableColumn<ZlecenieProduct, String>
+          - Id : TableColumn<ZlecenieProduct, Integer>
           - OKCourier : JFXButton
           - OrderSelection : JFXComboBox<String>
-          - Status : TableColumn<Zlecenie, String>
+          - Status : TableColumn<ZlecenieProduct, String>
           - StatusSelection : JFXComboBox<String>
-          - adresK : String
-          - adresP : String
-          - counter : int
-          - data : Date
-          - datas : String
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - id : int
-          - ilosc : int
-          - ip : InetAddress
-          - s : Socket
-          - status : String
           - tmpstring : String
-          + fill_table()
           + initialize()
           + initializeOrder()
           ~ aktualizuj()
@@ -218,6 +154,9 @@ title __CONTROLLER's Class Diagram__\n
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ goLogin()
           ~ gocurrentorders()
       }
@@ -230,22 +169,10 @@ title __CONTROLLER's Class Diagram__\n
       class project.Controller.CurentOrderForm {
           + clientType : Label
           + name : Label
-          ~ CurrentOrder : TableView<Zlecenie>
-          - APMain : AnchorPane
-          - Courier : TableColumn<Zlecenie, String>
-          - OrderNumber : TableColumn<Zlecenie, Integer>
-          - Status : TableColumn<Zlecenie, String>
-          - counter : int
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - id : int
-          - ip : InetAddress
-          - kurier : String
-          - s : Socket
-          - st : String
-          - stat : String
-          - tmpstring : String
-          + fill_table()
+          ~ CurrentOrder : TableView<ZlecenieProduct>
+          - Courier : TableColumn<ZlecenieProduct, String>
+          - OrderNumber : TableColumn<ZlecenieProduct, Integer>
+          - Status : TableColumn<ZlecenieProduct, String>
           + initialize()
           ~ back()
           ~ goMenu()
@@ -258,9 +185,13 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.ForwarderMenuForm {
           + clientType : Label
+          + information : Label
           + name : Label
           - APMain : AnchorPane
           + initialize()
+          + loadFXML()
+          + loadFXML()
+          + loadFXML()
           ~ asign()
           ~ branch()
           ~ goLogin()
@@ -275,37 +206,26 @@ title __CONTROLLER's Class Diagram__\n
     namespace Controller {
       class project.Controller.ForwarderPriceListForm {
           + clientType : Label
+          + information : Label
           + name : Label
+          + status : Label
           ~ AditionalPriceList : TableView<Doplata>
           ~ PriceList : TableView<Cennik>
-          - APMain : AnchorPane
           - AditionalAP : AnchorPane
           - AditionalAmount : TableColumn<Cennik, Integer>
           - Amount : TableColumn<Cennik, Float>
           - AmountAditionalPrice : JFXTextField
           - Description : TableColumn<Cennik, String>
           - Dimension : TableColumn<Cennik, String>
-          - Gabaryt : String
-          - Kwota : Float
-          - Limit : int
           - Lm : TableColumn<Cennik, Integer>
-          - Opis : String
           - PriceListAP : AnchorPane
           - Type : TableColumn<Cennik, String>
           - TypeOfAditionalPrice : JFXTextField
           - amountTF : JFXTextField
-          - counter : int
           - descriptionTA : JFXTextArea
           - dimensionTF : JFXTextField
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
           - limitTF : JFXTextField
-          - s : Socket
-          - status : Label
           - tmpstring : String
-          + fill_table()
-          + fill_table_second()
           + initialize()
           ~ back()
           ~ goMenu()
@@ -322,6 +242,7 @@ title __CONTROLLER's Class Diagram__\n
   namespace project {
     namespace Controller {
       class project.Controller.LoginForm {
+          {static} + observer : Thread
           {static} ~ HBoxXMax : int
           {static} ~ HBoxXMin : int
           {static} ~ HBoxYMax : int
@@ -333,13 +254,7 @@ title __CONTROLLER's Class Diagram__\n
           ~ y : double
           - APMain : AnchorPane
           {static} - SCREEN_BOUNDS : Rectangle2D
-          - clientType : String
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
           {static} - offset_XY : double[]
-          - s : Socket
-          - st : String
           + MakeDraggable()
           + initialize()
           {static} # allowDrag()
@@ -367,17 +282,14 @@ title __CONTROLLER's Class Diagram__\n
           + state : Label
           ~ dimensions : ObservableList
           ~ prices : ObservableList
-          - APMain : AnchorPane
           - StringList : List<String>
           - Zlecenieid : int
-          - counter : int
           - counterOfAditional : int
           - dis : DataInputStream
           - dos : DataOutputStream
           - ip : InetAddress
           - s : Socket
           - tmpFloat : Float
-          - tmpint : int
           - tmpstring : String
           + fill()
           + initialize()
@@ -404,18 +316,13 @@ title __CONTROLLER's Class Diagram__\n
           + Quantity : TableColumn<Kurier, Integer>
           + Table : TableView<Kurier>
           + clientType : Label
+          + information : Label
           + name : Label
           + state : Label
-          - APMain : AnchorPane
-          - counter : int
           - dis : DataInputStream
           - dos : DataOutputStream
-          - id : int
-          - ilosc : int
-          - imie : String
           - ip : InetAddress
           - s : Socket
-          - tmpstring : String
           + add()
           + fill_table()
           + initialize()
@@ -433,25 +340,12 @@ title __CONTROLLER's Class Diagram__\n
           + name : Label
           ~ AditionalPriceList : TableView<Doplata>
           ~ PriceList : TableView<Cennik>
-          - APMain : AnchorPane
           - AditionalAmount : TableColumn<Doplata, Integer>
           - Amount : TableColumn<Cennik, Float>
           - Description : TableColumn<Cennik, String>
           - Dimension : TableColumn<Cennik, String>
-          - Gabaryt : String
-          - Kwota : Float
-          - Limit : int
           - Lm : TableColumn<Cennik, Integer>
-          - Opis : String
           - Type : TableColumn<Doplata, String>
-          - counter : int
-          - dis : DataInputStream
-          - dos : DataOutputStream
-          - ip : InetAddress
-          - s : Socket
-          - tmpstring : String
-          + fill_table()
-          + fill_table_second()
           + initialize()
           ~ back()
           ~ goMenu()
@@ -477,13 +371,13 @@ title __CONTROLLER's Class Diagram__\n
           - firstname : JFXTextField
           - ip : InetAddress
           - lastname : JFXTextField
+          - list : ObservableList
           - mail : JFXTextField
           - number : JFXTextField
           - pass : JFXPasswordField
           - pass2 : JFXPasswordField
           - phone : JFXTextField
           - s : Socket
-          - st : String
           - status : Label
           - street : JFXTextField
           - type : JFXComboBox
@@ -516,8 +410,6 @@ title __CONTROLLER's Class Diagram__\n
           + initialize()
           + runserver()
           ~ MakeDraggable()
-          ~ closeAction()
-          ~ minAction()
       }
     }
   }
@@ -534,30 +426,44 @@ title __CONTROLLER's Class Diagram__\n
 
   project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
   project.Controller.AddOrderform -up-|> project.Utils.DataUtil
+  project.Controller.AddOrderform o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AddbranchForm .up.|> javafx.fxml.Initializable
   project.Controller.AddbranchForm -up-|> project.Utils.DataUtil
+  project.Controller.AddbranchForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
+  project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
+  project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
+  project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ClientMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ClientMenuForm .up.|> project.Factory.Menu
+  project.Controller.ClientMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
-  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
+  project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.CourierMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.CourierMenuForm .up.|> project.Factory.Menu
+  project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
   project.Controller.CurentOrderForm .up.|> javafx.fxml.Initializable
   project.Controller.CurentOrderForm -up-|> project.Utils.DataUtil
+  project.Controller.CurentOrderForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.ForwarderMenuForm .up.|> javafx.fxml.Initializable
-  project.Controller.ForwarderMenuForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderMenuForm .up.|> project.Factory.Menu
+  project.Controller.ForwarderMenuForm -up-|> project.Factory.MenuFactory
+  project.Controller.ForwarderMenuForm o-- project.Observer.Observer : observer
   project.Controller.ForwarderPriceListForm .up.|> javafx.fxml.Initializable
   project.Controller.ForwarderPriceListForm -up-|> project.Utils.DataUtil
+  project.Controller.ForwarderPriceListForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.LoginForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm .up.|> javafx.fxml.Initializable
   project.Controller.PackForm -up-|> project.Utils.DataUtil
+  project.Controller.PackForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PaymentForm .up.|> javafx.fxml.Initializable
   project.Controller.PaymentForm -up-|> project.Utils.DataUtil
+  project.Controller.PaymentForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.PrizesForm .up.|> javafx.fxml.Initializable
   project.Controller.PrizesForm -up-|> project.Utils.DataUtil
+  project.Controller.PrizesForm o-- project.State.ButtonMenu : buttonMenu
   project.Controller.RegisterForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm .up.|> javafx.fxml.Initializable
   project.Controller.ServerForm +-down- project.Controller.ServerForm.SocketServerThread
