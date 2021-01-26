@@ -32,7 +32,6 @@ public class RegisterForm implements Initializable {
     static final int HBoxXMax = 492;
     static final int HBoxYMin = 14;
     static final int HBoxYMax = 44;
-    private String st;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
@@ -127,8 +126,7 @@ public class RegisterForm implements Initializable {
                 dos.writeUTF(street.getText());
                 dos.writeUTF(number.getText());
                 dos.writeUTF(code.getText());
-                st = dis.readUTF();
-                System.out.println(st);
+                String st = dis.readUTF();
                 status.setText(st);
                 dis.close();
                 dos.close();

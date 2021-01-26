@@ -34,31 +34,32 @@ public class PaymentForm extends DataUtil implements Initializable {
     @FXML
     public TableView<Kurier> Table;
     @FXML
-    public TableColumn<Kurier,Integer> ID;
+    public TableColumn<Kurier, Integer> ID;
     @FXML
-    public TableColumn<Kurier,String> Courier;
+    public TableColumn<Kurier, String> Courier;
     @FXML
-    public TableColumn<Kurier,Integer> Quantity;
+    public TableColumn<Kurier, Integer> Quantity;
     @FXML
     public JFXTextField CourierLabel;
     @FXML
     public JFXTextField PercentageLabel;
     @FXML
-    public Label state,information;
+    public Label state, information;
     private Socket s;
     private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private int counter,id,ilosc;
-    private String imie,tmpstring;
+
     @FXML
     void back(ActionEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @FXML
     void goMenu(MouseEvent event) throws IOException {
         buttonMenu.onClick(event);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -75,13 +76,14 @@ public class PaymentForm extends DataUtil implements Initializable {
                 if (Table.getSelectionModel().getSelectedItem() != null) {
                     Kurier kurier = Table.getSelectionModel().getSelectedItem();
                     CourierLabel.setText(String.valueOf(kurier.getId()));
-                }}
+                }
+            }
         });
     }
+
     @FXML
-    public void add(ActionEvent event){
-        if(!PercentageLabel.getText().equals(""))
-        {
+    public void add(ActionEvent event) {
+        if (!PercentageLabel.getText().equals("")) {
             try {
                 try {
                     ip = InetAddress.getByName("localhost");
@@ -101,12 +103,11 @@ public class PaymentForm extends DataUtil implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        } else {
             state.setText("Wprowadz wartosc do Percentage");
         }
     }
+
     @FXML
     public ObservableList<Kurier> fill_table() throws IOException {
         ObservableList<Kurier> KurierList = FXCollections.observableArrayList();
@@ -120,15 +121,14 @@ public class PaymentForm extends DataUtil implements Initializable {
                 e.printStackTrace();
             }
             dos.writeInt(32);
-            counter = dis.readInt();
-            System.out.println(counter);
+            int counter = dis.readInt();
             for (int i = 1; i <= counter; i++) {
-                tmpstring=dis.readUTF();
-                id=Integer.valueOf(tmpstring);
-                imie=dis.readUTF();
-                tmpstring=dis.readUTF();
-                ilosc=Integer.valueOf(tmpstring);
-                KurierList.add(new Kurier(id,imie,ilosc));
+                String tmpstring = dis.readUTF();
+                int id = Integer.valueOf(tmpstring);
+                String imie = dis.readUTF();
+                tmpstring = dis.readUTF();
+                int ilosc = Integer.valueOf(tmpstring);
+                KurierList.add(new Kurier(id, imie, ilosc));
             }
             Table.setItems(KurierList);
             dis.close();

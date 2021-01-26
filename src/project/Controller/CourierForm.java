@@ -22,7 +22,6 @@ public class CourierForm extends DataUtil implements Initializable {
     @FXML
     public Label name;
     private String tmpstring;
-    private Zlecenie selectedZlecenie;
 
 
     @FXML
@@ -63,9 +62,7 @@ public class CourierForm extends DataUtil implements Initializable {
         if (CourierTabelForm.getSelectionModel().getSelectedItem() != null
                 && StatusSelection.getSelectionModel().getSelectedItem() != null) {
             String testouput = StatusSelection.getSelectionModel().getSelectedItem();
-            System.out.println(testouput);
-            selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
-            System.out.println(selectedZlecenie.ID);
+            Zlecenie selectedZlecenie = CourierTabelForm.getSelectionModel().getSelectedItem();
             connectClient();
             dos.writeInt(42);
             dos.writeUTF(testouput);
@@ -99,7 +96,6 @@ public class CourierForm extends DataUtil implements Initializable {
             for (int i = 1; i <= counter; i++) {
                 tmpstring = dis.readUTF();
                 OrderSelection.getSelectionModel().select(tmpstring);
-                System.out.println(tmpstring);
             }
             dis.close();
             dos.close();

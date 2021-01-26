@@ -72,6 +72,7 @@ title __FACADE's Class Diagram__\n
   project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
   project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
   project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
+  project.Facade.OpenStreetMapBase o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
 
 
 right footer

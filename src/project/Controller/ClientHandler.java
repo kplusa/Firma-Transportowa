@@ -19,7 +19,7 @@ class ClientHandler extends Facade {
     Socket socket;
     DataInputStream dataInputStream = null;
     DataOutputStream dataOutputStream = null;
-    private Statement stmt, stmt2;
+    private Statement stmt;
     private int UserId;
 
     ClientHandler(Socket s, JFXTextArea t) {
@@ -33,12 +33,12 @@ class ClientHandler extends Facade {
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             try {
-                System.out.println(getNotify());
                 int option = dataInputStream.readInt();
                 stmt = conn.createStatement();
                 String status = "";
                 String tmpstring1;
                 int tmpint1;
+                Statement stmt2;
                 if (option == 0) {
                     dataOutputStream.writeUTF(getNotify());
                     deleteNotify();

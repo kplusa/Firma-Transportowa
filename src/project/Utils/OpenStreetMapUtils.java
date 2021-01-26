@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OpenStreetMapUtils implements Adapter {
-    private static OpenStreetMapUtils instance = null;
+    private OpenStreetMapUtils instance = null;
     private JSONParser jsonParser;
 
     public OpenStreetMapUtils() {
         jsonParser = new JSONParser();
     }
 
-    public static OpenStreetMapUtils getInstance() {
+    public OpenStreetMapUtils getInstance() {
         if (instance == null) {
             instance = new OpenStreetMapUtils();
         }

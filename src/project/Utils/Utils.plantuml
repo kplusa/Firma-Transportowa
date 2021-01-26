@@ -10,39 +10,15 @@ title __UTILS's Class Diagram__\n
       }
     }
   }
-  
 
-  namespace project {
-    namespace Utils {
-      class project.Utils.DataUtil {
-          {static} + ClientType : String
-          {static} + Name : String
-          {static} + dis : DataInputStream
-          {static} + dos : DataOutputStream
-          {static} + ip : InetAddress
-          {static} + s : Socket
-          - clientType : Label
-          - name : Label
-          {static} + connectClient()
-          {static} + distance()
-          {static} + getClientType()
-          {static} + getName()
-          + setClientType()
-          + setName()
-          + show()
-      }
-    }
-  }
-  
 
   namespace project {
     namespace Utils {
       class project.Utils.OpenStreetMapUtils {
-          {static} - instance : OpenStreetMapUtils
           - jsonParser : JSONParser
           + OpenStreetMapUtils()
           + getCoordinates()
-          {static} + getInstance()
+          + getInstance()
           + getRequest()
       }
     }
@@ -50,6 +26,8 @@ title __UTILS's Class Diagram__\n
   
 
   project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+project.Facade.OpenStreetMapBase o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
+project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
 
 
 right footer

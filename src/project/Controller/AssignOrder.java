@@ -26,15 +26,15 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class AssignOrder extends DataUtil implements Initializable {
-
+    OpenStreetMapUtils openStreetMapUtils=new OpenStreetMapUtils();
     ButtonMenu buttonMenu = new ButtonMenu(getClientType());
     @FXML
     public Label name;
     private Socket s;
-    private InetAddress ip;
     private DataInputStream dis;
     private DataOutputStream dos;
-    private String fromBranch, location, status;
+    private String fromBranch;
+    private String location;
     @FXML
     private JFXTextField IdOrderTF;
     @FXML
@@ -76,10 +76,10 @@ public class AssignOrder extends DataUtil implements Initializable {
         double lonA = 0;
         double lonB = 0;
         Map<String, Double> coords;
-        coords = OpenStreetMapUtils.getInstance().getCoordinates(A);
+        coords = openStreetMapUtils.getInstance().getCoordinates(A);
         latA += coords.get("lat");
         lonA += coords.get("lon");
-        coords = OpenStreetMapUtils.getInstance().getCoordinates(B);
+        coords = openStreetMapUtils.getInstance().getCoordinates(B);
 
         latB += coords.get("lat");
         lonB += coords.get("lon");
@@ -121,13 +121,14 @@ public class AssignOrder extends DataUtil implements Initializable {
     void assign(ActionEvent event) throws IOException {
         try {
             try {
-                ip = InetAddress.getByName("localhost");
+                InetAddress ip = InetAddress.getByName("localhost");
                 s = new Socket(ip, 5057);
                 dis = new DataInputStream(s.getInputStream());
                 dos = new DataOutputStream(s.getOutputStream());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            String status;
             if (IdCourierTF.getText().isEmpty() || IdOrderTF.getText().isEmpty() || Distance.getText().isEmpty())
                 status = "Insert error";
             else {

@@ -1,8 +1,6 @@
 package project.Class;
 
-import javafx.stage.Stage;
-
-public class Kurier  {
+public class Kurier {
     public int id;
     public String imie;
     public int ilosc;

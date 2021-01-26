@@ -20,14 +20,6 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
 
   namespace project {
     namespace Class {
-      class project.Class.Klient {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
       class project.Class.Kurier {
       }
     }
@@ -37,54 +29,6 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   namespace project {
     namespace Class {
       class project.Class.Oddzial {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Oplata {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Paczka {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Spedytor {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum SposobPlatnosci {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      enum TypKuriera {
-      }
-    }
-  }
-  
-
-  namespace project {
-    namespace Class {
-      class project.Class.Uzytkownik {
       }
     }
   }
@@ -384,15 +328,7 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
 
   project.Class.Cennik -up-|> project.Utils.DataUtil
   project.Class.Doplata -up-|> project.Utils.DataUtil
-  project.Class.Klient -up-|> project.Class.Uzytkownik
-  project.Class.Kurier -up-|> project.Class.Uzytkownik
-  project.Class.Kurier o-- project.Class.TypKuriera : TypKuriera
   project.Class.Oddzial -up-|> project.Utils.DataUtil
-  project.Class.Oplata -up-|> project.Utils.DataUtil
-  project.Class.Oplata o-- project.Class.SposobPlatnosci : SposobPlatnosci
-  project.Class.Paczka -up-|> project.Utils.DataUtil
-  project.Class.Spedytor -up-|> project.Class.Uzytkownik
-  project.Class.Uzytkownik -up-|> project.Utils.DataUtil
   project.Class.Zlecenie -up-|> project.Utils.DataUtil
   project.Client -up-|> javafx.application.Application
   project.Controller.AddOrderform .up.|> javafx.fxml.Initializable
@@ -404,6 +340,7 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Controller.AssignOrder .up.|> javafx.fxml.Initializable
   project.Controller.AssignOrder -up-|> project.Utils.DataUtil
   project.Controller.AssignOrder o-- project.State.ButtonMenu : buttonMenu
+  project.Controller.AssignOrder o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
   project.Controller.ClientHandler -up-|> project.Facade.Facade
   project.Controller.ClientMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.ClientMenuForm .up.|> project.Factory.Menu
@@ -411,7 +348,6 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Controller.CourierForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierForm -up-|> project.Utils.DataUtil
   project.Controller.CourierForm o-- project.State.ButtonMenu : buttonMenu
-  project.Controller.CourierForm o-- project.Class.Zlecenie : selectedZlecenie
   project.Controller.CourierMenuForm .up.|> javafx.fxml.Initializable
   project.Controller.CourierMenuForm .up.|> project.Factory.Menu
   project.Controller.CourierMenuForm -up-|> project.Factory.MenuFactory
@@ -441,6 +377,7 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.Facade.Facade o-- project.Facade.DataBaseSelect : dataBaseSelect
   project.Facade.Facade o-- project.Facade.OpenStreetMapBase : openStreetMapBase
   project.Facade.Facade o-- project.Facade.UserAuthentication : userAuthentication
+  project.Facade.OpenStreetMapBase o-- project.Utils.OpenStreetMapUtils : openStreetMapUtils
   project.Factory.MenuFactory -up-|> project.Utils.DataUtil
   project.Observer.Observer .up.|> project.Observer.ObserverInterface
   project.Server -up-|> javafx.application.Application
@@ -454,6 +391,7 @@ title __FIRMA-TRANSPORTOWA's Class Diagram__\n
   project.State.ForwarderMenuState .up.|> project.State.MenuState
   project.State.ForwarderMenuState -up-|> project.Utils.DataUtil
   project.Utils.OpenStreetMapUtils .up.|> project.Utils.Adapter
+  project.Utils.OpenStreetMapUtils o-- project.Utils.OpenStreetMapUtils : instance
 
 
 right footer

@@ -1,9 +1,9 @@
 package project.Observer;
 
 public interface ObserverInterface {
-    public abstract void run();
+    void run();
 
-    public abstract String getStatus();
+    String getStatus();
 
-    public abstract void setStatus(String status);
+    void setStatus(String status);
 }

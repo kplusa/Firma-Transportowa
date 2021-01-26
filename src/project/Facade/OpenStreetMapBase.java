@@ -1,6 +1,7 @@
 package project.Facade;
 
 import com.jfoenix.controls.JFXTextArea;
+import project.Utils.Adapter;
 import project.Utils.OpenStreetMapUtils;
 
 import java.io.DataInputStream;
@@ -16,6 +17,7 @@ import java.util.Map;
 import static project.Utils.DataUtil.distance;
 
 public class OpenStreetMapBase {
+    OpenStreetMapUtils openStreetMapUtils=new OpenStreetMapUtils();
     public void UpdateOrder(Statement stmt, Statement stmt2, DataInputStream dataInputStream, DataOutputStream dataOutputStream, JFXTextArea text) throws IOException {
         Map<Integer, Double> toList = new HashMap<>();
         Map<Integer, Double> fromList = new HashMap<>();
@@ -48,13 +50,13 @@ public class OpenStreetMapBase {
                 double lonA = 0;
                 double lonB = 0;
                 double lonC = 0;
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                coords = openStreetMapUtils.getInstance().getCoordinates(v);
                 latA += coords.get("lat");
                 lonA += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                coords = openStreetMapUtils.getInstance().getCoordinates(from);
                 latB += coords.get("lat");
                 lonB += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                coords = openStreetMapUtils.getInstance().getCoordinates(to);
                 latC += coords.get("lat");
                 lonC += coords.get("lon");
                 fromList.put(k, distance(latA, latB, lonA, lonB));
@@ -91,7 +93,6 @@ public class OpenStreetMapBase {
                 Integer id = rs.getInt(1);
                 String tmpstring = rs.getString(2);
                 branchList.put(id, tmpstring);
-                System.out.println(id);
             }
             branchList.forEach((k, v) -> {
                 Map<String, Double> coords;
@@ -101,13 +102,13 @@ public class OpenStreetMapBase {
                 double lonA = 0;
                 double lonB = 0;
                 double lonC = 0;
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(v);
+                coords = openStreetMapUtils.getInstance().getCoordinates(v);
                 latA += coords.get("lat");
                 lonA += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(from);
+                coords = openStreetMapUtils.getInstance().getCoordinates(from);
                 latB += coords.get("lat");
                 lonB += coords.get("lon");
-                coords = OpenStreetMapUtils.getInstance().getCoordinates(to);
+                coords = openStreetMapUtils.getInstance().getCoordinates(to);
                 latC += coords.get("lat");
                 lonC += coords.get("lon");
                 fromList.put(k, distance(latA, latB, lonA, lonB));
