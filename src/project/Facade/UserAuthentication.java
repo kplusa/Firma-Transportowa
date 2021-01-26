@@ -51,10 +51,10 @@ public class UserAuthentication {
             int tmpint = 0;
             String tmpstring;
             while (rs.next()) {
-                unistreet = null;
-                uninumber = null;
-                unicity = null;
-                unicode = null;
+                unistreet = "";
+                uninumber = "";
+                unicity = "";
+                unicode = "";
                 tmpint = rs.getInt(1);
                 tmpstring = rs.getString(2);
                 if (tmpstring.equals(street)) {
