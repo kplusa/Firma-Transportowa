@@ -42,4 +42,5 @@ DB: MSSQL
 ### Wzorzec Adapter:
 ![image](https://user-images.githubusercontent.com/63128063/105830769-31e22680-5fc6-11eb-9aca-5fb5bd51b06a.png)
 ### Wzorzec Builder:
-![image](https://user-images.githubusercontent.com/63128063/105841289-a7ed8a00-5fd4-11eb-9b2b-03d92b3851cd.png)
+![image](https://user-images.githubusercontent.com/48603149/105844586-be4a1480-5fd9-11eb-807c-d2e36263efd8.png)
+

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import project.Builder.Director;
+import project.Builder.ZlecenieBuilder;
 import project.Builder.ZlecenieProduct;
 import project.Utils.DataUtil;
 
@@ -41,9 +42,10 @@ public class Zlecenie extends DataUtil {
                 var dataNadania = dis.readUTF();
                 tmpstring = dis.readUTF();
                 var ilosc = Integer.valueOf(tmpstring);
-                Director director = new Director();
+                ZlecenieBuilder zlecenieBuilder = new ZlecenieBuilder();
+                Director director = new Director(zlecenieBuilder);
                 director.getZlecenieAdresyIlosc(id, adresPoczatkowy, adresKoncowy, dataNadania, ilosc);
-                ZlecenieList.add(director.builder.zlecenie);
+                ZlecenieList.add(director.builder.getResult());
             }
             Orders.setItems(ZlecenieList);
             dis.close();
@@ -70,9 +72,10 @@ public class Zlecenie extends DataUtil {
                 var idOrder = Integer.valueOf(dis.readUTF());
                 var fromBranch = dis.readUTF();
                 var toBranch = dis.readUTF();
-                Director director = new Director();
+                ZlecenieBuilder zlecenieBuilder = new ZlecenieBuilder();
+                Director director = new Director(zlecenieBuilder);
                 director.getZlecenieOddzialy(fromBranch, idOrder, toBranch);
-                orderList.add(director.builder.zlecenie);
+                orderList.add(director.builder.getResult());
             }
             OrderTV.setItems(orderList);
             dis.close();
@@ -133,9 +136,10 @@ public class Zlecenie extends DataUtil {
                 var status = dis.readUTF();
                 tmpstring = dis.readUTF();
                 var ilosc = Integer.valueOf(tmpstring);
-                Director director = new Director();
+                ZlecenieBuilder zlecenieBuilder = new ZlecenieBuilder();
+                Director director = new Director(zlecenieBuilder);
                 director.getZlecenieAdresyStatus(id, datas, adresP, adresK, status, ilosc);
-                zlecenieList.add(director.builder.zlecenie);
+                zlecenieList.add(director.builder.getResult());
             }
             CourierTabelForm.setItems(zlecenieList);
             dis.close();
@@ -163,9 +167,10 @@ public class Zlecenie extends DataUtil {
                 kurier += " ";
                 kurier += dis.readUTF();
                 if (!stat.equals("Dostarczone")) {
-                    Director director = new Director();
+                    ZlecenieBuilder zlecenieBuilder = new ZlecenieBuilder();
+                    Director director = new Director(zlecenieBuilder);
                     director.getZlecenieStatusKurier(id, stat, kurier);
-                    ZlecenieList.add(director.builder.zlecenie);
+                    ZlecenieList.add(director.builder.getResult());
                 }
             }
             CurrentOrder.setItems(ZlecenieList);

@@ -9,8 +9,8 @@ public class ConfigDB {
         Connection conn = null;
         try {
 
-            String url = "jdbc:sqlserver://DESKTOP-TRG3U04\\SQLEXPRESS:1433";
-            //String url = "jdbc:sqlserver://DESKTOP-U746ETR\\SQLEXPRESS:1433";
+            //String url = "jdbc:sqlserver://DESKTOP-TRG3U04\\SQLEXPRESS:1433";
+            String url = "jdbc:sqlserver://DESKTOP-U746ETR\\SQLEXPRESS:1433";
             String username = "PIPpro";
             String password = "12345";
             conn = DriverManager.getConnection(url, username, password);

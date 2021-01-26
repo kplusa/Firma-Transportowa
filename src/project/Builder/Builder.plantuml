@@ -79,7 +79,7 @@ title __BUILDER's Class Diagram__\n
   }
   
 
-  project.Builder.Director o-- project.Builder.ZlecenieBuilder : builder
+  project.Builder.Director o-- project.Builder.Builder : builder
   project.Builder.ZlecenieBuilder .up.|> project.Builder.Builder
   project.Builder.ZlecenieBuilder o-- project.Builder.ZlecenieProduct : zlecenie
 
