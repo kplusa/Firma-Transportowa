@@ -1,15 +1,8 @@
 package project.Controller;
 
 import com.jfoenix.controls.JFXTextArea;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import jdk.jfr.Unsigned;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import project.Facade.UserAuthentication;
-import project.Server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -18,8 +11,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ClientHandlerTest {
 

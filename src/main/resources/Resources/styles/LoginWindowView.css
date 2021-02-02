@@ -1,0 +1,102 @@
+.body{
+    -fx-background-color: white;
+    -fx-background-radius: 5.0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2),8.0,0.5,0.0,1);
+    -fx-padding: 10 10 10 10;
+}
+.minBtn{
+    -fx-background-color: transparent;
+}
+.minBtn:hover
+{
+    -fx-background-color: #B7B4B4;
+}
+.minBtn:pressed{
+    -fx-background-color: #8B8B8B
+}
+.closeBtn{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../icons/icons8_delete_30px.png");
+    -fx-background-size: 20px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.closeBtn:hover{
+    -fx-background-color:#ff0000;
+    -fx-background-image: url('../icons/icons8_delete_30px_1.png');
+
+}
+.closeBtn:pressed
+{
+    -fx-background-color: #FF8383;
+    -fx-background-image: url("../icons/icons8_delete_30px_1.png");
+
+}
+.background
+{
+    -fx-background-color: #99a3b0
+}
+.goLoginRegister
+{
+    -fx-text-fill: #575757;
+}
+.goLoginRegister:hover
+{
+    -fx-text-fill: #5064ff;
+}
+.goLoginRegister:pressed
+{
+    -fx-text-fill: #b2bbff;
+}
+.NormalFormsHeader
+{
+    -fx-background-color: #99a3b0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2),8.0,0.5,0.0,1);
+    -fx-padding: 10 10 10 10;
+}
+.NormalFormsBody{
+    -fx-background-color: white;
+
+}
+.LoggedAs
+{
+    -fx-background-color: #828d96;
+    -fx-background-radius: 3 .0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1),10.0,0.6,0.0,1);
+
+}
+.Header{
+    -fx-background-color:  #00B2FF;
+    -fx-background-radius: 5.0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2),8.0,0.5,0.0,1);
+
+}
+.Logo
+{
+    -fx-background-color: #99a3b0;
+}
+.Logo:hover
+{
+    -fx-background-color: #7faacf;
+}
+.Logo:pressed
+{
+    -fx-background-color: #60a6de;
+}
+.EditingButtons
+{
+    -fx-background-color: #839198;
+    -fx-background-radius: 10;
+}
+.menuButton
+{
+    -fx-background-color : #F3F3F3;
+}
+.menuButton:hover
+{
+    -fx-background-color: #9fc1cf;
+}
+.menuButton:pressed
+{
+    -fx-background-color: #85b2de;
+}

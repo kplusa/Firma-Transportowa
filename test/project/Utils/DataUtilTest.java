@@ -1,6 +1,6 @@
 package project.Utils;
 
-import org.junit.jupiter.api.Assertions;
+import project.Utils.DataUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

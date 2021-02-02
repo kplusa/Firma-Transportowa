@@ -1,5 +1,6 @@
 package project.Facade;
 
+import project.Facade.UserAuthentication;
 import com.jfoenix.controls.JFXTextArea;
 import org.junit.jupiter.api.Test;
 
